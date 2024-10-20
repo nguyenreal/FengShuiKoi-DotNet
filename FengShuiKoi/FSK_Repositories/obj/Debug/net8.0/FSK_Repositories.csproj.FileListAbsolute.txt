@@ -1,0 +1,17 @@
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\bin\Debug\net8.0\FSK_Repositories.deps.json
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\bin\Debug\net8.0\FSK_Repositories.dll
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\bin\Debug\net8.0\FSK_Repositories.pdb
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\bin\Debug\net8.0\FSK_BusinessObjects.dll
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\bin\Debug\net8.0\FSK_DAOs.dll
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\bin\Debug\net8.0\FSK_DAOs.pdb
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\bin\Debug\net8.0\FSK_BusinessObjects.pdb
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\obj\Debug\net8.0\FSK_Repositories.csproj.AssemblyReference.cache
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\obj\Debug\net8.0\FSK_Repositories.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\obj\Debug\net8.0\FSK_Repositories.AssemblyInfoInputs.cache
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\obj\Debug\net8.0\FSK_Repositories.AssemblyInfo.cs
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\obj\Debug\net8.0\FSK_Repositories.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\obj\Debug\net8.0\FSK_Repo.FCCEAEF7.Up2Date
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\obj\Debug\net8.0\FSK_Repositories.dll
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\obj\Debug\net8.0\refint\FSK_Repositories.dll
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\obj\Debug\net8.0\FSK_Repositories.pdb
+C:\Users\ADMIN\source\repos\FengShuiKoi\FSK_Repositories\obj\Debug\net8.0\ref\FSK_Repositories.dll
