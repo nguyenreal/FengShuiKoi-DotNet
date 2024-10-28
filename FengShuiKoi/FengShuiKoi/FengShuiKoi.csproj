@@ -8,4 +8,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FSK_Services\FSK_Services.csproj" />
+  </ItemGroup>
+
 </Project>
