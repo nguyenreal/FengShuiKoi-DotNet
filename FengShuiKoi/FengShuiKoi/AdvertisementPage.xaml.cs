@@ -32,7 +32,9 @@ namespace FengShuiKoi
             this.dgAdData.ItemsSource = advertisementServices.GetAdvertisements();
             this.cboCategory.ItemsSource = categoryService.GetAllCategories();
             this.cboCategory.DisplayMemberPath = "CategoryName";
-            this.cboCategory.SelectedValuePath = "CategoryID";
+            this.cboCategory.SelectedValuePath = "CategoryId";
+            this.cboElement.DisplayMemberPath = "ElementName";
+            this.cboElement.SelectedValuePath = "ElementId";
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -118,6 +120,11 @@ namespace FengShuiKoi
                     //cboElement.SelectedValue = advertisement.Element;
                 }
             }
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

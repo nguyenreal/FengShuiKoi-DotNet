@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:FengShuiKoi"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="AdvertisementPage" Height="800
-        " Width="800" WindowStartupLocation="CenterScreen">
+        Title="AdvertisementPage" Height="800" 
+        Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="641*"/>
@@ -25,14 +25,21 @@
         <TextBox x:Name="txtAdID" HorizontalAlignment="Left" Height="35" Margin="82,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
         <TextBox x:Name="txtTitle" HorizontalAlignment="Left" Height="35" Margin="82,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
         <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Height="31" Margin="82,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
-        <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="29" Margin="82,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
+        <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="30" Margin="82,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
         <ComboBox x:Name="cboElement" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="35" Margin="514,45,0,0" VerticalAlignment="Top" Width="171"/>
         <ComboBox x:Name="cboCategory" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="35" Margin="514,109,0,0" VerticalAlignment="Top" Width="171"/>
         <TextBox x:Name="txtUserID" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="30" Margin="514,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
-        <DataGrid x:Name="dgAdData" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="409" Margin="10,319,0,0" VerticalAlignment="Top" Width="763" SelectionChanged="dgAdData_SelectionChanged"/>
+        <DataGrid x:Name="dgAdData" HorizontalAlignment="Left" Height="286" Margin="10,392,0,0" VerticalAlignment="Top" Width="763" SelectionChanged="dgAdData_SelectionChanged" Grid.ColumnSpan="2"/>
         <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Height="41" Margin="10,733,0,0" VerticalAlignment="Top" Width="163" Click="btnAdd_Click"/>
         <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Height="41" Margin="208,733,0,0" VerticalAlignment="Top" Width="163" Click="btnUpdate_Click"/>
         <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Height="41" Margin="414,733,0,0" VerticalAlignment="Top" Width="162" Click="btnDelete_Click"/>
         <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Height="41" Margin="611,733,0,0" VerticalAlignment="Top" Width="162" Grid.ColumnSpan="2" Click="btnClose_Click"/>
+        <GroupBox x:Name="grbSearch" HorizontalAlignment="Left" Height="78" Header="" Margin="10,299,0,0" VerticalAlignment="Top" Width="763" Grid.ColumnSpan="2">
+            <Canvas>
+                <TextBox x:Name="txtSearch" Height="29" TextWrapping="Wrap" Width="530" HorizontalAlignment="Left" Canvas.Left="72" Canvas.Top="13" VerticalAlignment="Center"/>
+                <Label Content="Search:" Canvas.Left="10" Canvas.Top="13" HorizontalAlignment="Left" VerticalAlignment="Center" Width="57"/>
+                <Button x:Name="btnSearch" Content="Search" Height="29" Canvas.Left="638" Canvas.Top="13" Width="103" Click="btnSearch_Click"/>
+            </Canvas>
+        </GroupBox>
     </Grid>
 </Window>

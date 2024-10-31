@@ -89,10 +89,27 @@ namespace FSK_DAOs
             return isSuccess;
         }
 
-        public Advertisement GetAdvertisementByID(String adID)
+        public Advertisement GetAdvertisementByID(string adID)
         {
                 using var db = new FengShuiKoiDbContext();
-                return db.Advertisements.FirstOrDefault(c => c.AdId.Equals(adID));
+                return db.Advertisements
+                .FirstOrDefault(c => c.AdId.Equals(adID));
+        }
+
+        public List<Advertisement> GetAdvertisementByFilter(string element, string userID, string category)
+        {
+            List<Advertisement> advertisements = GetAdvertisements();
+            List<Advertisement> listAds = new List<Advertisement>();
+            foreach(Advertisement ad in advertisements)
+            {
+                if(ad.UserId.Equals(userID)
+                    && ad.Category.Equals(category) 
+                    && ad.Element.Equals(element))
+                {
+                    listAds.Add(ad);
+                }
+            }
+            return listAds;
         }
     }
 }
