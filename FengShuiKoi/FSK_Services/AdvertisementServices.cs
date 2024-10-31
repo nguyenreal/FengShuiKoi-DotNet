@@ -15,9 +15,9 @@ namespace FSK_Services
         {
             iAdvertisementRepo = new AdvertisementRepo();
         }
-        public bool DeleteAdvertisement(Advertisement advertisement)
+        public bool DeleteAdvertisement(string adID)
         {
-            return iAdvertisementRepo.DeleteAdvertisement(advertisement);
+            return iAdvertisementRepo.DeleteAdvertisement(adID);
         }
 
         public Advertisement GetAdvertisement(string id)
@@ -30,9 +30,9 @@ namespace FSK_Services
             return iAdvertisementRepo.GetAdvertisements();
         }
 
-        public bool SaveAdvertisement(Advertisement advertisement)
+        public bool AddAdvertisement(Advertisement advertisement)
         {
-            return iAdvertisementRepo.SaveAdvertisement(advertisement);
+            return iAdvertisementRepo.AddAdvertisement(advertisement);
         }
 
         public bool UpdateAdvertisement(Advertisement advertisement)

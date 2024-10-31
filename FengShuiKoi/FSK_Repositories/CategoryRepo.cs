@@ -16,7 +16,7 @@ namespace FSK_Repositories
 
         public List<Category> GetCategories() => CategoryDAOs.Instance.GetCategories();
 
-        public bool SaveCategory(Category category) => CategoryDAOs.Instance.SaveCategory(category);
+        public bool SaveCategory(Category category) => CategoryDAOs.Instance.AddCategory(category);
 
         public bool UpdateCategory(Category category) => CategoryDAOs.Instance.UpdateCategory(category);
     }

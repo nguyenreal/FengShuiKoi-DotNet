@@ -42,13 +42,25 @@ namespace FengShuiKoi
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            try
+            Advertisement advertisement = new Advertisement
             {
-
+                AdId = txtAdID.Text,
+                Title = txtTitle.Text,
+                Description = txtDescription.Text,
+                Price = Double.Parse(txtPrice.Text),
+                //ElementId = cboElement.SelectedValue.ToString(),
+                CategoryId = cboCategory.SelectedValue.ToString(),
+                UserId = txtUserID.Text,
+                AdImageId = imgURL.Uid
+            };
+            if (advertisementServices.UpdateAdvertisement(advertisement))
+            {
+                this.LoadDataInit();
+                MessageBox.Show("Cập nhật thành công");
             }
-            catch 
-            { 
-                
+            else
+            {
+                MessageBox.Show("Cập nhật không thành công. Hãy cập nhật lại!");
             }
         }
 
@@ -63,16 +75,25 @@ namespace FengShuiKoi
                 UserId = txtUserID.Text,
                 CategoryId = cboCategory.SelectedValue?.ToString()
             };
-            if (advertisementServices.SaveAdvertisement(advertisement))
+            if (advertisementServices.AddAdvertisement(advertisement))
             {
-                MessageBox.Show("Add successfully");
+                MessageBox.Show("Thêm quảng cáo thành công");
                 this.LoadDataInit();
             }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            String userID = txtUserID.Text;
+            if(userID.Length > 0 && advertisementServices.DeleteAdvertisement(userID))
+            {
+                this.LoadDataInit();
+                MessageBox.Show("Xóa thành công");
+            }
+            else
+            {
+                MessageBox.Show("Xóa không thành công. Hãy thử lại.");
+            }
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -82,18 +103,21 @@ namespace FengShuiKoi
 
         private void dgAdData_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataGrid dataGrid = sender as DataGrid;
-            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator
-                .ContainerFromIndex(dgAdData.SelectedIndex);
-            DataGridCell RowColumn = dataGrid.Columns[0].GetCellContent(row).Parent as DataGridCell;
-            String id = ((TextBlock)RowColumn.Content).Text;
-            Advertisement ad = advertisementServices.GetAdvertisement(id);
-            txtAdID.Text = ad.AdId;
-            txtDescription.Text = ad.Description;
-            txtPrice.Text = ad.Price.ToString();
-            txtTitle.Text = ad.Title;
-            txtUserID.Text = ad.UserId;
-            cboCategory.SelectedValue = ad.Category;
+            if (dgAdData.SelectedItem != null)
+            {
+                Advertisement advertisement = dgAdData.SelectedItem as Advertisement;
+
+                if (advertisement != null)
+                {
+                    txtAdID.Text = advertisement.AdId;
+                    txtTitle.Text = advertisement.Title;
+                    txtDescription.Text = advertisement.Description;
+                    txtPrice.Text = advertisement.Price.ToString();
+                    txtUserID.Text = advertisement.UserId.ToString();
+                    cboCategory.SelectedValue = advertisement.Category;
+                    //cboElement.SelectedValue = advertisement.Element;
+                }
+            }
         }
     }
 }

@@ -9,7 +9,7 @@ namespace FSK_Repositories
 {
     public interface IAdvertisementRepo
     {
-        bool SaveAdvertisement(Advertisement advertisement);
+        bool AddAdvertisement(Advertisement advertisement);
         bool DeleteAdvertisement(Advertisement advertisement);
         bool UpdateAdvertisement(Advertisement advertisement);
         List<Advertisement> GetAdvertisements();

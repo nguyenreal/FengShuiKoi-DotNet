@@ -16,7 +16,7 @@ namespace FSK_Repositories
 
         public List<Advertisement> GetAdvertisements() => AdvertisementDAOs.Instance.GetAdvertisements();
 
-        public bool SaveAdvertisement(Advertisement advertisement) => AdvertisementDAOs.Instance.SaveAd(advertisement);
+        public bool SaveAdvertisement(Advertisement advertisement) => AdvertisementDAOs.Instance.AddAd(advertisement);
 
         public bool UpdateAdvertisement(Advertisement advertisement) => AdvertisementDAOs.Instance.UpdateAd(advertisement);
     }

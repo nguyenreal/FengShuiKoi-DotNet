@@ -20,7 +20,7 @@
         <Label Content="Element:" HorizontalAlignment="Left" Height="35" Margin="447,45,0,0" VerticalAlignment="Top" Width="55"/>
         <Label Content="Category:" HorizontalAlignment="Left" Height="35" Margin="447,109,0,0" VerticalAlignment="Top" Width="67"/>
         <Label Content="User ID:" HorizontalAlignment="Left" Height="28" Margin="447,172,0,0" VerticalAlignment="Top" Width="55"/>
-        <Image HorizontalAlignment="Left" Height="93" Margin="447,217,0,0" VerticalAlignment="Top" Width="252" Grid.ColumnSpan="2"/>
+        <Image x:Name="imgURL" HorizontalAlignment="Left" Height="93" Margin="447,217,0,0" VerticalAlignment="Top" Width="252" Grid.ColumnSpan="2"/>
         <Label Content="ADVERTISEMENT PAGE" HorizontalAlignment="Left" Height="30" Margin="333,10,0,0" VerticalAlignment="Top" Width="134"/>
         <TextBox x:Name="txtAdID" HorizontalAlignment="Left" Height="35" Margin="82,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
         <TextBox x:Name="txtTitle" HorizontalAlignment="Left" Height="35" Margin="82,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>

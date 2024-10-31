@@ -15,9 +15,9 @@ namespace FSK_Services
         {
             iCategoryRepo = new CategoryRepo();
         }
-        public bool SaveCategory(Category category)
+        public bool AddCategory(Category category)
         {
-            return iCategoryRepo.SaveCategory(category);
+            return iCategoryRepo.AddCategory(category);
         }
 
         public bool DeleteCategory(string categoryId)

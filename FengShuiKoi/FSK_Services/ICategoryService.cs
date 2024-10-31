@@ -11,7 +11,7 @@ namespace FSK_Services
     {
         List<Category> GetAllCategories();
         Category GetCategoryById(string categoryId);
-        bool SaveCategory(Category category);
+        bool AddCategory(Category category);
         bool UpdateCategory(Category category);
         bool DeleteCategory(string categoryId);
     }

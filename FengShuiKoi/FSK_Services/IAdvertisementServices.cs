@@ -9,8 +9,8 @@ namespace FSK_Services
 {
     public interface IAdvertisementServices
     {
-        bool SaveAdvertisement(Advertisement advertisement);
-        bool DeleteAdvertisement(Advertisement advertisement);
+        bool AddAdvertisement(Advertisement advertisement);
+        bool DeleteAdvertisement(string adID);
         bool UpdateAdvertisement(Advertisement advertisement);
         List<Advertisement> GetAdvertisements();
         Advertisement GetAdvertisement(String id);

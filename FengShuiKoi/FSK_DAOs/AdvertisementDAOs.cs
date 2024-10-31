@@ -37,7 +37,7 @@ namespace FSK_DAOs
             return listAds;
         }
 
-        public bool SaveAd(Advertisement advertisement)
+        public bool AddAd(Advertisement advertisement)
         {
             bool isSuccess = false;
             try
@@ -71,24 +71,20 @@ namespace FSK_DAOs
             return isSuccess;
         }
 
-        public bool DeleteAd(Advertisement advertisement)
+        public bool DeleteAd(string adID)
         {
             bool isSuccess = false;
-            try
+            using var context = new FengShuiKoiDbContext();
+            Advertisement advertisement = GetAdvertisementByID(adID);
+            if(advertisement != null)
             {
-                using var context = new FengShuiKoiDbContext();
-                var a1 = context.Advertisements.SingleOrDefault(c => c.AdId == advertisement.AdId);
-                if(a1 == null)
-                {
-                    throw new Exception("Advertisement not exist!");
-                }
-                context.Advertisements.Remove(a1);
+                context.Advertisements.Remove(advertisement);
                 context.SaveChanges();
                 isSuccess = true;
             }
-            catch (Exception ex)
+            else
             {
-                throw new Exception(ex.Message);
+                throw new Exception("Advertisement not exist!");
             }
             return isSuccess;
         }

@@ -42,7 +42,7 @@ namespace FSK_DAOs
             return categories;
         }
 
-        public bool SaveCategory(Category category)
+        public bool AddCategory(Category category)
         {
             bool isSuccess = false;
             try
@@ -65,7 +65,8 @@ namespace FSK_DAOs
             try
             {
                 using var context = new FengShuiKoiDbContext();
-                context.Entry(category).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                context.Entry(category).State = 
+                    Microsoft.EntityFrameworkCore.EntityState.Modified;
                 context.SaveChanges();
                 isSuccess = true;
             }
@@ -82,7 +83,8 @@ namespace FSK_DAOs
             try
             {
                 using var context = new FengShuiKoiDbContext();
-                var existingCategory = context.Categories.SingleOrDefault(c => c.CategoryId == GetCategory(id).CategoryId);
+                var existingCategory = context.Categories
+                    .SingleOrDefault(c => c.CategoryId == GetCategory(id).CategoryId);
                 if (existingCategory == null)
                 {
                     throw new Exception("Category does not exist!");
