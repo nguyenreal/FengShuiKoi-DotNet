@@ -1,4 +1,5 @@
 ﻿using FSK_BusinessObjects;
+using Microsoft.EntityFrameworkCore;
 
 namespace FSK_DAOs
 {
@@ -76,7 +77,7 @@ namespace FSK_DAOs
             bool isSuccess = false;
             using var context = new FengShuiKoiDbContext();
             Advertisement advertisement = GetAdvertisementByID(adID);
-            if(advertisement != null)
+            if (advertisement != null)
             {
                 context.Advertisements.Remove(advertisement);
                 context.SaveChanges();
@@ -91,25 +92,40 @@ namespace FSK_DAOs
 
         public Advertisement GetAdvertisementByID(string adID)
         {
-                using var db = new FengShuiKoiDbContext();
-                return db.Advertisements
+            using var db = new FengShuiKoiDbContext();
+            return db.Advertisements
                 .FirstOrDefault(c => c.AdId.Equals(adID));
         }
 
-        public List<Advertisement> GetAdvertisementByFilter(string element, string userID, string category)
+        public List<Advertisement> GetAdvertisementsByFilter(string category, string userID, string element)
         {
-            List<Advertisement> advertisements = GetAdvertisements();
-            List<Advertisement> listAds = new List<Advertisement>();
-            foreach(Advertisement ad in advertisements)
+            using (var context = new FengShuiKoiDbContext())
             {
-                if(ad.UserId.Equals(userID)
-                    && ad.Category.Equals(category) 
-                    && ad.Element.Equals(element))
+                var query = context.Advertisements
+                    .Include(ad => ad.Category)
+                    .Include(ad => ad.User)
+                    .Include(ad => ad.Element)
+                    .Where(ad => ad.Status == "Active");
+
+                // filter by category
+                if (!string.IsNullOrEmpty(category))
                 {
-                    listAds.Add(ad);
+                    query = query.Where(ad => ad.Category.CategoryId == category);
                 }
+
+                // filter by userID
+                if (!string.IsNullOrEmpty(userID))
+                {
+                    query = query.Where(ad => ad.User.UserId == userID);
+                }
+
+                // filter by element
+                if (!string.IsNullOrEmpty(element))
+                {
+                    query = query.Where(ad => ad.Element.ElementName == element);
+                }
+                return query.ToList();
             }
-            return listAds;
         }
     }
 }

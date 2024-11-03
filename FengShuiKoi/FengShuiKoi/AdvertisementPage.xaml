@@ -10,36 +10,31 @@
         Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="641*"/>
-            <ColumnDefinition Width="159*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
         <Label Content="Ad ID:" HorizontalAlignment="Left" Height="35" Margin="10,45,0,0" VerticalAlignment="Top" Width="49"/>
         <Label Content="Title:" HorizontalAlignment="Left" Height="35" Margin="10,109,0,0" VerticalAlignment="Top" Width="38"/>
         <Label Content="Description:" HorizontalAlignment="Left" Height="33" Margin="10,184,0,0" VerticalAlignment="Top" Width="72"/>
         <Label Content="Price:" HorizontalAlignment="Left" Height="38" Margin="10,256,0,0" VerticalAlignment="Top" Width="49"/>
-        <Label Content="Element:" HorizontalAlignment="Left" Height="35" Margin="447,45,0,0" VerticalAlignment="Top" Width="55"/>
-        <Label Content="Category:" HorizontalAlignment="Left" Height="35" Margin="447,109,0,0" VerticalAlignment="Top" Width="67"/>
-        <Label Content="User ID:" HorizontalAlignment="Left" Height="28" Margin="447,172,0,0" VerticalAlignment="Top" Width="55"/>
-        <Image x:Name="imgURL" HorizontalAlignment="Left" Height="93" Margin="447,217,0,0" VerticalAlignment="Top" Width="252" Grid.ColumnSpan="2"/>
-        <Label Content="ADVERTISEMENT PAGE" HorizontalAlignment="Left" Height="30" Margin="333,10,0,0" VerticalAlignment="Top" Width="134"/>
+        <Label Content="Element:" HorizontalAlignment="Left" Height="35" Margin="511,45,0,0" VerticalAlignment="Top" Width="55"/>
+        <Label Content="Category:" HorizontalAlignment="Left" Height="36" Margin="511,108,0,0" VerticalAlignment="Top" Width="67"/>
+        <Label Content="User ID:" HorizontalAlignment="Left" Height="28" Margin="511,172,0,0" VerticalAlignment="Top" Width="55"/>
+        <Label Content="ADVERTISEMENT PAGE" HorizontalAlignment="Left" Height="53" Margin="225,-8,0,0" VerticalAlignment="Top" Width="333" FontSize="30"/>
         <TextBox x:Name="txtAdID" HorizontalAlignment="Left" Height="35" Margin="82,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
         <TextBox x:Name="txtTitle" HorizontalAlignment="Left" Height="35" Margin="82,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
         <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Height="31" Margin="82,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
         <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="30" Margin="82,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
-        <ComboBox x:Name="cboElement" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="35" Margin="514,45,0,0" VerticalAlignment="Top" Width="171"/>
-        <ComboBox x:Name="cboCategory" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="35" Margin="514,109,0,0" VerticalAlignment="Top" Width="171"/>
-        <TextBox x:Name="txtUserID" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="30" Margin="514,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
-        <DataGrid x:Name="dgAdData" HorizontalAlignment="Left" Height="286" Margin="10,392,0,0" VerticalAlignment="Top" Width="763" SelectionChanged="dgAdData_SelectionChanged" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="cboElement" HorizontalAlignment="Left" Height="35" Margin="578,45,0,0" VerticalAlignment="Top" Width="171"/>
+        <ComboBox x:Name="cboCategory" HorizontalAlignment="Left" Height="36" Margin="578,108,0,0" VerticalAlignment="Top" Width="184"/>
+        <TextBox x:Name="txtUserID" HorizontalAlignment="Left" Height="30" Margin="578,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
+        <DataGrid x:Name="dgAdData" HorizontalAlignment="Center" Height="316" Margin="0,392,0,0" VerticalAlignment="Top" Width="764" SelectionChanged="dgAdData_SelectionChanged"/>
         <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Height="41" Margin="10,733,0,0" VerticalAlignment="Top" Width="163" Click="btnAdd_Click"/>
         <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Height="41" Margin="208,733,0,0" VerticalAlignment="Top" Width="163" Click="btnUpdate_Click"/>
         <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Height="41" Margin="414,733,0,0" VerticalAlignment="Top" Width="162" Click="btnDelete_Click"/>
-        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Height="41" Margin="611,733,0,0" VerticalAlignment="Top" Width="162" Grid.ColumnSpan="2" Click="btnClose_Click"/>
-        <GroupBox x:Name="grbSearch" HorizontalAlignment="Left" Height="78" Header="" Margin="10,299,0,0" VerticalAlignment="Top" Width="763" Grid.ColumnSpan="2">
-            <Canvas>
-                <TextBox x:Name="txtSearch" Height="29" TextWrapping="Wrap" Width="530" HorizontalAlignment="Left" Canvas.Left="72" Canvas.Top="13" VerticalAlignment="Center"/>
-                <Label Content="Search:" Canvas.Left="10" Canvas.Top="13" HorizontalAlignment="Left" VerticalAlignment="Center" Width="57"/>
-                <Button x:Name="btnSearch" Content="Search" Height="29" Canvas.Left="638" Canvas.Top="13" Width="103" Click="btnSearch_Click"/>
-            </Canvas>
-        </GroupBox>
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Height="41" Margin="611,733,0,0" VerticalAlignment="Top" Width="162" Click="btnClose_Click"/>
+        <Label Content="Search" HorizontalAlignment="Left" Height="32" Margin="29,299,0,0" VerticalAlignment="Top" Width="63"/>
+        <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Height="32" Margin="125,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="520"/>
+        <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Height="32" Margin="670,299,0,0" VerticalAlignment="Top" Width="103" Click="btnSearch_Click"/>
     </Grid>
 </Window>

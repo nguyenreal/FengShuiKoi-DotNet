@@ -18,7 +18,7 @@ namespace FSK_Repositories
         public List<Advertisement> GetAdvertisements() => AdvertisementDAOs.Instance.GetAdvertisements();
 
         public List<Advertisement> GetAdvertisementsByFilter(string element, string userID, string category) 
-            => AdvertisementDAOs.Instance.GetAdvertisementByFilter(element, userID, category);
+            => AdvertisementDAOs.Instance.GetAdvertisementsByFilter(element, userID, category);
   
         public bool AddAdvertisement(Advertisement advertisement) => AdvertisementDAOs.Instance.AddAd(advertisement);
 

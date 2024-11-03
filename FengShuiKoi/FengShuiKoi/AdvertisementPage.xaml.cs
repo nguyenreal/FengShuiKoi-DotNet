@@ -12,18 +12,21 @@ namespace FengShuiKoi
     {
         private readonly IAdvertisementServices advertisementServices;
         private readonly ICategoryService categoryService;
+        private readonly IElementService elementService;
         private readonly int? adID;
         public AdvertisementPage()
         {
             InitializeComponent();
             advertisementServices = new AdvertisementServices();
             categoryService = new CategoryServices();
+            elementService = new ElementService();
         }
         public AdvertisementPage(int? adID)
         {
             InitializeComponent();
             advertisementServices = new AdvertisementServices();
             categoryService = new CategoryServices();
+            elementService = new ElementService();
             this.adID = adID;
         }
 
@@ -33,6 +36,7 @@ namespace FengShuiKoi
             this.cboCategory.ItemsSource = categoryService.GetAllCategories();
             this.cboCategory.DisplayMemberPath = "CategoryName";
             this.cboCategory.SelectedValuePath = "CategoryId";
+            this.cboElement.ItemsSource = elementService.GetElements();
             this.cboElement.DisplayMemberPath = "ElementName";
             this.cboElement.SelectedValuePath = "ElementId";
         }
@@ -50,10 +54,9 @@ namespace FengShuiKoi
                 Title = txtTitle.Text,
                 Description = txtDescription.Text,
                 Price = Double.Parse(txtPrice.Text),
-                //ElementId = cboElement.SelectedValue.ToString(),
+                ElementId = cboElement.SelectedValue as int?,
                 CategoryId = cboCategory.SelectedValue.ToString(),
-                UserId = txtUserID.Text,
-                AdImageId = imgURL.Uid
+                UserId = txtUserID.Text
             };
             if (advertisementServices.UpdateAdvertisement(advertisement))
             {
@@ -75,7 +78,8 @@ namespace FengShuiKoi
                 Description = txtDescription.Text,
                 Price = double.Parse(txtPrice.Text),
                 UserId = txtUserID.Text,
-                CategoryId = cboCategory.SelectedValue?.ToString()
+                CategoryId = cboCategory.SelectedValue?.ToString(),
+                ElementId = cboElement.SelectedValue as int?
             };
             if (advertisementServices.AddAdvertisement(advertisement))
             {
@@ -115,16 +119,21 @@ namespace FengShuiKoi
                     txtTitle.Text = advertisement.Title;
                     txtDescription.Text = advertisement.Description;
                     txtPrice.Text = advertisement.Price.ToString();
-                    txtUserID.Text = advertisement.UserId.ToString();
-                    cboCategory.SelectedValue = advertisement.Category;
-                    //cboElement.SelectedValue = advertisement.Element;
+                    txtUserID.Text = advertisement.UserId?.ToString();
+                    cboCategory.SelectedValue = advertisement.CategoryId;
+                    cboElement.SelectedValue = advertisement.ElementId;
                 }
             }
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
+            string category = cboCategory.SelectedValue?.ToString() ?? string.Empty;
+            string element = cboElement.SelectedValue?.ToString() ?? string.Empty;
+            string userID = txtUserID.Text;
 
+            var filteredAds = advertisementServices.GetAdvertisementsByFilter(category, element, userID);
+            dgAdData.ItemsSource = filteredAds;
         }
     }
 }
