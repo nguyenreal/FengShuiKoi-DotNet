@@ -25,31 +25,17 @@ namespace FSK_DAOs
 
         public List<Advertisement> GetAdvertisements()
         {
-            var listAds = new List<Advertisement>();
-            try
-            {
-                using var context = new FengShuiKoiDbContext();
-                listAds = context.Advertisements.ToList();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            return listAds;
+            return dbContext.Advertisements.Include(c => c.Category).ToList();
         }
 
         public bool AddAd(Advertisement advertisement)
         {
             bool isSuccess = false;
-            try
+            if(GetAdvertisementByID(advertisement.AdId) == null )
             {
-                using var context = new FengShuiKoiDbContext();
-                context.Advertisements.Add(advertisement);
+                dbContext.Advertisements.Add(advertisement);
+                dbContext.SaveChanges();
                 isSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
             }
             return isSuccess;
         }
@@ -57,17 +43,15 @@ namespace FSK_DAOs
         public bool UpdateAd(Advertisement advertisement)
         {
             bool isSuccess = false;
-            try
+            using var context = new FengShuiKoiDbContext();
+            Advertisement advertisement1 = GetAdvertisementByID(advertisement.AdId);
+            if(advertisement1 != null )
             {
-                using var context = new FengShuiKoiDbContext();
-                context.Entry<Advertisement>(advertisement).State
+                context.Advertisements.Attach(advertisement);
+                context.Entry<Advertisement>(advertisement).State 
                     = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 context.SaveChanges();
                 isSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
             }
             return isSuccess;
         }
@@ -83,21 +67,15 @@ namespace FSK_DAOs
                 context.SaveChanges();
                 isSuccess = true;
             }
-            else
-            {
-                throw new Exception("Advertisement not exist!");
-            }
             return isSuccess;
         }
 
         public Advertisement GetAdvertisementByID(string adID)
         {
-            using var db = new FengShuiKoiDbContext();
-            return db.Advertisements
-                .FirstOrDefault(c => c.AdId.Equals(adID));
+            return dbContext.Advertisements.SingleOrDefault(a => a.AdId.Equals(adID));
         }
 
-        public List<Advertisement> GetAdvertisementsByFilter(string category, string userID, string element)
+        public List<Advertisement> GetAdvertisementsByFilter(string category, string userID, string element, string search)
         {
             using (var context = new FengShuiKoiDbContext())
             {
@@ -110,19 +88,22 @@ namespace FSK_DAOs
                 // filter by category
                 if (!string.IsNullOrEmpty(category))
                 {
-                    query = query.Where(ad => ad.Category.CategoryId == category);
+                    query = query.Where(ad => ad.Category.CategoryId == category 
+                    && ad.Category.CategoryName.Contains(search));
                 }
 
                 // filter by userID
                 if (!string.IsNullOrEmpty(userID))
                 {
-                    query = query.Where(ad => ad.User.UserId == userID);
+                    query = query.Where(ad => ad.User.UserId == userID 
+                    && ad.UserId.Contains(search));
                 }
 
                 // filter by element
                 if (!string.IsNullOrEmpty(element))
                 {
-                    query = query.Where(ad => ad.Element.ElementName == element);
+                    query = query.Where(ad => ad.Element.ElementName == element 
+                    && ad.Element.ElementName.Contains(search));
                 }
                 return query.ToList();
             }

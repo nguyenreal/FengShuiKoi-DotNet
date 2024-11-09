@@ -15,6 +15,6 @@ namespace FSK_Repositories
         bool UpdateAdvertisement(Advertisement advertisement);
         List<Advertisement> GetAdvertisements();
         Advertisement GetAdvertisement(String id);
-        List<Advertisement> GetAdvertisementsByFilter(string element, string userID, string category);
+        List<Advertisement> GetAdvertisementsByFilter(string element, string userID, string category, string search);
     }
 }

@@ -13,7 +13,7 @@ namespace FengShuiKoi
         private readonly IAdvertisementServices advertisementServices;
         private readonly ICategoryService categoryService;
         private readonly IElementService elementService;
-        private readonly int? adID;
+        private readonly int? RoleID;
         public AdvertisementPage()
         {
             InitializeComponent();
@@ -21,24 +21,31 @@ namespace FengShuiKoi
             categoryService = new CategoryServices();
             elementService = new ElementService();
         }
-        public AdvertisementPage(int? adID)
+        public AdvertisementPage(int? RoleID)
         {
             InitializeComponent();
             advertisementServices = new AdvertisementServices();
             categoryService = new CategoryServices();
             elementService = new ElementService();
-            this.adID = adID;
+            this.RoleID = RoleID;
         }
 
         private void LoadDataInit()
         {
-            this.dgAdData.ItemsSource = advertisementServices.GetAdvertisements();
-            this.cboCategory.ItemsSource = categoryService.GetAllCategories();
+            this.dgAdData.ItemsSource = advertisementServices.GetAdvertisements().ToList();
+            this.cboCategory.ItemsSource = categoryService.GetAllCategories().ToList();
             this.cboCategory.DisplayMemberPath = "CategoryName";
             this.cboCategory.SelectedValuePath = "CategoryId";
-            this.cboElement.ItemsSource = elementService.GetElements();
-            this.cboElement.DisplayMemberPath = "ElementName";
-            this.cboElement.SelectedValuePath = "ElementId";
+            //this.cboElement.ItemsSource = elementService.GetElements().ToList();
+            //this.cboElement.DisplayMemberPath = "ElementName";
+            //this.cboElement.SelectedValuePath = "ElementId";
+            txtAdID.Text = "";
+            txtDescription.Text = "";
+            txtPrice.Text = "";
+            txtTitle.Text = "";
+            txtUserID.Text = "";
+            cboCategory.SelectedValue = "";
+            cboElement.SelectedValue = "";
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -48,20 +55,17 @@ namespace FengShuiKoi
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            Advertisement advertisement = new Advertisement
-            {
-                AdId = txtAdID.Text,
-                Title = txtTitle.Text,
-                Description = txtDescription.Text,
-                Price = Double.Parse(txtPrice.Text),
-                ElementId = cboElement.SelectedValue as int?,
-                CategoryId = cboCategory.SelectedValue.ToString(),
-                UserId = txtUserID.Text
-            };
+            Advertisement advertisement = new Advertisement();
+            advertisement.AdId = txtAdID.Text;
+            advertisement.Title = txtTitle.Text;
+            advertisement.Description = txtDescription.Text;
+            advertisement.UserId = txtUserID.Text;
+            advertisement.Price = Double.Parse(txtPrice.Text);
+            advertisement.CategoryId = cboCategory.SelectedValue.ToString();
             if (advertisementServices.UpdateAdvertisement(advertisement))
             {
-                this.LoadDataInit();
                 MessageBox.Show("Cập nhật thành công");
+                this.LoadDataInit();
             }
             else
             {
@@ -71,27 +75,28 @@ namespace FengShuiKoi
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            Advertisement advertisement = new Advertisement
-            {
-                AdId = txtAdID.Text,
-                Title = txtTitle.Text,
-                Description = txtDescription.Text,
-                Price = double.Parse(txtPrice.Text),
-                UserId = txtUserID.Text,
-                CategoryId = cboCategory.SelectedValue?.ToString(),
-                ElementId = cboElement.SelectedValue as int?
-            };
-            if (advertisementServices.AddAdvertisement(advertisement))
+            Advertisement advertisement = new Advertisement();
+            advertisement.AdId = txtAdID.Text;
+            advertisement.Title = txtTitle.Text;
+            advertisement.Description = txtDescription.Text;
+            advertisement.UserId = txtUserID.Text;
+            advertisement.Price = Double.Parse(txtPrice.Text);
+            advertisement.CategoryId = cboCategory.SelectedValue.ToString();
+            if(advertisementServices.AddAdvertisement(advertisement))
             {
                 MessageBox.Show("Thêm quảng cáo thành công");
                 this.LoadDataInit();
+            }
+            else
+            {
+                MessageBox.Show("ID quảng cáo đã tồn tại");
             }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            String userID = txtUserID.Text;
-            if(userID.Length > 0 && advertisementServices.DeleteAdvertisement(userID))
+            string adID = txtAdID.Text;
+            if(adID.Length > 0 && advertisementServices.DeleteAdvertisement(adID))
             {
                 this.LoadDataInit();
                 MessageBox.Show("Xóa thành công");
@@ -109,17 +114,22 @@ namespace FengShuiKoi
 
         private void dgAdData_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dgAdData.SelectedItem != null)
-            {
-                Advertisement advertisement = dgAdData.SelectedItem as Advertisement;
+            DataGrid dataGrid = sender as DataGrid;
+            
+            DataGridRow row = dataGrid.ItemContainerGenerator
+                    .ContainerFromIndex(dataGrid.SelectedIndex) as DataGridRow;
+            if(row != null) { 
+                DataGridCell rowColumn = dataGrid.Columns[0].GetCellContent(row).Parent as DataGridCell;
+                string id = ((TextBlock)rowColumn.Content).Text;
 
+                Advertisement advertisement = advertisementServices.GetAdvertisement(id);
                 if (advertisement != null)
                 {
                     txtAdID.Text = advertisement.AdId;
-                    txtTitle.Text = advertisement.Title;
                     txtDescription.Text = advertisement.Description;
                     txtPrice.Text = advertisement.Price.ToString();
-                    txtUserID.Text = advertisement.UserId?.ToString();
+                    txtTitle.Text = advertisement.Title;
+                    txtUserID.Text = advertisement.UserId;
                     cboCategory.SelectedValue = advertisement.CategoryId;
                     cboElement.SelectedValue = advertisement.ElementId;
                 }
@@ -131,9 +141,9 @@ namespace FengShuiKoi
             string category = cboCategory.SelectedValue?.ToString() ?? string.Empty;
             string element = cboElement.SelectedValue?.ToString() ?? string.Empty;
             string userID = txtUserID.Text;
+            string search = txtSearch.Text;
 
-            var filteredAds = advertisementServices.GetAdvertisementsByFilter(category, element, userID);
-            dgAdData.ItemsSource = filteredAds;
+            dgAdData.ItemsSource = advertisementServices.GetAdvertisementsByFilter(element, userID, category, search);
         }
     }
 }

@@ -40,9 +40,9 @@ namespace FSK_Services
             return iAdvertisementRepo.UpdateAdvertisement(advertisement);
         }
 
-        public List<Advertisement> GetAdvertisementsByFilter(string element, string userID, string category)
+        public List<Advertisement> GetAdvertisementsByFilter(string element, string userID, string category, string search)
         {
-            return iAdvertisementRepo.GetAdvertisementsByFilter(element, userID, category);
+            return iAdvertisementRepo.GetAdvertisementsByFilter(element, userID, category, search);
         }
     }
 }

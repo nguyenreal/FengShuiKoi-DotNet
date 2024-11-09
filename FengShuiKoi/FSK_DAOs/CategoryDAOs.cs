@@ -29,17 +29,7 @@ namespace FSK_DAOs
 
         public List<Category> GetCategories()
         {
-            var categories = new List<Category>();
-            try
-            {
-                using var context = new FengShuiKoiDbContext();
-                categories = context.Categories.ToList();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            return categories;
+            return dbContext.Categories.ToList();
         }
 
         public bool AddCategory(Category category)
