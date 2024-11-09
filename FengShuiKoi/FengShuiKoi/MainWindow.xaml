@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Button x:Name="btnManaging" Content="QUẢN LÍ" HorizontalAlignment="Left" Margin="100,107,0,0" VerticalAlignment="Top" Height="60" Width="240" FontFamily="Arial" Click="btnManaging_Click"/>
+        <Button x:Name="btnConsulting" Content="TƯ VẤN CÁ KOI" HorizontalAlignment="Left" Margin="429,107,0,0" VerticalAlignment="Top" Height="60" Width="240" FontFamily="Arial" Click="btnConsulting_Click"/>
+        <Button x:Name="btnBlog" Content="BLOG" HorizontalAlignment="Left" Margin="100,217,0,0" VerticalAlignment="Top" Height="60" Width="240" Click="btnBlog_Click"/>
+        <Button x:Name="btnAdvertise" Content="QUẢNG CÁO" HorizontalAlignment="Left" Margin="429,217,0,0" VerticalAlignment="Top" Height="60" Width="240" Click="btnAdvertise_Click"/>
+        <Label Content="HOMEPAGE" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top" Height="47" Width="140" FontSize="24" FontWeight="Bold"/>
 
     </Grid>
 </Window>

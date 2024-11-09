@@ -84,3 +84,5 @@ D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\Fe
 D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\LoginWindow.g.cs
 D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\LoginWindow.baml
 D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\FengShui.870629CC.Up2Date
+D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\BlogWindow.g.cs
+D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\BlogWindow.baml
