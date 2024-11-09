@@ -1,5 +1,5 @@
 ﻿FengShuiKoi
-
+1.0.0.0
 
 winexe
 C#
@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\HocHanh\PRN212\Code\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\App.xaml
 41998721527
 
-71927495225
+91996100437
 2481756959226
 AdvertisementPage.xaml;BlogWindow.xaml;LoginWindow.xaml;MainWindow.xaml;
 
-False
+True
 

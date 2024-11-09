@@ -36,9 +36,9 @@ namespace FengShuiKoi
             this.cboCategory.ItemsSource = categoryService.GetAllCategories().ToList();
             this.cboCategory.DisplayMemberPath = "CategoryName";
             this.cboCategory.SelectedValuePath = "CategoryId";
-            //this.cboElement.ItemsSource = elementService.GetElements().ToList();
-            //this.cboElement.DisplayMemberPath = "ElementName";
-            //this.cboElement.SelectedValuePath = "ElementId";
+            this.cboElement.ItemsSource = elementService.GetElements().ToList();
+            this.cboElement.DisplayMemberPath = "ElementName";
+            this.cboElement.SelectedValuePath = "ElementId";
             txtAdID.Text = "";
             txtDescription.Text = "";
             txtPrice.Text = "";
