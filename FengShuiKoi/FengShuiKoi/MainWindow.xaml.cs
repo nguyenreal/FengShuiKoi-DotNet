@@ -21,9 +21,32 @@ namespace FengShuiKoi
             InitializeComponent();
         }
 
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        private void btnManaging_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
+            BlogWindow blogWindow = new BlogWindow();
+            blogWindow.Show();
+        }
+
+        private void btnConsulting_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            BlogWindow blogWindow = new BlogWindow();
+            blogWindow.Show();
+        }
+
+        private void btnBlog_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            BlogWindow blogWindow = new BlogWindow();
+            blogWindow.Show();
+        }
+
+        private void btnAdvertise_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            BlogWindow blogWindow = new BlogWindow();
+            blogWindow.Show();
         }
     }
 }

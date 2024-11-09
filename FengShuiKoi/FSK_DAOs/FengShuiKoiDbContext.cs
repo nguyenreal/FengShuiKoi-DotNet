@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using FSK_BusinessObjects;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
-namespace FSK_BusinessObjects;
+namespace FSK_DAOs;
 
 public partial class FengShuiKoiDbContext : DbContext
 {
@@ -43,10 +45,21 @@ public partial class FengShuiKoiDbContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-1M9SI46; Database=FengShuiKoiDB; Uid=sa; Pwd=12345; TrustServerCertificate=True");
+    private string GetConnectionString()
+    {
+        IConfiguration configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", true, true).Build();
+        return configuration["ConnectionStrings:DefaultConnectionString"];
+    }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer(GetConnectionString());
+        }
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<AdsImage>(entity =>
@@ -67,7 +80,7 @@ public partial class FengShuiKoiDbContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("AdImageURL");
-
+        
             entity.HasOne(d => d.Ad).WithMany(p => p.AdsImages)
                 .HasForeignKey(d => d.AdId)
                 .HasConstraintName("FK_Image_Ads");
