@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FSK_BusinessObjects")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b89a338f0a80e25b7370565a854b229752f50ffe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f07b5f186cda9349d806f4c6d10ec3c8e86b5ee")]
 [assembly: System.Reflection.AssemblyProductAttribute("FSK_BusinessObjects")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FSK_BusinessObjects")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
