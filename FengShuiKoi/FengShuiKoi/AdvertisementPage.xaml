@@ -13,29 +13,30 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Ad ID:" HorizontalAlignment="Left" Height="35" Margin="10,45,0,0" VerticalAlignment="Top" Width="49"/>
-        <Label Content="Title:" HorizontalAlignment="Left" Height="35" Margin="10,109,0,0" VerticalAlignment="Top" Width="38"/>
-        <Label Content="Description:" HorizontalAlignment="Left" Height="33" Margin="10,184,0,0" VerticalAlignment="Top" Width="72"/>
-        <Label Content="Price:" HorizontalAlignment="Left" Height="38" Margin="10,256,0,0" VerticalAlignment="Top" Width="49"/>
-        <Label Content="Element:" HorizontalAlignment="Left" Height="35" Margin="511,45,0,0" VerticalAlignment="Top" Width="55"/>
-        <Label Content="Category:" HorizontalAlignment="Left" Height="36" Margin="511,108,0,0" VerticalAlignment="Top" Width="67"/>
-        <Label Content="User ID:" HorizontalAlignment="Left" Height="28" Margin="511,172,0,0" VerticalAlignment="Top" Width="55"/>
+        <Label Content="Ad ID:" HorizontalAlignment="Left" Height="35" Margin="16,100,0,0" VerticalAlignment="Top" Width="48"/>
+        <Label Content="Title:" HorizontalAlignment="Left" Height="35" Margin="16,164,0,0" VerticalAlignment="Top" Width="38"/>
+        <Label Content="Description:" HorizontalAlignment="Left" Height="33" Margin="16,239,0,0" VerticalAlignment="Top" Width="72"/>
+        <Label Content="Price:" HorizontalAlignment="Left" Height="38" Margin="16,311,0,0" VerticalAlignment="Top" Width="48"/>
+        <Label Content="Element:" HorizontalAlignment="Left" Height="34" Margin="514,100,0,0" VerticalAlignment="Top" Width="54"/>
+        <Label Content="Category:" HorizontalAlignment="Left" Height="36" Margin="514,162,0,0" VerticalAlignment="Top" Width="66"/>
+        <Label Content="User ID:" HorizontalAlignment="Left" Height="28" Margin="514,226,0,0" VerticalAlignment="Top" Width="54"/>
         <Label Content="ADVERTISEMENT PAGE" HorizontalAlignment="Left" Height="53" Margin="225,-8,0,0" VerticalAlignment="Top" Width="333" FontSize="30"/>
-        <TextBox x:Name="txtAdID" HorizontalAlignment="Left" Height="35" Margin="82,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
-        <TextBox x:Name="txtTitle" HorizontalAlignment="Left" Height="35" Margin="82,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
-        <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Height="31" Margin="82,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
-        <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="30" Margin="82,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
-        <ComboBox x:Name="cboElement" HorizontalAlignment="Left" Height="35" Margin="578,45,0,0" VerticalAlignment="Top" Width="171"/>
-        <ComboBox x:Name="cboCategory" HorizontalAlignment="Left" Height="36" Margin="578,108,0,0" VerticalAlignment="Top" Width="184"/>
-        <TextBox x:Name="txtUserID" HorizontalAlignment="Left" Height="30" Margin="578,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
+        <TextBox x:Name="txtAdID" HorizontalAlignment="Left" Height="35" Margin="88,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
+        <TextBox x:Name="txtTitle" HorizontalAlignment="Left" Height="35" Margin="88,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
+        <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Height="31" Margin="88,241,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
+        <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="30" Margin="88,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
+        <ComboBox x:Name="cboElement" HorizontalAlignment="Left" Height="34" Margin="580,100,0,0" VerticalAlignment="Top" Width="172"/>
+        <ComboBox x:Name="cboCategory" HorizontalAlignment="Left" Height="36" Margin="580,162,0,0" VerticalAlignment="Top" Width="184"/>
+        <TextBox x:Name="txtUserID" HorizontalAlignment="Left" Height="30" Margin="580,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
         <DataGrid x:Name="dgAdData" HorizontalAlignment="Center" Height="316" Margin="0,392,0,0" VerticalAlignment="Top" Width="764" SelectionChanged="dgAdData_SelectionChanged"/>
         <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Height="41" Margin="10,733,0,0" VerticalAlignment="Top" Width="163" Click="btnAdd_Click"/>
         <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Height="41" Margin="208,733,0,0" VerticalAlignment="Top" Width="163" Click="btnUpdate_Click"/>
         <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Height="41" Margin="414,733,0,0" VerticalAlignment="Top" Width="162" Click="btnDelete_Click"/>
         <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Height="41" Margin="611,733,0,0" VerticalAlignment="Top" Width="162" Click="btnClose_Click"/>
-        <Label Content="Search" HorizontalAlignment="Left" Height="32" Margin="29,325,0,0" VerticalAlignment="Top" Width="63"/>
-        <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Height="32" Margin="125,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350"/>
-        <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Height="32" Margin="670,325,0,0" VerticalAlignment="Top" Width="103" Click="btnSearch_Click"/>
-        <ComboBox x:Name="cboSearchCategory" HorizontalAlignment="Left" Height="35" Margin="510,324,0,0" VerticalAlignment="Top" Width="139"/>
+        <Label Content="Search" HorizontalAlignment="Left" Height="32" Margin="30,353,0,0" VerticalAlignment="Top" Width="63"/>
+        <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Height="32" Margin="126,353,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350"/>
+        <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Height="32" Margin="671,353,0,0" VerticalAlignment="Top" Width="103" Click="btnSearch_Click"/>
+        <ComboBox x:Name="cboSearchElement" HorizontalAlignment="Left" Height="35" Margin="511,352,0,0" VerticalAlignment="Top" Width="139"/>
+        <Button x:Name="btnReturn" Content="Return to Homepage" HorizontalAlignment="Left" Height="38" Margin="18,45,0,0" VerticalAlignment="Top" Width="155" Click="btnReturn_Click"/>
     </Grid>
 </Window>

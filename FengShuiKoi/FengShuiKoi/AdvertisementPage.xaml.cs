@@ -39,9 +39,9 @@ namespace FengShuiKoi
             this.cboElement.ItemsSource = elementService.GetElements().ToList();
             this.cboElement.DisplayMemberPath = "ElementName";
             this.cboElement.SelectedValuePath = "ElementId";
-            this.cboSearchCategory.ItemsSource = categoryService.GetAllCategories().ToList();
-            this.cboSearchCategory.DisplayMemberPath = "CategoryName";
-            this.cboSearchCategory.SelectedValuePath = "CategoryId";
+            this.cboSearchElement.ItemsSource = elementService.GetElements().ToList();
+            this.cboSearchElement.DisplayMemberPath = "ElementName";
+            this.cboSearchElement.SelectedValuePath = "ElementId";
             txtAdID.Text = "";
             txtDescription.Text = "";
             txtPrice.Text = "";
@@ -141,13 +141,20 @@ namespace FengShuiKoi
         {
             string search = txtSearch.Text;
 
-            int elementID = cboElement.SelectedValue != null
-                ? int.Parse(cboElement.SelectedValue.ToString())
+            int elementID = cboSearchElement.SelectedValue != null
+                ? int.Parse(cboSearchElement.SelectedValue.ToString())
                 : -1;
 
             dgAdData.ItemsSource = advertisementServices
                 .GetAdvertisementsByFilter(search, elementID)
                 .ToList();
+        }
+
+        private void btnReturn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
         }
     }
 }

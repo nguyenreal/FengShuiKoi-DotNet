@@ -25,7 +25,10 @@ namespace FSK_DAOs
 
         public List<Advertisement> GetAdvertisements()
         {
-            return dbContext.Advertisements.Include(c => c.Category).ToList();
+            return dbContext.Advertisements
+                .Include(c => c.Category)
+                .Include(c => c.Element)
+                .ToList();
         }
 
         public bool AddAd(Advertisement advertisement)
