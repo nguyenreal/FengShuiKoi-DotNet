@@ -45,8 +45,8 @@ namespace FengShuiKoi
         private void btnAdvertise_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            BlogWindow blogWindow = new BlogWindow();
-            blogWindow.Show();
+            AdvertisementPage advertisementPage = new AdvertisementPage();
+            advertisementPage.Show();
         }
     }
 }

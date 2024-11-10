@@ -14,6 +14,6 @@ namespace FSK_Services
         bool UpdateAdvertisement(Advertisement advertisement);
         List<Advertisement> GetAdvertisements();
         Advertisement GetAdvertisement(String id);
-        List<Advertisement> GetAdvertisementsByFilter(string element, string userID, string category, string search);
+        List<Advertisement> GetAdvertisementsByFilter(string search, int elementID);
     }
 }

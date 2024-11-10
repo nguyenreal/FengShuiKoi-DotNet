@@ -75,38 +75,16 @@ namespace FSK_DAOs
             return dbContext.Advertisements.SingleOrDefault(a => a.AdId.Equals(adID));
         }
 
-        public List<Advertisement> GetAdvertisementsByFilter(string category, string userID, string element, string search)
+        public List<Advertisement> GetAdvertisementsByFilter(string search, int elementID)
         {
-            using (var context = new FengShuiKoiDbContext())
+            var query = dbContext.Advertisements
+                .Where(a => EF.Functions.Like(a.Title ,"%" + search + "%"));
+
+            if (elementID != -1)
             {
-                var query = context.Advertisements
-                    .Include(ad => ad.Category)
-                    .Include(ad => ad.User)
-                    .Include(ad => ad.Element)
-                    .Where(ad => ad.Status == "Active");
-
-                // filter by category
-                if (!string.IsNullOrEmpty(category))
-                {
-                    query = query.Where(ad => ad.Category.CategoryId == category 
-                    && ad.Category.CategoryName.Contains(search));
-                }
-
-                // filter by userID
-                if (!string.IsNullOrEmpty(userID))
-                {
-                    query = query.Where(ad => ad.User.UserId == userID 
-                    && ad.UserId.Contains(search));
-                }
-
-                // filter by element
-                if (!string.IsNullOrEmpty(element))
-                {
-                    query = query.Where(ad => ad.Element.ElementName == element 
-                    && ad.Element.ElementName.Contains(search));
-                }
-                return query.ToList();
+                query = query.Where(a => a.ElementId == elementID);
             }
+            return query.ToList();
         }
     }
 }
