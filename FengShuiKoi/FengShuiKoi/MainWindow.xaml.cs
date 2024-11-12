@@ -16,10 +16,13 @@ namespace FengShuiKoi
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly string? RoleName;
+        public MainWindow(string RoleName)
         {
             InitializeComponent();
+            this.RoleName = RoleName;
         }
+
 
         private void btnManaging_Click(object sender, RoutedEventArgs e)
         {
@@ -47,6 +50,34 @@ namespace FengShuiKoi
             this.Hide();
             BlogWindow blogWindow = new BlogWindow();
             blogWindow.Show();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            switch (RoleName?.ToUpper())  // Use null-conditional operator and convert to uppercase for safe comparison
+                {
+                    case "ADMIN":
+                        // Admin has full access
+                        break;
+                    case "USER":
+                        // User (Staff) has limited access
+                        this.btnManaging.IsEnabled = false;
+                        this.btnConsulting.IsEnabled = false;
+                        break;
+                    case "MEMBER":
+                        // Member access
+                        this.btnManaging.IsEnabled = false;
+                        break;
+                    default:
+                        // Invalid or null role
+                        this.Close();
+                        break;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

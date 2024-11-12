@@ -334,7 +334,7 @@
         "dependencies": {
           "Microsoft.Identity.Client.NativeInterop": "0.13.8",
           "Microsoft.IdentityModel.Abstractions": "6.24.0",
-          "Microsoft.Web.WebView2": "1.0.864.35"
+          "Microsoft.Web.WebView2": "1.0.2849.39"
         },
         "runtime": {
           "lib/net6.0-windows7.0/Microsoft.Identity.Client.dll": {
@@ -460,36 +460,22 @@
           }
         }
       },
-      "Microsoft.Web.WebView2/1.0.864.35": {
-        "runtime": {
-          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Core.dll": {
-            "assemblyVersion": "1.0.864.35",
-            "fileVersion": "1.0.864.35"
-          },
-          "lib/netcoreapp3.0/Microsoft.Web.WebView2.WinForms.dll": {
-            "assemblyVersion": "1.0.864.35",
-            "fileVersion": "1.0.864.35"
-          },
-          "lib/netcoreapp3.0/Microsoft.Web.WebView2.Wpf.dll": {
-            "assemblyVersion": "1.0.864.35",
-            "fileVersion": "1.0.864.35"
-          }
-        },
+      "Microsoft.Web.WebView2/1.0.2849.39": {
         "runtimeTargets": {
           "runtimes/win-arm64/native/WebView2Loader.dll": {
             "rid": "win-arm64",
             "assetType": "native",
-            "fileVersion": "1.0.864.35"
+            "fileVersion": "1.0.2849.39"
           },
           "runtimes/win-x64/native/WebView2Loader.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "1.0.864.35"
+            "fileVersion": "1.0.2849.39"
           },
           "runtimes/win-x86/native/WebView2Loader.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "1.0.864.35"
+            "fileVersion": "1.0.2849.39"
           }
         }
       },
@@ -1071,12 +1057,12 @@
       "path": "microsoft.sqlserver.server/1.0.0",
       "hashPath": "microsoft.sqlserver.server.1.0.0.nupkg.sha512"
     },
-    "Microsoft.Web.WebView2/1.0.864.35": {
+    "Microsoft.Web.WebView2/1.0.2849.39": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-V1qyLRiAZ31qmOOCFCjoONgaUfvJRiTHWcJWkT3V7pluM2+P6QAgqmbE4UX7Gt4sh6eN34wqM30OnTZ6HXI/sw==",
-      "path": "microsoft.web.webview2/1.0.864.35",
-      "hashPath": "microsoft.web.webview2.1.0.864.35.nupkg.sha512"
+      "sha512": "sha512-mWyurCfuOGF2odk+Orflzpk017oBmLy11qiQTXpcc9ZWqhx2SfYDr2izplyxy2bCkWDSXCQpBDhU5u9+mhHlDQ==",
+      "path": "microsoft.web.webview2/1.0.2849.39",
+      "hashPath": "microsoft.web.webview2.1.0.2849.39.nupkg.sha512"
     },
     "Microsoft.Win32.SystemEvents/6.0.0": {
       "type": "package",

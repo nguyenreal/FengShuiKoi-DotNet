@@ -65,6 +65,10 @@
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
               "version": "[8.0.1, )"
+            },
+            "Microsoft.Web.WebView2": {
+              "target": "Package",
+              "version": "[1.0.2849.39, )"
             }
           },
           "imports": [
