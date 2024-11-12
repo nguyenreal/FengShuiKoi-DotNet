@@ -32,11 +32,11 @@ namespace FengShuiKoi
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             User account = iUserService.GetUserByEmail(txtEmail.Text);
-            if (account != null && account.Password.Equals(txtPassword.Password)
-                && account.RoleName == "Admin")
+            if (account != null && account.Password.Equals(txtPassword.Password))
             {
+                string? roleName = account.RoleName;
                 this.Hide();
-                MainWindow mainWindow = new MainWindow();
+                MainWindow mainWindow = new MainWindow(roleName);
                 mainWindow.Show();
             }
             else
