@@ -10,6 +10,9 @@ namespace FSK_Repositories
 {
     public class ElementRepo : IElementRepo
     {
+        public Element ConsultingElement(DateTime birthDate) =>
+            ElementDAOs.Instance.GetElement(ElementDAOs.Instance.calculateElement(birthDate));
+
         public List<Element> GetElements() => ElementDAOs.Instance.GetElements();
     }
 }

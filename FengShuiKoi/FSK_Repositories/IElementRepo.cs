@@ -10,5 +10,7 @@ namespace FSK_Repositories
     public interface IElementRepo
     {
         public List<Element> GetElements();
+
+        public Element ConsultingElement(DateTime birthDate);
     }
 }

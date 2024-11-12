@@ -15,9 +15,16 @@ namespace FSK_Services
         {
             iElementRepo = new ElementRepo();
         }
+
+        public Element GetElement(DateTime birthDate)
+        {
+            return iElementRepo.ConsultingElement(birthDate);
+        }
+
         public List<Element> GetElements()
         {
             return iElementRepo.GetElements();
         }
+
     }
 }

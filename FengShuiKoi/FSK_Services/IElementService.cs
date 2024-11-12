@@ -10,5 +10,7 @@ namespace FSK_Services
     public interface IElementService
     {
         List<Element> GetElements();
+
+        Element GetElement(DateTime birthDate);
     }
 }
