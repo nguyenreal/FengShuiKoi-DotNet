@@ -80,7 +80,7 @@ public partial class FengShuiKoiDbContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("AdImageURL");
-
+        
             entity.HasOne(d => d.Ad).WithMany(p => p.AdsImages)
                 .HasForeignKey(d => d.AdId)
                 .HasConstraintName("FK_Image_Ads");

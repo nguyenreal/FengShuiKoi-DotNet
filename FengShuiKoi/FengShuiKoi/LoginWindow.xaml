@@ -5,16 +5,157 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FengShuiKoi"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="500" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <TextBox x:Name="txtEmail" HorizontalAlignment="Center" Margin="0,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="480" Height="50" FontSize="16"/>
-        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Center" Margin="0,192,0,0" VerticalAlignment="Top" Width="480" Height="50" FontSize="16"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="37,120,0,0" VerticalAlignment="Top" Height="50" Width="100" FontSize="20"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="37,199,0,0" VerticalAlignment="Top" Height="50" Width="100" FontSize="20"/>
-        <Button x:Name="btnLogin" Content="LOGIN" HorizontalAlignment="Center" Margin="0,266,0,0" VerticalAlignment="Top" Height="40" Width="220" Click="btnLogin_Click"/>
-        <Button x:Name="btnRegister" Content="REGISTER" HorizontalAlignment="Center" Margin="0,320,0,0" VerticalAlignment="Top" Height="40" Width="220"/>
-        <Button x:Name="btnCancel" Content="CANCEL" HorizontalAlignment="Center" Margin="0,377,0,0" VerticalAlignment="Top" Height="40" Width="220"/>
-        <Label Content="LOGIN WINDOW" HorizontalAlignment="Center" Margin="0,39,0,0" VerticalAlignment="Top" Height="40" Width="160" FontSize="20"/>
+        Title="LoginWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!-- Simplified Style for TextBox -->
+        <Style x:Key="ModernTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+            <Setter Property="Padding" Value="15,12"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#3498DB"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
+        <!-- Simplified Style for PasswordBox -->
+        <Style x:Key="ModernPasswordBox" TargetType="{x:Type PasswordBox}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+            <Setter Property="Padding" Value="15,12"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#3498DB"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Style for Buttons -->
+        <Style x:Key="ActionButton" TargetType="Button">
+            <Setter Property="Background" Value="#3498DB"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,12"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2980B9"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Style for Cancel Button -->
+        <Style x:Key="CancelButton" TargetType="Button" BasedOn="{StaticResource ActionButton}">
+            <Setter Property="Background" Value="#95A5A6"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#7F8C8D"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#F9FAFB">
+        <StackPanel VerticalAlignment="Center" Margin="0,-40,0,0">
+            <!-- Title -->
+            <TextBlock Text="FENG SHUI KOI" 
+                     FontSize="32" 
+                     FontWeight="Bold" 
+                     Foreground="#2C3E50"
+                     HorizontalAlignment="Center"/>
+
+            <TextBlock Text="LOGIN" 
+                     FontSize="24" 
+                     FontWeight="SemiBold" 
+                     Foreground="#34495E"
+                     HorizontalAlignment="Center"
+                     Margin="0,5,0,40"/>
+
+            <!-- Login Form -->
+            <Grid Width="480">
+                <!-- Email Field -->
+                <StackPanel Margin="0,0,0,15">
+                    <Label Content="Email" 
+                           Foreground="#2C3E50" 
+                           FontSize="16" 
+                           FontWeight="SemiBold" 
+                           Margin="5,0,0,5"/>
+                    <Border CornerRadius="8" 
+                            Background="White" 
+                            BorderBrush="#BDC3C7" 
+                            BorderThickness="1">
+                        <TextBox x:Name="txtEmail" 
+                                Style="{StaticResource ModernTextBox}"
+                                Height="50"
+                                BorderThickness="0"/>
+                    </Border>
+                </StackPanel>
+
+                <!-- Password Field -->
+                <StackPanel Margin="0,85,0,0">
+                    <Label Content="Password" 
+                           Foreground="#2C3E50" 
+                           FontSize="16" 
+                           FontWeight="SemiBold" 
+                           Margin="5,0,0,5"/>
+                    <Border CornerRadius="8" 
+                            Background="White" 
+                            BorderBrush="#BDC3C7" 
+                            BorderThickness="1">
+                        <PasswordBox x:Name="txtPassword" 
+                                   Style="{StaticResource ModernPasswordBox}"
+                                   Height="50"
+                                   BorderThickness="0"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <!-- Buttons -->
+            <StackPanel Margin="0,40,0,0" HorizontalAlignment="Center">
+                <Button x:Name="btnLogin" 
+                        Content="LOGIN" 
+                        Style="{StaticResource ActionButton}"
+                        Margin="0,0,0,15"
+                        Click="btnLogin_Click"/>
+
+                <Button x:Name="btnRegister" 
+                        Content="REGISTER" 
+                        Style="{StaticResource ActionButton}"
+                        Background="#27AE60"
+                        Margin="0,0,0,15" Click="btnRegister_Click"/>
+
+                <Button x:Name="btnCancel" 
+                        Content="CANCEL" 
+                        Style="{StaticResource CancelButton}" Click="btnCancel_Click"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>

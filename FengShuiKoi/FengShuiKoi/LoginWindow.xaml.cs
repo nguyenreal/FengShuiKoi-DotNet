@@ -31,18 +31,28 @@ namespace FengShuiKoi
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            User account = iUserService.GetUserByEmail(txtEmail.Text);
-            if (account != null && account.Password.Equals(txtPassword.Password)
-                && account.RoleName == "Admin")
+            User user = iUserService.GetUserByEmail(txtEmail.Text);
+            if (user != null && user.Password.Equals(txtPassword.Password))
             {
+                string? roleName = user.RoleName;
                 this.Hide();
-                MainWindow mainWindow = new MainWindow();
+                MainWindow mainWindow = new MainWindow(user);
                 mainWindow.Show();
             }
             else
             {
                 MessageBox.Show("You're not permitted !");
             }
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

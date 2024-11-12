@@ -5,13 +5,199 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FengShuiKoi"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="btnManaging" Content="QUẢN LÍ" HorizontalAlignment="Left" Margin="100,107,0,0" VerticalAlignment="Top" Height="60" Width="240" FontFamily="Arial" Click="btnManaging_Click"/>
-        <Button x:Name="btnConsulting" Content="TƯ VẤN CÁ KOI" HorizontalAlignment="Left" Margin="429,107,0,0" VerticalAlignment="Top" Height="60" Width="240" FontFamily="Arial" Click="btnConsulting_Click"/>
-        <Button x:Name="btnBlog" Content="BLOG" HorizontalAlignment="Left" Margin="100,217,0,0" VerticalAlignment="Top" Height="60" Width="240" Click="btnBlog_Click"/>
-        <Button x:Name="btnAdvertise" Content="QUẢNG CÁO" HorizontalAlignment="Left" Margin="429,217,0,0" VerticalAlignment="Top" Height="60" Width="240" Click="btnAdvertise_Click"/>
-        <Label Content="HOMEPAGE" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top" Height="47" Width="140" FontSize="24" FontWeight="Bold"/>
+        Title="MainWindow" Height="650" Width="1000" Loaded="Window_Loaded">
+    
+    <Window.Resources>
+        <Style x:Key="NavButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#ECF0F1"/>
+                    <Setter Property="Foreground" Value="#E74C3C"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
+        <Style x:Key="MainButton" TargetType="Button">
+            <Setter Property="Background" Value="#3498DB"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Width" Value="280"/>
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        CornerRadius="8"
+                        Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2980B9"/>
+                </Trigger>
+                <!-- Add this new trigger for disabled state -->
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#BDC3C7"/>
+                    <Setter Property="Foreground" Value="#7F8C8D"/>
+                    <Setter Property="Cursor" Value="No"/>
+                    <Setter Property="Opacity" Value="0.7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="LoginButton" TargetType="Button">
+            <Setter Property="Background" Value="#E74C3C"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="5"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#C0392B"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Navigation Bar -->
+        <Border Grid.Row="0" Background="White" BorderBrush="#ECF0F1" BorderThickness="0,0,0,1">
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock Text="FENG SHUI KOI" Margin="20,0,0,0" FontSize="20" FontWeight="Bold" Foreground="#2C3E50"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button Style="{StaticResource NavButton}" Content="Home"/>
+                    <Button Style="{StaticResource NavButton}" Content="About"/>
+                    <Button Style="{StaticResource NavButton}" Content="Contact"/>
+                    <Button x:Name="btnLogout" Style="{StaticResource LoginButton}" Content="LOGOUT" Margin="15,0,20,0" Click="btnLogout_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1" Background="#F9FAFB">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <!-- Title blocks remain the same -->
+                <TextBlock Text="FENG SHUI KOI" 
+                         FontSize="36" 
+                         FontWeight="Bold" 
+                         Foreground="#2C3E50"
+                         HorizontalAlignment="Center"/>
+
+                <TextBlock Text="CONSULTING" 
+                         FontSize="28" 
+                         FontWeight="SemiBold" 
+                         Foreground="#34495E"
+                         HorizontalAlignment="Center"
+                         Margin="0,5,0,40"/>
+
+                <Grid Margin="0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Original four buttons remain unchanged -->
+                    <Button x:Name="btnManaging" 
+                            Content="QUẢN LÍ" 
+                            Style="{StaticResource MainButton}"
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            Margin="10,10,20,10"
+                            Click="btnManaging_Click"/>
+
+                    <Button x:Name="btnConsulting" 
+                            Content="TƯ VẤN CÁ KOI" 
+                            Style="{StaticResource MainButton}"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Margin="20,10,10,10"
+                            Click="btnConsulting_Click"/>
+
+                    <Button x:Name="btnBlog" 
+                            Content="BLOG" 
+                            Style="{StaticResource MainButton}"
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Margin="10,10,20,10"
+                            Click="btnBlog_Click"/>
+
+                    <Button x:Name="btnAdvertise" 
+                            Content="QUẢNG CÁO" 
+                            Style="{StaticResource MainButton}"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            Margin="20,10,10,10"
+                            Click="btnAdvertise_Click"/>
+
+                    <!-- New Compatibility Button with identical styling -->
+                    <Button x:Name="btnCompatibility" 
+                            Content="TÍNH ĐỘ PHÙ HỢP" 
+                            Style="{StaticResource MainButton}"
+                            Grid.Column="0"
+                            Grid.Row="2"
+                            Grid.ColumnSpan="2"
+                            Width="280"
+                            Height="70"
+                            Margin="165,10,165,10"/>
+                </Grid>
+            </StackPanel>
+            
+        </Grid>
     </Grid>
 </Window>

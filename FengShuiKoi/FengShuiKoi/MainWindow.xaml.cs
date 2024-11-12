@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using FSK_BusinessObjects;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,10 +17,15 @@ namespace FengShuiKoi
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly User? user;
+        private readonly string? roleName;
+        public MainWindow(User user)
         {
             InitializeComponent();
+            this.user = user;
+            this.roleName = user.RoleName;
         }
+
 
         private void btnManaging_Click(object sender, RoutedEventArgs e)
         {
@@ -31,8 +37,8 @@ namespace FengShuiKoi
         private void btnConsulting_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            BlogWindow blogWindow = new BlogWindow();
-            blogWindow.Show();
+            ConsultingPage consultingPage = new ConsultingPage(user);
+            consultingPage.Show();
         }
 
         private void btnBlog_Click(object sender, RoutedEventArgs e)
@@ -45,8 +51,46 @@ namespace FengShuiKoi
         private void btnAdvertise_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            BlogWindow blogWindow = new BlogWindow();
-            blogWindow.Show();
+            AdvertisementPage advertisementPage = new AdvertisementPage(user);
+            advertisementPage.Show();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            switch (roleName?.ToUpper())  // Use null-conditional operator and convert to uppercase for safe comparison
+                {
+                    case "ADMIN":
+                        // Admin has full access
+                        break;
+                    case "USER":
+                        // User (Staff) has limited access
+                        this.btnManaging.IsEnabled = false;
+                        this.btnConsulting.IsEnabled = false;
+                        break;
+                    case "MEMBER":
+                        // Member access
+                        this.btnManaging.IsEnabled = false;
+                        break;
+                    default:
+                        // Invalid or null role
+                        this.Close();
+                        break;
+            }
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to logout?",
+                                            "Logout Confirmation",
+                                            MessageBoxButton.YesNo,
+                                            MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.Show();
+                this.Close();
+            }
         }
     }
 }
