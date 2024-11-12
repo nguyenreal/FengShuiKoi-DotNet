@@ -119,7 +119,7 @@
                     <Button Style="{StaticResource NavButton}" Content="Home"/>
                     <Button Style="{StaticResource NavButton}" Content="About"/>
                     <Button Style="{StaticResource NavButton}" Content="Contact"/>
-                    <Button x:Name="btnLogout" Style="{StaticResource LoginButton}" Content="LOGOUT" Margin="15,0,20,0" Click="Button_Click"/>
+                    <Button x:Name="btnLogout" Style="{StaticResource LoginButton}" Content="LOGOUT" Margin="15,0,20,0" Click="btnLogout_Click"/>
                 </StackPanel>
             </Grid>
         </Border>

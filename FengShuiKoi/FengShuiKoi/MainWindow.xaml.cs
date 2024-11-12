@@ -75,9 +75,19 @@ namespace FengShuiKoi
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to logout?",
+                                            "Logout Confirmation",
+                                            MessageBoxButton.YesNo,
+                                            MessageBoxImage.Question);
 
+            if (result == MessageBoxResult.Yes)
+            {
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.Show();
+                this.Close();
+            }
         }
     }
 }
