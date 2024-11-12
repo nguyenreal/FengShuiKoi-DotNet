@@ -36,13 +36,13 @@ namespace FengShuiKoi
         private void LoadDataInit()
         {
             this.dgAdData.ItemsSource = advertisementServices.GetAdvertisements();
-            this.cboCategory.ItemsSource = categoryService.GetAllCategories();
+            this.cboCategory.ItemsSource = categoryService.GetAllCategories().ToList();
             this.cboCategory.DisplayMemberPath = "CategoryName";
             this.cboCategory.SelectedValuePath = "CategoryId";
-            this.cboElement.ItemsSource = elementService.GetElements();
+            this.cboElement.ItemsSource = elementService.GetElements().ToList();
             this.cboElement.DisplayMemberPath = "ElementName";
             this.cboElement.SelectedValuePath = "ElementId";
-            this.cboSearchElement.ItemsSource = elementService.GetElements();
+            this.cboSearchElement.ItemsSource = elementService.GetElements().ToList();
             this.cboSearchElement.DisplayMemberPath = "ElementName";
             this.cboSearchElement.SelectedValuePath = "ElementId";
             txtAdID.Text = "";
@@ -68,6 +68,7 @@ namespace FengShuiKoi
             advertisement.UserId = txtUserID.Text;
             advertisement.Price = Double.Parse(txtPrice.Text);
             advertisement.CategoryId = cboCategory.SelectedValue.ToString();
+            advertisement.ElementId = int.Parse(cboElement.SelectedValue.ToString());
             if (advertisementServices.UpdateAdvertisement(advertisement))
             {
                 MessageBox.Show("Cập nhật thành công");
