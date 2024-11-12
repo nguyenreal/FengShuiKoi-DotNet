@@ -25,6 +25,7 @@ namespace FSK_DAOs
 
         public List<Advertisement> GetAdvertisements()
         {
+            dbContext = new FengShuiKoiDbContext();
             return dbContext.Advertisements
                 .Include(c => c.Category)
                 .Include(c => c.Element)

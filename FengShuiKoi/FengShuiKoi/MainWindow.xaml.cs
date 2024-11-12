@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using FSK_BusinessObjects;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,11 +17,13 @@ namespace FengShuiKoi
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly string? RoleName;
-        public MainWindow(string RoleName)
+        private readonly User? user;
+        private readonly string? roleName;
+        public MainWindow(User user)
         {
             InitializeComponent();
-            this.RoleName = RoleName;
+            this.user = user;
+            this.roleName = user.RoleName;
         }
 
 
@@ -34,7 +37,7 @@ namespace FengShuiKoi
         private void btnConsulting_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            ConsultingPage consultingPage = new ConsultingPage();
+            ConsultingPage consultingPage = new ConsultingPage(user);
             consultingPage.Show();
         }
 
@@ -48,13 +51,13 @@ namespace FengShuiKoi
         private void btnAdvertise_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            AdvertisementPage advertisementPage = new AdvertisementPage();
+            AdvertisementPage advertisementPage = new AdvertisementPage(user);
             advertisementPage.Show();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            switch (RoleName?.ToUpper())  // Use null-conditional operator and convert to uppercase for safe comparison
+            switch (roleName?.ToUpper())  // Use null-conditional operator and convert to uppercase for safe comparison
                 {
                     case "ADMIN":
                         // Admin has full access

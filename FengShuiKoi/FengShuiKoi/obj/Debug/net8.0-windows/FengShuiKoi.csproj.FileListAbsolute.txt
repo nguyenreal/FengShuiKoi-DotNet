@@ -90,3 +90,7 @@ D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\bin\Debug\net8.0-windows\Mi
 D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.WinForms.xml
 D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.Wpf.xml
 D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\FengShuiKoi_Content.g.cs
+D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\AdvertisementPage.g.cs
+D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\ConsultingPage.g.cs
+D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\AdvertisementPage.baml
+D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\ConsultingPage.baml

@@ -150,11 +150,11 @@
                         Content="REGISTER" 
                         Style="{StaticResource ActionButton}"
                         Background="#27AE60"
-                        Margin="0,0,0,15"/>
+                        Margin="0,0,0,15" Click="btnRegister_Click"/>
 
                 <Button x:Name="btnCancel" 
                         Content="CANCEL" 
-                        Style="{StaticResource CancelButton}"/>
+                        Style="{StaticResource CancelButton}" Click="btnCancel_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

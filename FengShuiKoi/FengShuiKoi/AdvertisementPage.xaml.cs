@@ -13,46 +13,88 @@ namespace FengShuiKoi
         private readonly IAdvertisementServices advertisementServices;
         private readonly ICategoryService categoryService;
         private readonly IElementService elementService;
-        private readonly int? RoleID;
-        const string ADMIN = "ADMIN";
-        const string USER = "USER";
-        const string MEMBER = "MEMBER";
-        public AdvertisementPage()
+        private readonly User? user;
+
+        public AdvertisementPage(User user)
         {
             InitializeComponent();
             advertisementServices = new AdvertisementServices();
             categoryService = new CategoryServices();
             elementService = new ElementService();
-        }
-        public AdvertisementPage(int? RoleID)
-        {
-            InitializeComponent();
-            advertisementServices = new AdvertisementServices();
-            categoryService = new CategoryServices();
-            elementService = new ElementService();
-            this.RoleID = RoleID;
+            this.user = user;
+            LoadDataInit();
         }
 
         private void LoadDataInit()
         {
-            this.dgAdData.ItemsSource = advertisementServices.GetAdvertisements();
-            this.cboCategory.ItemsSource = categoryService.GetAllCategories().ToList();
-            this.cboCategory.DisplayMemberPath = "CategoryName";
-            this.cboCategory.SelectedValuePath = "CategoryId";
-            this.cboElement.ItemsSource = elementService.GetElements().ToList();
-            this.cboElement.DisplayMemberPath = "ElementName";
-            this.cboElement.SelectedValuePath = "ElementId";
-            this.cboSearchElement.ItemsSource = elementService.GetElements().ToList();
-            this.cboSearchElement.DisplayMemberPath = "ElementName";
-            this.cboSearchElement.SelectedValuePath = "ElementId";
-            txtAdID.Text = "";
-            txtDescription.Text = "";
-            txtPrice.Text = "";
-            txtTitle.Text = "";
-            txtUserID.Text = "";
-            cboCategory.SelectedValue = "";
-            cboElement.SelectedValue = null;
+            LoadCategoryList();
+            LoadElementList();
+            LoadElementSearchList();
+            LoadAdvertisementList();
         }
+        public void LoadElementList()
+        {
+            try
+            {
+                var elementList = elementService.GetElements();
+                cboElement.ItemsSource = elementList;
+                this.cboElement.DisplayMemberPath = "ElementName";
+                this.cboElement.SelectedValuePath = "ElementId";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error on load list of elements");
+            }
+        }
+
+        public void LoadElementSearchList()
+        {
+            try
+            {
+                var elementList = elementService.GetElements();
+                cboElement.ItemsSource = elementList;
+                this.cboSearchElement.DisplayMemberPath = "ElementName";
+                this.cboSearchElement.SelectedValuePath = "ElementId";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error on load list of elements");
+            }
+        }
+
+        public void LoadCategoryList()
+        {
+            try
+            {
+                var categoryList = categoryService.GetAllCategories();
+                cboCategory.ItemsSource = categoryList;
+                this.cboCategory.DisplayMemberPath = "CategoryName";
+                this.cboCategory.SelectedValuePath = "CategoryId";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error on load list of categories");
+            }
+        }
+
+        public void LoadAdvertisementList()
+        {
+            try
+            {
+                var adList = advertisementServices.GetAdvertisements();
+                dgAdData.ItemsSource = null; // Clear the current ItemsSource
+                dgAdData.ItemsSource = adList; // Set new ItemsSource
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error on load list of advertisements");
+            }
+            finally
+            {
+                resetInput();
+            }
+        }
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -61,22 +103,30 @@ namespace FengShuiKoi
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            Advertisement advertisement = new Advertisement();
-            advertisement.AdId = txtAdID.Text;
-            advertisement.Title = txtTitle.Text;
-            advertisement.Description = txtDescription.Text;
-            advertisement.UserId = txtUserID.Text;
-            advertisement.Price = Double.Parse(txtPrice.Text);
-            advertisement.CategoryId = cboCategory.SelectedValue.ToString();
-            advertisement.ElementId = int.Parse(cboElement.SelectedValue.ToString());
-            if (advertisementServices.UpdateAdvertisement(advertisement))
+            try
             {
-                MessageBox.Show("Cập nhật thành công");
-                this.LoadDataInit();
+                Advertisement advertisement = new Advertisement();
+                advertisement.AdId = txtAdID.Text;
+                advertisement.Title = txtTitle.Text;
+                advertisement.Description = txtDescription.Text;
+                advertisement.UserId = txtUserID.Text;
+                advertisement.Price = Double.Parse(txtPrice.Text);
+                advertisement.CategoryId = cboCategory.SelectedValue?.ToString();
+                advertisement.ElementId = int.Parse(cboElement.SelectedValue?.ToString());
+
+                if (advertisementServices.UpdateAdvertisement(advertisement))
+                {
+                    MessageBox.Show("Update successful");
+                    LoadAdvertisementList(); // Just call LoadAdvertisementList directly
+                }
+                else
+                {
+                    MessageBox.Show("Update failed. Please try again!");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Cập nhật không thành công. Hãy cập nhật lại!");
+                MessageBox.Show($"Error updating advertisement: {ex.Message}");
             }
         }
 
@@ -122,26 +172,29 @@ namespace FengShuiKoi
 
         private void dgAdData_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DataGrid dataGrid = sender as DataGrid;
-            
-            DataGridRow row = dataGrid.ItemContainerGenerator
-                    .ContainerFromIndex(dataGrid.SelectedIndex) as DataGridRow;
-            if(row != null) { 
-                DataGridCell rowColumn = dataGrid.Columns[0]
-                    .GetCellContent(row).Parent as DataGridCell;
-                string id = ((TextBlock)rowColumn.Content).Text;
 
-                Advertisement advertisement = advertisementServices.GetAdvertisement(id);
-                if (advertisement != null)
+
+            try
+            {
+                DataGrid dataGrid = sender as DataGrid;
+                if (dataGrid == null || dataGrid.SelectedIndex < 0) return;
+
+                var selectedItem = dataGrid.SelectedItem as Advertisement;
+                if (selectedItem != null)
                 {
-                    txtAdID.Text = advertisement.AdId;
-                    txtDescription.Text = advertisement.Description;
-                    txtPrice.Text = advertisement.Price.ToString();
-                    txtTitle.Text = advertisement.Title;
-                    txtUserID.Text = advertisement.UserId;
-                    cboCategory.SelectedValue = advertisement.CategoryId;
-                    cboElement.SelectedValue = advertisement.ElementId;
+                    txtAdID.Text = selectedItem.AdId;
+                    txtDescription.Text = selectedItem.Description;
+                    txtPrice.Text = selectedItem.Price.ToString();
+                    txtTitle.Text = selectedItem.Title;
+                    txtUserID.Text = selectedItem.UserId;
+                    cboCategory.SelectedValue = selectedItem.CategoryId;
+                    cboElement.SelectedValue = selectedItem.ElementId;
                 }
+            }
+            catch (Exception ex)
+            {
+                // Silently handle the error to prevent disrupting the UI
+                Console.WriteLine($"Error in selection changed: {ex.Message}");
             }
         }
 
@@ -163,8 +216,19 @@ namespace FengShuiKoi
         private void btnReturn_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow(user);
             mainWindow.Show();
+        }
+
+        private void resetInput()
+        {
+            txtAdID.Text = "";
+            txtDescription.Text = "";
+            txtPrice.Text = "";
+            txtTitle.Text = "";
+            txtUserID.Text = "";
+            cboCategory.SelectedValue = "";
+            cboElement.SelectedValue = null;
         }
     }
 }

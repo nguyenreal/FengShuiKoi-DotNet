@@ -22,10 +22,12 @@ namespace FengShuiKoi
     public partial class ConsultingPage : Window
     {
         private readonly IElementService elementService;
-        public ConsultingPage()
+        private readonly User? user;
+        public ConsultingPage(User user)
         {
             InitializeComponent();
             elementService = new ElementService();
+            this.user = user;
         }
 
         private void btnConsult_Click(object sender, RoutedEventArgs e)
@@ -38,7 +40,7 @@ namespace FengShuiKoi
         private void btnReturn_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow(user);
             mainWindow.Show();
         }
     }
