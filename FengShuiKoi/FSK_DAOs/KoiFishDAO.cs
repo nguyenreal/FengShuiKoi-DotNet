@@ -171,9 +171,10 @@ namespace FSK_DAOs
 
         public List<KoiFish> GetKoiFishByElement(int elementId)
         {
-            using var context = new FengShuiKoiDbContext();
-            var query = context.KoiFishes.Where(e => e.Equals(elementId));
-            return query.ToList();
+            return _dbContext.KoiFishes
+                    .Include(k => k.Elements)
+                    .Where(k => k.Elements.Any(e => e.ElementId == elementId))
+                    .ToList();
         }
     }
 }

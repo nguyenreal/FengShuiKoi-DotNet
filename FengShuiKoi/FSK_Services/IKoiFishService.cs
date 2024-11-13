@@ -15,5 +15,6 @@ namespace FSK_Services
         bool AddKoiFish(KoiFish koiFish, List<int> elementIds);
         bool UpdateKoiFish(KoiFish koiFish, List<int> elementIds);
         bool DeleteKoiFish(string koiId);
+        List<KoiFish> GetKoiFishByElement(int elementId);
     }
 }
