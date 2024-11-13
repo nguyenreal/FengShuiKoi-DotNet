@@ -11,7 +11,7 @@
         <DataGrid HorizontalAlignment="Left" Height="214" Margin="34,69,0,0" VerticalAlignment="Top" Width="288"/>
         <DataGrid x:Name="dgTank" HorizontalAlignment="Left" Height="214" Margin="483,69,0,0" VerticalAlignment="Top" Width="288" />
         <DataGrid x:Name="dgKoiFish" HorizontalAlignment="Left" Height="214" Margin="34,69,0,0" VerticalAlignment="Top" Width="288" />
-        <DataGrid x:Name="dgAd" HorizontalAlignment="Left" Height="128" Margin="34,333,0,0" VerticalAlignment="Top" Width="737" />
+        <DataGrid x:Name="dgAd" HorizontalAlignment="Left" Height="134" Margin="34,333,0,0" VerticalAlignment="Top" Width="737" />
         <Label Content="Koi Fish" HorizontalAlignment="Left" Height="41" Margin="152,31,0,0" VerticalAlignment="Top" Width="52"/>
         <Label Content="Tank" HorizontalAlignment="Left" Height="41" Margin="601,28,0,0" VerticalAlignment="Top" Width="52"/>
         <Label Content="Advertisement" HorizontalAlignment="Left" Height="41" Margin="359,292,0,0" VerticalAlignment="Top" Width="87"/>

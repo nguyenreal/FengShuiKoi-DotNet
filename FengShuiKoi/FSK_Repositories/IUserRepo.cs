@@ -10,5 +10,7 @@ namespace FSK_Repositories
     public interface IUserRepo
     {
         User GetUserByEmail(String email);
+
+        bool AddUser(User user);
     }
 }
