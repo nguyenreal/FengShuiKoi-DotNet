@@ -10,6 +10,8 @@ namespace FSK_Repositories
 {
     public class UserRepo : IUserRepo
     {
+        public bool AddUser(User user) => UserDAO.AddUser(user);
+
         public User GetUserByEmail(string email) => UserDAO.GetUserByEmail(email);
     }
 }

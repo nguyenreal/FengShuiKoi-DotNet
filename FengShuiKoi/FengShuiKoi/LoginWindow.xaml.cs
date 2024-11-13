@@ -52,7 +52,9 @@ namespace FengShuiKoi
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Hide();
+            RegisterWindow registerWindow = new RegisterWindow();
+            registerWindow.Show();
         }
     }
 }

@@ -10,5 +10,7 @@ namespace FSK_Services
     public interface IUserService
     {
         User GetUserByEmail(String email);
+
+        bool AddUser(User user);
     }
 }
