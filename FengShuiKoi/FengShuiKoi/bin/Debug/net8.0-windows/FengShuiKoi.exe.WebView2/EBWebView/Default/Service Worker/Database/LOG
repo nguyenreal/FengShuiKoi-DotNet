@@ -1,3 +1,2 @@
-2024/11/13-19:42:44.093 c99c Reusing MANIFEST D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\bin\Debug\net8.0-windows\FengShuiKoi.exe.WebView2\EBWebView\Default\Service Worker\Database/MANIFEST-000001
-2024/11/13-19:42:44.094 c99c Recovering log #3
-2024/11/13-19:42:44.095 c99c Reusing old log D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\bin\Debug\net8.0-windows\FengShuiKoi.exe.WebView2\EBWebView\Default\Service Worker\Database/000003.log 
+2024/11/13-19:52:41.413 8278 Creating DB D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\bin\Debug\net8.0-windows\FengShuiKoi.exe.WebView2\EBWebView\Default\Service Worker\Database since it was missing.
+2024/11/13-19:52:41.416 8278 Reusing MANIFEST D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\bin\Debug\net8.0-windows\FengShuiKoi.exe.WebView2\EBWebView\Default\Service Worker\Database/MANIFEST-000001

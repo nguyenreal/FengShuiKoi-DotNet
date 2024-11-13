@@ -1,3 +1,2 @@
-2024/11/13-19:42:44.184 93e8 Reusing MANIFEST D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\bin\Debug\net8.0-windows\FengShuiKoi.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
-2024/11/13-19:42:44.199 93e8 Recovering log #3
-2024/11/13-19:42:44.201 93e8 Reusing old log D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\bin\Debug\net8.0-windows\FengShuiKoi.exe.WebView2\EBWebView\Default\Local Storage\leveldb/000003.log 
+2024/11/13-19:52:30.446 cc7c Creating DB D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\bin\Debug\net8.0-windows\FengShuiKoi.exe.WebView2\EBWebView\Default\Local Storage\leveldb since it was missing.
+2024/11/13-19:52:30.461 cc7c Reusing MANIFEST D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\bin\Debug\net8.0-windows\FengShuiKoi.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001

@@ -67,7 +67,7 @@ namespace FengShuiKoi
                     case "USER":
                         // User (Staff) has limited access
                         this.btnManaging.IsEnabled = false;
-                        this.btnConsulting.IsEnabled = false;
+                        this.btnCompatibility.IsEnabled = false;
                         break;
                     case "MEMBER":
                         // Member access
