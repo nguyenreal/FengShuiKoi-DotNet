@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FengShuiKoi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+21138789b9042b19c351e548cd3980cdadb7bb71")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b823ba71a46135ede2215204a02fcb6a8cc43d0f")]
 [assembly: System.Reflection.AssemblyProductAttribute("FengShuiKoi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FengShuiKoi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

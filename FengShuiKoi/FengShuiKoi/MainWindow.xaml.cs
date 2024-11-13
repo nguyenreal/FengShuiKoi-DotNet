@@ -32,7 +32,7 @@ namespace FengShuiKoi
         private void btnManaging_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            BlogWindow blogWindow = new BlogWindow(userId);
+            BlogWindow blogWindow = new BlogWindow(user);
             blogWindow.Show();
         }
 
@@ -46,7 +46,7 @@ namespace FengShuiKoi
         private void btnBlog_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            BlogWindow blogWindow = new BlogWindow(userId);
+            BlogWindow blogWindow = new BlogWindow(user);
             blogWindow.Show();
         }
 

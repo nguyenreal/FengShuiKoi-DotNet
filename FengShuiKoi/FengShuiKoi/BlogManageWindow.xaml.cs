@@ -22,11 +22,13 @@ namespace FengShuiKoi
     public partial class BlogManageWindow : Window
     {
         private readonly string? userId;
+        private readonly User? user;
         private readonly IBlogService blogService;
-        public BlogManageWindow(string userId)
+        public BlogManageWindow(User user)
         {
             InitializeComponent();
-            this.userId = userId;
+            this.user = user;
+            this.userId = user.UserId;
             blogService = new BlogService();
         }
 
@@ -160,7 +162,7 @@ namespace FengShuiKoi
         private void btnReturn_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            BlogWindow blogWindow = new BlogWindow(userId);
+            BlogWindow blogWindow = new BlogWindow(user);
             blogWindow.Show();
         }
 

@@ -1,6 +1,5 @@
 ﻿using FSK_BusinessObjects;
 using FSK_Services;
-using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +23,14 @@ namespace FengShuiKoi
     {
         private readonly IBlogService iBlogService;
         private readonly string? userId;
+        private readonly User? user;
 
-        public BlogWindow(string userId)
+        public BlogWindow(User user)
         {
             InitializeComponent();
             iBlogService = new BlogService();
-            this.userId = userId;
+            this.user = user;
+            this.userId = user.UserId;
             InitializeWebView();
         }
 
@@ -88,7 +89,9 @@ namespace FengShuiKoi
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.Hide();
+            MainWindow mainWindow = new MainWindow(user);
+            mainWindow.Show();
         }
 
         private void dgBlogs_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -113,7 +116,7 @@ namespace FengShuiKoi
         private void btnManageBlog_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            BlogManageWindow blogWindow = new BlogManageWindow(userId);
+            BlogManageWindow blogWindow = new BlogManageWindow(user);
             blogWindow.Show();
         }
     }
