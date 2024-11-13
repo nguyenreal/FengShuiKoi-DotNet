@@ -20,17 +20,17 @@ namespace FengShuiKoi
     /// </summary>
     public partial class ManagementWindow : Window
     {
-        private readonly User? _user;
+        private readonly User? user;
         public ManagementWindow(User user)
         {
             InitializeComponent();
-            _user = user;
+            this.user = user;
         }
         
         private void btnReturn_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            MainWindow mainWindow = new MainWindow(_user);
+            MainWindow mainWindow = new MainWindow(user);
             mainWindow.Show();
         }
 
@@ -44,6 +44,20 @@ namespace FengShuiKoi
         {
             TankManageWindow tankManageWindow = new TankManageWindow();
             tankManageWindow.ShowDialog();
+        }
+
+        private void btnBlog_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            BlogManageWindow blogWindow = new BlogManageWindow(user);
+            blogWindow.Show();
+        }
+
+        private void btnModerate_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            ModerateWindow moderateWindow = new ModerateWindow(user);
+            moderateWindow.Show();
         }
     }
 }

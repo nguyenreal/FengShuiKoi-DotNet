@@ -186,15 +186,6 @@
                             Click="btnAdvertise_Click"/>
 
                     <!-- New Compatibility Button with identical styling -->
-                    <Button x:Name="btnCompatibility" 
-                            Content="TÍNH ĐỘ PHÙ HỢP" 
-                            Style="{StaticResource MainButton}"
-                            Grid.Column="0"
-                            Grid.Row="2"
-                            Grid.ColumnSpan="2"
-                            Width="280"
-                            Height="70"
-                            Margin="165,10,165,10"/>
                 </Grid>
             </StackPanel>
             

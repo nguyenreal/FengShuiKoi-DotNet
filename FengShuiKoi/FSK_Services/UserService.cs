@@ -19,5 +19,10 @@ namespace FSK_Services
         {
             return iUserRepo.GetUserByEmail(email);
         }
+
+        public bool AddUser(User user)
+        {
+            return iUserRepo.AddUser(user);
+        }
     }
 }

@@ -75,10 +75,6 @@ namespace FengShuiKoi
                     // User (Staff) has limited access
                     this.btnManageBlog.IsEnabled = false;
                     break;
-                case "MEMBER":
-                    // Member access
-                    this.btnManageBlog.IsEnabled = false;
-                    break;
                 default:
                     // Invalid or null role
                     this.Close();
@@ -86,27 +82,6 @@ namespace FengShuiKoi
             }
         }
 
-        //private void BlogTitle_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (sender is Button button)
-        //    {
-        //        string url = button.Tag as string;  // URL is stored in Description
-        //        string title = button.Content as string;
-
-        //        if (!string.IsNullOrEmpty(url))
-        //        {
-        //            try
-        //            {
-        //                webView.Source = new Uri(url);  // Load URL in WebView
-        //                txtCurrentBlog.Text = title;    // Update current blog title
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                MessageBox.Show($"Error loading blog: {ex.Message}", "Error");
-        //            }
-        //        }
-        //    }
-        //}
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
