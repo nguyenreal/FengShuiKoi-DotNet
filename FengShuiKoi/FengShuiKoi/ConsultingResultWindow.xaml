@@ -6,18 +6,182 @@
         xmlns:local="clr-namespace:FengShuiKoi"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="ConsultingResultWindow" Height="570" Width="800">
-    <Grid>
-        <DataGrid HorizontalAlignment="Left" Height="214" Margin="34,69,0,0" VerticalAlignment="Top" Width="288"/>
-        <DataGrid x:Name="dgTank" HorizontalAlignment="Left" Height="214" Margin="483,69,0,0" VerticalAlignment="Top" Width="288" />
-        <DataGrid x:Name="dgKoiFish" HorizontalAlignment="Left" Height="214" Margin="34,69,0,0" VerticalAlignment="Top" Width="288" />
-        <DataGrid x:Name="dgAd" HorizontalAlignment="Left" Height="128" Margin="34,333,0,0" VerticalAlignment="Top" Width="737" />
-        <Label Content="Koi Fish" HorizontalAlignment="Left" Height="41" Margin="152,31,0,0" VerticalAlignment="Top" Width="52"/>
-        <Label Content="Tank" HorizontalAlignment="Left" Height="41" Margin="601,28,0,0" VerticalAlignment="Top" Width="52"/>
-        <Label Content="Advertisement" HorizontalAlignment="Left" Height="41" Margin="359,292,0,0" VerticalAlignment="Top" Width="87"/>
-        <Button x:Name="btnReturn" Content="Return To Consulting Page" HorizontalAlignment="Left" Height="39" Margin="601,485,0,0" VerticalAlignment="Top" Width="170" RenderTransformOrigin="0.479,0.314" Click="btnReturn_Click"/>
-        <Label Content="Your Element is:" HorizontalAlignment="Left" Height="39" Margin="359,88,0,0" VerticalAlignment="Top" Width="100"/>
-        <TextBox x:Name="txtElement" HorizontalAlignment="Left" Height="30" Margin="344,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115"/>
+        Title="ConsultingResultWindow" Height="800" Width="1100">
+    <Window.Resources>
+        <!-- DataGrid Style -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#F9FAFB"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#ECF0F1"/>
+            <Setter Property="VerticalGridLinesBrush" Value="#ECF0F1"/>
+            <Setter Property="RowHeaderWidth" Value="0"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
 
+        <!-- Element Display Style -->
+        <Style x:Key="ElementDisplay" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#3498DB"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="CornerRadius" Value="15"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#2C3E50" 
+                                    Opacity="0.1" 
+                                    BlurRadius="10" 
+                                    ShadowDepth="2"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Return Button Style -->
+        <Style x:Key="ReturnButton" TargetType="Button">
+            <Setter Property="Background" Value="#3498DB"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,12"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <StackPanel Orientation="Horizontal" 
+                                      HorizontalAlignment="Center">
+                                <Path Data="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" 
+                                      Fill="White" 
+                                      Width="18" 
+                                      Height="18" 
+                                      Stretch="Uniform"
+                                      Margin="0,0,8,0"/>
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2980B9"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#F9FAFB">
+        <StackPanel Margin="40">
+            <!-- Title -->
+            <TextBlock Text="CONSULTING RESULTS" 
+                      FontSize="28" 
+                      FontWeight="Bold" 
+                      Foreground="#2C3E50"
+                      HorizontalAlignment="Center"
+                      Margin="0,0,0,20"/>
+
+            <!-- Element Display -->
+            <Border Style="{StaticResource ElementDisplay}"
+                    Width="400"
+                    Margin="0,0,0,40">
+                <StackPanel>
+                    <TextBlock Text="YOUR ELEMENT" 
+                             FontSize="18"
+                             FontWeight="SemiBold"
+                             Foreground="#34495E"
+                             HorizontalAlignment="Center"
+                             Margin="0,0,0,15"/>
+                    <TextBox x:Name="txtElement"
+                            FontSize="32"
+                            FontWeight="Bold"
+                            Foreground="#3498DB"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            IsReadOnly="True"
+                            TextAlignment="Center"
+                            HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Data Grids Section -->
+            <Grid Margin="0,0,0,30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Koi Fish Section -->
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="KOI FISH" 
+                             FontSize="20" 
+                             FontWeight="SemiBold" 
+                             Foreground="#34495E"
+                             HorizontalAlignment="Center"
+                             Margin="0,0,0,10"/>
+                    <Border CornerRadius="8" 
+                            Background="White" 
+                            BorderBrush="#BDC3C7" 
+                            BorderThickness="1">
+                        <DataGrid x:Name="dgKoiFish" 
+                                 Height="250"
+                                 Margin="1"/>
+                    </Border>
+                </StackPanel>
+
+                <!-- Tank Section -->
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="TANK" 
+                             FontSize="20" 
+                             FontWeight="SemiBold" 
+                             Foreground="#34495E"
+                             HorizontalAlignment="Center"
+                             Margin="0,0,0,10"/>
+                    <Border CornerRadius="8" 
+                            Background="White" 
+                            BorderBrush="#BDC3C7" 
+                            BorderThickness="1">
+                        <DataGrid x:Name="dgTank" 
+                                 Height="250"
+                                 Margin="1"/>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <!-- Advertisement Section -->
+            <TextBlock Text="ADVERTISEMENT" 
+                      FontSize="20" 
+                      FontWeight="SemiBold" 
+                      Foreground="#34495E"
+                      HorizontalAlignment="Center"
+                      Margin="0,0,0,10"/>
+            <Border CornerRadius="8" 
+                    Background="White" 
+                    BorderBrush="#BDC3C7" 
+                    BorderThickness="1"
+                    Margin="0,0,0,30">
+                <DataGrid x:Name="dgAd" 
+                         Height="150"
+                         Margin="1"/>
+            </Border>
+
+            <!-- Return Button -->
+            <Button x:Name="btnReturn" 
+                    Content="RETURN TO CONSULTING" 
+                    Style="{StaticResource ReturnButton}"
+                    Width="250"
+                    HorizontalAlignment="Right"
+                    Click="btnReturn_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

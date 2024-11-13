@@ -105,8 +105,10 @@ namespace FSK_DAOs
         {
             using var context = new FengShuiKoiDbContext();
             var query = context.Advertisements
-                            .Where(a => a.ElementId.Equals(elementID));
+                            .Where(a => a.ElementId.Equals(elementID))
+                            .Where(b => b.Status.Equals("Verified"));
             return query.ToList();
+            
         }
 
         public List<Advertisement> GetVerifiedAdvertisements()

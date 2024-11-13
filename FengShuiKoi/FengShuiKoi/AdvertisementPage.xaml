@@ -9,7 +9,7 @@
         Title="AdvertisementPage" Height="1100" Width="1200" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <!-- Modern TextBox Style -->
-        <<Style x:Key="ModernTextBox" TargetType="{x:Type TextBox}">
+        <Style x:Key="ModernTextBox" TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="#2C3E50"/>
             <Setter Property="BorderThickness" Value="1"/>
