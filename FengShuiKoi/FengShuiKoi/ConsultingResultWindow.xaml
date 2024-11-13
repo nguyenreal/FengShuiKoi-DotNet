@@ -6,16 +6,16 @@
         xmlns:local="clr-namespace:FengShuiKoi"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="ConsultingResultWindow" Height="500" Width="800">
+        Title="ConsultingResultWindow" Height="570" Width="800">
     <Grid>
         <DataGrid HorizontalAlignment="Left" Height="214" Margin="34,69,0,0" VerticalAlignment="Top" Width="288"/>
         <DataGrid x:Name="dgTank" HorizontalAlignment="Left" Height="214" Margin="483,69,0,0" VerticalAlignment="Top" Width="288" />
         <DataGrid x:Name="dgKoiFish" HorizontalAlignment="Left" Height="214" Margin="34,69,0,0" VerticalAlignment="Top" Width="288" />
-        <DataGrid x:Name="dgAd" HorizontalAlignment="Left" Height="108" Margin="34,338,0,0" VerticalAlignment="Top" Width="737" />
-        <Label Content="Koi Fish" HorizontalAlignment="Left" Height="41" Margin="152,23,0,0" VerticalAlignment="Top" Width="52"/>
-        <Label Content="Koi Fish" HorizontalAlignment="Left" Height="41" Margin="152,23,0,0" VerticalAlignment="Top" Width="52"/>
+        <DataGrid x:Name="dgAd" HorizontalAlignment="Left" Height="128" Margin="34,333,0,0" VerticalAlignment="Top" Width="737" />
+        <Label Content="Koi Fish" HorizontalAlignment="Left" Height="41" Margin="152,31,0,0" VerticalAlignment="Top" Width="52"/>
         <Label Content="Tank" HorizontalAlignment="Left" Height="41" Margin="601,28,0,0" VerticalAlignment="Top" Width="52"/>
         <Label Content="Advertisement" HorizontalAlignment="Left" Height="41" Margin="359,292,0,0" VerticalAlignment="Top" Width="87"/>
+        <Button x:Name="btnReturn" Content="Return To Consulting Page" HorizontalAlignment="Left" Height="39" Margin="601,485,0,0" VerticalAlignment="Top" Width="170" RenderTransformOrigin="0.479,0.314" Click="btnReturn_Click"/>
 
     </Grid>
 </Window>

@@ -23,6 +23,7 @@ namespace FengShuiKoi
     {
         private readonly IAdvertisementServices advertisementServices;
         private readonly Element? element;
+        private readonly User? user;
         public ConsultingResultWindow(Element element)
         {
             InitializeComponent();
@@ -49,9 +50,11 @@ namespace FengShuiKoi
             LoadAdvertisementData();
         }
 
-        private void Window_Loaded_1(object sender, RoutedEventArgs e)
+        private void btnReturn_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Hide();
+            ConsultingPage consultingPage = new ConsultingPage(user);
+            consultingPage.Show();
         }
     }
 }
