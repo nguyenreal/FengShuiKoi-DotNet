@@ -94,3 +94,5 @@ D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\Ad
 D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\ConsultingPage.g.cs
 D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\AdvertisementPage.baml
 D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\ConsultingPage.baml
+D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\BlogManageWindow.g.cs
+D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\BlogManageWindow.baml
