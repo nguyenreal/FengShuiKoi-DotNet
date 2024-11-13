@@ -13,6 +13,7 @@ namespace FengShuiKoi
         private readonly IKoiFishService _koiFishService;
         private readonly IElementService _elementService;
         private List<Element> _allElements;
+        private readonly User? user;
 
         public KoiFishWindow()
         {

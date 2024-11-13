@@ -46,8 +46,6 @@ namespace FSK_DAOs
 
         public bool AddKoiFish(KoiFish koiFish, List<int> elementIds)
         {
-            using (var transaction = _dbContext.Database.BeginTransaction())
-            {
                 try
                 {
                     if (_dbContext.KoiFishes.Any(k => k.KoiId == koiFish.KoiId))
@@ -68,21 +66,17 @@ namespace FSK_DAOs
 
                     _dbContext.KoiFishes.Add(koiFish);
                     _dbContext.SaveChanges();
-                    transaction.Commit();
                     return true;
                 }
                 catch
                 {
-                    transaction.Rollback();
                     return false;
                 }
-            }
+            
         }
 
         public bool UpdateKoiFish(KoiFish koiFish, List<int> elementIds)
         {
-            using (var transaction = _dbContext.Database.BeginTransaction())
-            {
                 try
                 {
                     var existingFish = _dbContext.KoiFishes
@@ -116,21 +110,17 @@ namespace FSK_DAOs
                     }
 
                     _dbContext.SaveChanges();
-                    transaction.Commit();
                     return true;
                 }
                 catch
                 {
-                    transaction.Rollback();
                     return false;
                 }
-            }
+            
         }
 
         public bool DeleteKoiFish(string koiId)
         {
-            using (var transaction = _dbContext.Database.BeginTransaction())
-            {
                 try
                 {
                     var koiFish = _dbContext.KoiFishes
@@ -148,15 +138,13 @@ namespace FSK_DAOs
                     _dbContext.KoiFishes.Remove(koiFish);
 
                     _dbContext.SaveChanges();
-                    transaction.Commit();
                     return true;
                 }
                 catch
                 {
-                    transaction.Rollback();
                     return false;
                 }
-            }
+            
         }
 
         public List<KoiFish> GetKoiFishByFilter(string search)

@@ -102,3 +102,7 @@ D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\Ta
 D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\KoiFishManagementWindow.baml
 D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\ManagementWindow.baml
 D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\TankManageWindow.baml
+D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\ConsultingResultWindow.g.cs
+D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\ModerateWindow.g.cs
+D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\ConsultingResultWindow.baml
+D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\ModerateWindow.baml

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\App.xaml
-92124496664
+111795914547
 31901341507
-1465652595
+161026529517
 248-513839261
-AdvertisementPage.xaml;BlogManageWindow.xaml;BlogWindow.xaml;ConsultingPage.xaml;KoiFishManagementWindow.xaml;LoginWindow.xaml;MainWindow.xaml;ManagementWindow.xaml;TankManageWindow.xaml;
+AdvertisementPage.xaml;BlogManageWindow.xaml;BlogWindow.xaml;ConsultingPage.xaml;ConsultingResultWindow.xaml;KoiFishManagementWindow.xaml;LoginWindow.xaml;MainWindow.xaml;ManagementWindow.xaml;ModerateWindow.xaml;TankManageWindow.xaml;
 
-False
+True
 

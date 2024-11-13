@@ -125,7 +125,7 @@ namespace FengShuiKoi {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/FengShuiKoi;component/blogmanagewindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/FengShuiKoi;V1.0.0.0;component/blogmanagewindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\BlogManageWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

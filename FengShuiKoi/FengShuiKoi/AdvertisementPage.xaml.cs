@@ -27,6 +27,14 @@ namespace FengShuiKoi
 
         private void LoadDataInit()
         {
+            switch (user.RoleName.ToUpper())
+            {
+                case "ADMIN":
+                    break;
+                default:
+                    this.btnModerate.Visibility = Visibility.Collapsed;
+                    break;
+            }
             LoadCategoryList();
             LoadElementList();
             LoadElementSearchList();
@@ -52,7 +60,7 @@ namespace FengShuiKoi
             try
             {
                 var elementList = elementService.GetElements();
-                cboElement.ItemsSource = elementList;
+                cboSearchElement.ItemsSource = elementList;
                 this.cboSearchElement.DisplayMemberPath = "ElementName";
                 this.cboSearchElement.SelectedValuePath = "ElementId";
             }
@@ -81,9 +89,28 @@ namespace FengShuiKoi
         {
             try
             {
-                var adList = advertisementServices.GetAdvertisements();
-                dgAdData.ItemsSource = null; // Clear the current ItemsSource
-                dgAdData.ItemsSource = adList; // Set new ItemsSource
+                switch (user.RoleName.ToUpper())
+                {
+                    case "ADMIN":
+                        var adList = advertisementServices.GetAdvertisements();
+                        dgAdData.ItemsSource = null; // Clear the current ItemsSource
+                        dgAdData.ItemsSource = adList; // Set new ItemsSource
+                        break;
+                    case "MEMBER":
+                        var verifiedList = advertisementServices.GetVerifiedAdvertisements();
+                        dgAdData.ItemsSource = null; // Clear the current ItemsSource
+                        dgAdData.ItemsSource = verifiedList; // Set new ItemsSource
+                        break;
+                    case "USER":
+                        verifiedList = advertisementServices.GetVerifiedAdvertisements();
+                        dgAdData.ItemsSource = null; // Clear the current ItemsSource
+                        dgAdData.ItemsSource = verifiedList; // Set new ItemsSource
+                        this.btnAdd.IsEnabled = false;
+                        this.btnDelete.IsEnabled = false;
+                        this.btnUpdate.IsEnabled = false;
+                        break;
+                }
+                
             }
             catch (Exception ex)
             {
@@ -98,6 +125,16 @@ namespace FengShuiKoi
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            switch (user.RoleName.ToUpper())
+            {
+                case "ADMIN": break;
+                case "MEMBER": break;
+                case "USER": this.btnAdd.IsEnabled = false; 
+                             this.btnDelete.IsEnabled = false;
+                             this.btnUpdate.IsEnabled = false;
+                             break;
+            }
+            this.txtUserID.IsReadOnly = true;
             this.LoadDataInit();
         }
 
@@ -105,19 +142,21 @@ namespace FengShuiKoi
         {
             try
             {
+                
                 Advertisement advertisement = new Advertisement();
                 advertisement.AdId = txtAdID.Text;
                 advertisement.Title = txtTitle.Text;
                 advertisement.Description = txtDescription.Text;
-                advertisement.UserId = txtUserID.Text;
                 advertisement.Price = Double.Parse(txtPrice.Text);
                 advertisement.CategoryId = cboCategory.SelectedValue?.ToString();
                 advertisement.ElementId = int.Parse(cboElement.SelectedValue?.ToString());
+                advertisement.UserId = advertisementServices.GetAdvertisement(txtAdID.Text).UserId;
 
-                if (advertisementServices.UpdateAdvertisement(advertisement))
+                if (advertisementServices.UpdateAdvertisement(advertisement) 
+                    && advertisement.UserId.Equals(user.UserId))
                 {
                     MessageBox.Show("Update successful");
-                    LoadAdvertisementList(); // Just call LoadAdvertisementList directly
+                    LoadAdvertisementList();
                 }
                 else
                 {
@@ -136,32 +175,49 @@ namespace FengShuiKoi
             advertisement.AdId = txtAdID.Text;
             advertisement.Title = txtTitle.Text;
             advertisement.Description = txtDescription.Text;
-            advertisement.UserId = txtUserID.Text;
             advertisement.Price = Double.Parse(txtPrice.Text);
             advertisement.CategoryId = cboCategory.SelectedValue.ToString();
             advertisement.ElementId = int.Parse(cboElement.SelectedValue.ToString());
+            advertisement.UserId = user.UserId;
+            advertisement.Status = "Pending";
             if(advertisementServices.AddAdvertisement(advertisement))
             {
-                MessageBox.Show("Thêm quảng cáo thành công");
+                MessageBox.Show("Add successfully");
                 this.LoadDataInit();
             }
             else
             {
-                MessageBox.Show("ID quảng cáo đã tồn tại");
+                MessageBox.Show("AdID has been existed");
             }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             string adID = txtAdID.Text;
-            if(adID.Length > 0 && advertisementServices.DeleteAdvertisement(adID))
+            Advertisement advertisement = advertisementServices.GetAdvertisement(adID);
+            if(adID.Length > 0 && advertisement.UserId.Equals(user.UserId))
             {
-                this.LoadDataInit();
-                MessageBox.Show("Xóa thành công");
+                MessageBoxResult result = MessageBox.Show("Do you really want to delete this advertisement?",
+                                                            "Delete confirmation",
+                                                            MessageBoxButton.YesNo,
+                                                            MessageBoxImage.Question);
+                if(result == MessageBoxResult.Yes && advertisementServices.DeleteAdvertisement(adID))
+                {
+                    MessageBox.Show("Delete successfully");
+                    this.LoadDataInit();
+                }
+                else
+                {
+                    MessageBox.Show("Delete failed! Please try again");
+                }
+            }
+            else if (adID.Length <= 0)
+            {
+                MessageBox.Show("Choose the advertisement you want to delete");
             }
             else
             {
-                MessageBox.Show("Xóa không thành công. Hãy thử lại.");
+                MessageBox.Show("You don't have permission");
             }
         }
 
@@ -172,8 +228,6 @@ namespace FengShuiKoi
 
         private void dgAdData_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-
             try
             {
                 DataGrid dataGrid = sender as DataGrid;
@@ -205,12 +259,10 @@ namespace FengShuiKoi
             int elementID = cboSearchElement.SelectedValue != null
                 ? int.Parse(cboSearchElement.SelectedValue.ToString())
                 : -1;
-
             dgAdData.ItemsSource = advertisementServices
                 .GetAdvertisementsByFilter(search, elementID)
                 .ToList();
-
-            this.LoadDataInit();
+            resetInput();
         }
 
         private void btnReturn_Click(object sender, RoutedEventArgs e)
@@ -229,6 +281,13 @@ namespace FengShuiKoi
             txtUserID.Text = "";
             cboCategory.SelectedValue = "";
             cboElement.SelectedValue = null;
+        }
+
+        private void btnModerate_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            ModerateWindow moderateWindow = new ModerateWindow(user);
+            moderateWindow.Show();
         }
     }
 }

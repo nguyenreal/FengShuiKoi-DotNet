@@ -81,14 +81,42 @@ namespace FSK_DAOs
 
         public List<Advertisement> GetAdvertisementsByFilter(string search, int elementID)
         {
-            var query = dbContext.Advertisements
-                .Where(a => EF.Functions.Like(a.Title ,"%" + search + "%"));
-
-            if (elementID != -1)
+            try
             {
-                query = query.Where(a => a.ElementId == elementID);
+                using var context = new FengShuiKoiDbContext();
+                var query = context.Advertisements
+                    .Where(a => EF.Functions.Like(a.Title, "%" + search + "%"))
+                    .Where(a => a.Status.Equals("Verified"));
+
+                if (elementID != -1)
+                {
+                    query = query.Where(a => a.ElementId == elementID);
+                }
+                return query.ToList();
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<Advertisement>();
+            }
+        }
+
+        public List<Advertisement> GetAdvertisementsByElement(int elementID)
+        {
+            using var context = new FengShuiKoiDbContext();
+            var query = context.Advertisements
+                            .Where(a => a.ElementId.Equals(elementID));
             return query.ToList();
+        }
+
+        public List<Advertisement> GetVerifiedAdvertisements()
+        {
+            dbContext = new FengShuiKoiDbContext();
+            return dbContext.Advertisements
+                .Include(c => c.Category)
+                .Include(e => e.Element)
+                .Where(s => s.Status.Equals("Verified"))
+                .ToList();
         }
     }
 }

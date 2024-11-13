@@ -149,7 +149,7 @@ namespace FengShuiKoi {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/FengShuiKoi;component/tankmanagewindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/FengShuiKoi;V1.0.0.0;component/tankmanagewindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\TankManageWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
