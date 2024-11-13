@@ -99,6 +99,10 @@ namespace FengShuiKoi
 
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            this.txtAdID.IsReadOnly = true;
+            this.txtDescription.IsReadOnly = true;
+            this.txtStatus.IsReadOnly = true;
+            this.txtTitle.IsReadOnly = true;
             this.LoadAdvertisementList();
         }
 

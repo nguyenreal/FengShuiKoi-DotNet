@@ -135,6 +135,7 @@ namespace FengShuiKoi
                              this.btnUpdate.IsEnabled = false;
                              break;
             }
+            this.txtUserID.IsReadOnly = true;
             this.LoadDataInit();
         }
 
