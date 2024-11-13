@@ -192,3 +192,5 @@ C:\HocHanh\PRN212\Code\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8
 C:\HocHanh\PRN212\Code\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\ref\FengShuiKoi.dll
 C:\HocHanh\PRN212\Code\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\ConsultingResultWindow.g.cs
 C:\HocHanh\PRN212\Code\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\ConsultingResultWindow.baml
+C:\HocHanh\PRN212\Code\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\ModerateWindow.g.cs
+C:\HocHanh\PRN212\Code\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\ModerateWindow.baml

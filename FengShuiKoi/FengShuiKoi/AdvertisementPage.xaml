@@ -25,7 +25,7 @@
         <TextBox x:Name="txtTitle" HorizontalAlignment="Left" Height="35" Margin="88,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
         <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Height="31" Margin="88,241,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
         <TextBox x:Name="txtPrice" HorizontalAlignment="Left" Height="30" Margin="88,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
-        <ComboBox x:Name="cboElement" HorizontalAlignment="Left" Height="34" Margin="580,100,0,0" VerticalAlignment="Top" Width="172"/>
+        <ComboBox x:Name="cboElement" HorizontalAlignment="Left" Height="34" Margin="580,100,0,0" VerticalAlignment="Top" Width="184"/>
         <ComboBox x:Name="cboCategory" HorizontalAlignment="Left" Height="36" Margin="580,162,0,0" VerticalAlignment="Top" Width="184"/>
         <TextBox x:Name="txtUserID" HorizontalAlignment="Left" Height="30" Margin="580,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
         <DataGrid x:Name="dgAdData" HorizontalAlignment="Center" Height="316" Margin="0,392,0,0" VerticalAlignment="Top" Width="764" SelectionChanged="dgAdData_SelectionChanged"/>
@@ -38,5 +38,6 @@
         <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Height="32" Margin="671,353,0,0" VerticalAlignment="Top" Width="103" Click="btnSearch_Click"/>
         <ComboBox x:Name="cboSearchElement" HorizontalAlignment="Left" Height="35" Margin="511,352,0,0" VerticalAlignment="Top" Width="139"/>
         <Button x:Name="btnReturn" Content="Return to Homepage" HorizontalAlignment="Left" Height="38" Margin="18,45,0,0" VerticalAlignment="Top" Width="155" Click="btnReturn_Click"/>
+        <Button x:Name="btnModerate" Content="Moderate Advertisement" HorizontalAlignment="Left" Height="38" Margin="583,45,0,0" VerticalAlignment="Top" Width="181" Click="btnModerate_Click"/>
     </Grid>
 </Window>

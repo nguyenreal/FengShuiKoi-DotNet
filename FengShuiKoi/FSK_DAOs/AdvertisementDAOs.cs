@@ -85,7 +85,8 @@ namespace FSK_DAOs
             {
                 using var context = new FengShuiKoiDbContext();
                 var query = context.Advertisements
-                    .Where(a => EF.Functions.Like(a.Title, "%" + search + "%"));
+                    .Where(a => EF.Functions.Like(a.Title, "%" + search + "%"))
+                    .Where(a => a.Status.Equals("Verified"));
 
                 if (elementID != -1)
                 {
@@ -106,6 +107,16 @@ namespace FSK_DAOs
             var query = context.Advertisements
                             .Where(a => a.ElementId.Equals(elementID));
             return query.ToList();
+        }
+
+        public List<Advertisement> GetVerifiedAdvertisements()
+        {
+            dbContext = new FengShuiKoiDbContext();
+            return dbContext.Advertisements
+                .Include(c => c.Category)
+                .Include(e => e.Element)
+                .Where(s => s.Status.Equals("Verified"))
+                .ToList();
         }
     }
 }

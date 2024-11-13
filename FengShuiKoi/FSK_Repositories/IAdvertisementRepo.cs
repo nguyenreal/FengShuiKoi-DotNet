@@ -17,5 +17,6 @@ namespace FSK_Repositories
         Advertisement GetAdvertisement(String id);
         List<Advertisement> GetAdvertisementsByFilter(string search, int elementID);
         List<Advertisement> GetAdvertisementsByElement(int elementID);
+        List<Advertisement> GetVerifiedAdvertisements();
     }
 }

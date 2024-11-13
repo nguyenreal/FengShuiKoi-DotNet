@@ -27,6 +27,15 @@ namespace FengShuiKoi
 
         private void LoadDataInit()
         {
+            switch (user.RoleName.ToUpper())
+            {
+                case "ADMIN":
+                    break;
+                default:
+                    this.btnModerate.Visibility = Visibility.Collapsed;
+                    this.btnModerate.IsEnabled = false;
+                    break;
+            }
             LoadCategoryList();
             LoadElementList();
             LoadElementSearchList();
@@ -81,9 +90,28 @@ namespace FengShuiKoi
         {
             try
             {
-                var adList = advertisementServices.GetAdvertisements();
-                dgAdData.ItemsSource = null; // Clear the current ItemsSource
-                dgAdData.ItemsSource = adList; // Set new ItemsSource
+                switch (user.RoleName.ToUpper())
+                {
+                    case "ADMIN":
+                        var adList = advertisementServices.GetAdvertisements();
+                        dgAdData.ItemsSource = null; // Clear the current ItemsSource
+                        dgAdData.ItemsSource = adList; // Set new ItemsSource
+                        break;
+                    case "MEMBER":
+                        var verifiedList = advertisementServices.GetVerifiedAdvertisements();
+                        dgAdData.ItemsSource = null; // Clear the current ItemsSource
+                        dgAdData.ItemsSource = verifiedList; // Set new ItemsSource
+                        break;
+                    case "USER":
+                        verifiedList = advertisementServices.GetVerifiedAdvertisements();
+                        dgAdData.ItemsSource = null; // Clear the current ItemsSource
+                        dgAdData.ItemsSource = verifiedList; // Set new ItemsSource
+                        this.btnAdd.IsEnabled = false;
+                        this.btnDelete.IsEnabled = false;
+                        this.btnUpdate.IsEnabled = false;
+                        break;
+                }
+                
             }
             catch (Exception ex)
             {
@@ -114,6 +142,7 @@ namespace FengShuiKoi
         {
             try
             {
+                
                 Advertisement advertisement = new Advertisement();
                 advertisement.AdId = txtAdID.Text;
                 advertisement.Title = txtTitle.Text;
@@ -122,10 +151,11 @@ namespace FengShuiKoi
                 advertisement.CategoryId = cboCategory.SelectedValue?.ToString();
                 advertisement.ElementId = int.Parse(cboElement.SelectedValue?.ToString());
 
-                if (advertisementServices.UpdateAdvertisement(advertisement))
+                if (advertisementServices.UpdateAdvertisement(advertisement) 
+                    && advertisement.UserId.Equals(user.UserId))
                 {
                     MessageBox.Show("Update successful");
-                    LoadAdvertisementList(); // Just call LoadAdvertisementList directly
+                    LoadAdvertisementList();
                 }
                 else
                 {
@@ -148,6 +178,7 @@ namespace FengShuiKoi
             advertisement.CategoryId = cboCategory.SelectedValue.ToString();
             advertisement.ElementId = int.Parse(cboElement.SelectedValue.ToString());
             advertisement.UserId = user.UserId;
+            advertisement.Status = "Pending";
             if(advertisementServices.AddAdvertisement(advertisement))
             {
                 MessageBox.Show("Add successfully");
@@ -162,7 +193,8 @@ namespace FengShuiKoi
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             string adID = txtAdID.Text;
-            if(adID.Length > 0)
+            Advertisement advertisement = advertisementServices.GetAdvertisement(adID);
+            if(adID.Length > 0 && advertisement.UserId.Equals(user.UserId))
             {
                 MessageBoxResult result = MessageBox.Show("Do you really want to delete this advertisement?",
                                                             "Delete confirmation",
@@ -191,8 +223,6 @@ namespace FengShuiKoi
 
         private void dgAdData_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-
             try
             {
                 DataGrid dataGrid = sender as DataGrid;
@@ -246,6 +276,13 @@ namespace FengShuiKoi
             txtUserID.Text = "";
             cboCategory.SelectedValue = "";
             cboElement.SelectedValue = null;
+        }
+
+        private void btnModerate_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            ModerateWindow moderateWindow = new ModerateWindow(user);
+            moderateWindow.Show();
         }
     }
 }

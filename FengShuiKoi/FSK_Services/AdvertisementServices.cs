@@ -49,5 +49,10 @@ namespace FSK_Services
         {
             return iAdvertisementRepo.GetAdvertisementsByElement(elementID);
         }
+
+        public List<Advertisement> GetVerifiedAdvertisements()
+        {
+            return iAdvertisementRepo.GetVerifiedAdvertisements();
+        }
     }
 }

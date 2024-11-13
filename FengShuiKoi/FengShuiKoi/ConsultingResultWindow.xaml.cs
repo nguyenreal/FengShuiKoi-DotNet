@@ -24,11 +24,12 @@ namespace FengShuiKoi
         private readonly IAdvertisementServices advertisementServices;
         private readonly Element? element;
         private readonly User? user;
-        public ConsultingResultWindow(Element element)
+        public ConsultingResultWindow(Element element, User user)
         {
             InitializeComponent();
             advertisementServices = new AdvertisementServices();
             this.element = element;
+            this.user = user;
         }
 
         public void LoadAdvertisementData()

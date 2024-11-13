@@ -1,0 +1,25 @@
+﻿<Window x:Class="FengShuiKoi.ModerateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FengShuiKoi"
+        mc:Ignorable="d"
+        Title="ModerateWindow" Height="450" Width="800"
+        Loaded="Window_Loaded">
+    <Grid>
+        <DataGrid x:Name="dgModerate" HorizontalAlignment="Left" Height="259" Margin="25,149,0,0" VerticalAlignment="Top" Width="565" SelectionChanged="dgModerate_SelectionChanged"/>
+        <Button x:Name="btnVerified" Content="Verify" HorizontalAlignment="Left" Height="54" Margin="621,163,0,0" VerticalAlignment="Top" Width="143" Click="btnVerified_Click"/>
+        <Button x:Name="btnReturn" Content="Return to Advertisement" HorizontalAlignment="Left" Height="54" Margin="621,336,0,0" VerticalAlignment="Top" Width="143" Click="btnReturn_Click"/>
+        <Label Content="Status:" HorizontalAlignment="Left" Height="34" Margin="460,83,0,0" VerticalAlignment="Top" Width="58"/>
+        <Label Content="Ad ID:" HorizontalAlignment="Left" Height="35" Margin="16,22,0,0" VerticalAlignment="Top" Width="48"/>
+        <Label Content="Title:" HorizontalAlignment="Left" Height="35" Margin="16,81,0,0" VerticalAlignment="Top" Width="38"/>
+        <Label Content="Description:" HorizontalAlignment="Left" Height="33" Margin="448,24,0,0" VerticalAlignment="Top" Width="72"/>
+        <TextBox x:Name="txtAdID" HorizontalAlignment="Left" Height="35" Margin="88,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
+        <TextBox x:Name="txtTitle" HorizontalAlignment="Left" Height="35" Margin="88,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
+        <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Height="31" Margin="520,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
+        <Button x:Name="btnRejected" Content="Reject" HorizontalAlignment="Left" Height="54" Margin="621,252,0,0" VerticalAlignment="Top" Width="143" Click="btnRejected_Click"/>
+        <TextBox x:Name="txtStatus" HorizontalAlignment="Left" Height="31" Margin="520,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
+
+    </Grid>
+</Window>

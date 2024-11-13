@@ -25,5 +25,7 @@ namespace FSK_Repositories
         public bool UpdateAdvertisement(Advertisement advertisement) => AdvertisementDAOs.Instance.UpdateAd(advertisement);
 
         public List<Advertisement> GetAdvertisementsByElement(int elementID) => AdvertisementDAOs.Instance.GetAdvertisementsByElement(elementID);
+
+        public List<Advertisement> GetVerifiedAdvertisements() => AdvertisementDAOs.Instance.GetVerifiedAdvertisements();
     }
 }
