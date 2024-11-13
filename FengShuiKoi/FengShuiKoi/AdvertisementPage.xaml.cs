@@ -52,7 +52,7 @@ namespace FengShuiKoi
             try
             {
                 var elementList = elementService.GetElements();
-                cboElement.ItemsSource = elementList;
+                cboSearchElement.ItemsSource = elementList;
                 this.cboSearchElement.DisplayMemberPath = "ElementName";
                 this.cboSearchElement.SelectedValuePath = "ElementId";
             }
@@ -109,7 +109,6 @@ namespace FengShuiKoi
                 advertisement.AdId = txtAdID.Text;
                 advertisement.Title = txtTitle.Text;
                 advertisement.Description = txtDescription.Text;
-                advertisement.UserId = txtUserID.Text;
                 advertisement.Price = Double.Parse(txtPrice.Text);
                 advertisement.CategoryId = cboCategory.SelectedValue?.ToString();
                 advertisement.ElementId = int.Parse(cboElement.SelectedValue?.ToString());
@@ -136,32 +135,43 @@ namespace FengShuiKoi
             advertisement.AdId = txtAdID.Text;
             advertisement.Title = txtTitle.Text;
             advertisement.Description = txtDescription.Text;
-            advertisement.UserId = txtUserID.Text;
             advertisement.Price = Double.Parse(txtPrice.Text);
             advertisement.CategoryId = cboCategory.SelectedValue.ToString();
             advertisement.ElementId = int.Parse(cboElement.SelectedValue.ToString());
+            advertisement.UserId = user.UserId;
             if(advertisementServices.AddAdvertisement(advertisement))
             {
-                MessageBox.Show("Thêm quảng cáo thành công");
+                MessageBox.Show("Add successfully");
                 this.LoadDataInit();
             }
             else
             {
-                MessageBox.Show("ID quảng cáo đã tồn tại");
+                MessageBox.Show("AdID has been existed");
             }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             string adID = txtAdID.Text;
-            if(adID.Length > 0 && advertisementServices.DeleteAdvertisement(adID))
+            if(adID.Length > 0)
             {
-                this.LoadDataInit();
-                MessageBox.Show("Xóa thành công");
+                MessageBoxResult result = MessageBox.Show("Do you really want to delete this advertisement?",
+                                                            "Delete confirmation",
+                                                            MessageBoxButton.YesNo,
+                                                            MessageBoxImage.Question);
+                if(result == MessageBoxResult.Yes && advertisementServices.DeleteAdvertisement(adID))
+                {
+                    MessageBox.Show("Delete successfully");
+                    this.LoadDataInit();
+                }
+                else
+                {
+                    MessageBox.Show("Delete failed! Please try again");
+                }
             }
             else
             {
-                MessageBox.Show("Xóa không thành công. Hãy thử lại.");
+                MessageBox.Show("Choose the advertisement you want to delete");
             }
         }
 

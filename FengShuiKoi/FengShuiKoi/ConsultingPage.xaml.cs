@@ -34,8 +34,12 @@ namespace FengShuiKoi
         {
             DateTime birthDate = dpBirthdate.SelectedDate.Value;
             Element element = elementService.GetElement(birthDate);      
-            MessageBox.Show("Your element is: ${element.ElementName}");
-            
+            if(element != null)
+            {
+                this.Hide();
+                ConsultingResultWindow consultingResultWindow = new ConsultingResultWindow(element);
+                consultingResultWindow.Show();
+            }
         }
         private void btnReturn_Click(object sender, RoutedEventArgs e)
         {

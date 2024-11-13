@@ -16,7 +16,7 @@
         <Label Content="Ad ID:" HorizontalAlignment="Left" Height="35" Margin="16,100,0,0" VerticalAlignment="Top" Width="48"/>
         <Label Content="Title:" HorizontalAlignment="Left" Height="35" Margin="16,164,0,0" VerticalAlignment="Top" Width="38"/>
         <Label Content="Description:" HorizontalAlignment="Left" Height="33" Margin="16,239,0,0" VerticalAlignment="Top" Width="72"/>
-        <Label Content="Price:" HorizontalAlignment="Left" Height="38" Margin="16,311,0,0" VerticalAlignment="Top" Width="48"/>
+        <Label Content="Price:" HorizontalAlignment="Left" Height="38" Margin="18,300,0,0" VerticalAlignment="Top" Width="48"/>
         <Label Content="Element:" HorizontalAlignment="Left" Height="34" Margin="514,100,0,0" VerticalAlignment="Top" Width="54"/>
         <Label Content="Category:" HorizontalAlignment="Left" Height="36" Margin="514,162,0,0" VerticalAlignment="Top" Width="66"/>
         <Label Content="User ID:" HorizontalAlignment="Left" Height="28" Margin="514,226,0,0" VerticalAlignment="Top" Width="54"/>

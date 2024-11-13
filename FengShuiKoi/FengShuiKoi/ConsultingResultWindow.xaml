@@ -1,0 +1,21 @@
+﻿<Window x:Class="FengShuiKoi.ConsultingResultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FengShuiKoi"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="ConsultingResultWindow" Height="500" Width="800">
+    <Grid>
+        <DataGrid HorizontalAlignment="Left" Height="214" Margin="34,69,0,0" VerticalAlignment="Top" Width="288"/>
+        <DataGrid x:Name="dgTank" HorizontalAlignment="Left" Height="214" Margin="483,69,0,0" VerticalAlignment="Top" Width="288" />
+        <DataGrid x:Name="dgKoiFish" HorizontalAlignment="Left" Height="214" Margin="34,69,0,0" VerticalAlignment="Top" Width="288" />
+        <DataGrid x:Name="dgAd" HorizontalAlignment="Left" Height="108" Margin="34,338,0,0" VerticalAlignment="Top" Width="737" />
+        <Label Content="Koi Fish" HorizontalAlignment="Left" Height="41" Margin="152,23,0,0" VerticalAlignment="Top" Width="52"/>
+        <Label Content="Koi Fish" HorizontalAlignment="Left" Height="41" Margin="152,23,0,0" VerticalAlignment="Top" Width="52"/>
+        <Label Content="Tank" HorizontalAlignment="Left" Height="41" Margin="601,28,0,0" VerticalAlignment="Top" Width="52"/>
+        <Label Content="Advertisement" HorizontalAlignment="Left" Height="41" Margin="359,292,0,0" VerticalAlignment="Top" Width="87"/>
+
+    </Grid>
+</Window>

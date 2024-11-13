@@ -13,6 +13,9 @@
     <Compile Update="ConsultingPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ConsultingResultWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,6 +25,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ConsultingPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ConsultingResultWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="LoginWindow.xaml">

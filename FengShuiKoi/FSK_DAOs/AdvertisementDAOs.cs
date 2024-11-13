@@ -99,5 +99,13 @@ namespace FSK_DAOs
                 return new List<Advertisement>();
             }
         }
+
+        public List<Advertisement> GetAdvertisementsByElement(int elementID)
+        {
+            using var context = new FengShuiKoiDbContext();
+            var query = context.Advertisements
+                            .Where(a => a.ElementId.Equals(elementID));
+            return query.ToList();
+        }
     }
 }

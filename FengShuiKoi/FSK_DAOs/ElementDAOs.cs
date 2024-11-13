@@ -75,7 +75,7 @@ namespace FSK_DAOs
             int birthYear = birthDate.Year;
             int canNumber = GetCanNumber(birthYear);
             int chiNumber = GetChiNumber(birthYear);
-            int elementID = canNumber + chiNumber > 5 ? 
+            int elementID = canNumber + chiNumber <= 5 ? 
                 canNumber + chiNumber : canNumber + chiNumber - 5;
             return elementID;
         }
