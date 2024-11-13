@@ -5,21 +5,175 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FengShuiKoi"
         mc:Ignorable="d"
-        Title="ModerateWindow" Height="450" Width="800"
+        Title="ModerateWindow" Height="700" Width="1000"
         Loaded="Window_Loaded">
-    <Grid>
-        <DataGrid x:Name="dgModerate" HorizontalAlignment="Left" Height="259" Margin="25,149,0,0" VerticalAlignment="Top" Width="565" SelectionChanged="dgModerate_SelectionChanged"/>
-        <Button x:Name="btnVerified" Content="Verify" HorizontalAlignment="Left" Height="54" Margin="621,163,0,0" VerticalAlignment="Top" Width="143" Click="btnVerified_Click"/>
-        <Button x:Name="btnReturn" Content="Return to Advertisement" HorizontalAlignment="Left" Height="54" Margin="621,336,0,0" VerticalAlignment="Top" Width="143" Click="btnReturn_Click"/>
-        <Label Content="Status:" HorizontalAlignment="Left" Height="34" Margin="460,83,0,0" VerticalAlignment="Top" Width="58"/>
-        <Label Content="Ad ID:" HorizontalAlignment="Left" Height="35" Margin="16,22,0,0" VerticalAlignment="Top" Width="48"/>
-        <Label Content="Title:" HorizontalAlignment="Left" Height="35" Margin="16,81,0,0" VerticalAlignment="Top" Width="38"/>
-        <Label Content="Description:" HorizontalAlignment="Left" Height="33" Margin="448,24,0,0" VerticalAlignment="Top" Width="72"/>
-        <TextBox x:Name="txtAdID" HorizontalAlignment="Left" Height="35" Margin="88,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
-        <TextBox x:Name="txtTitle" HorizontalAlignment="Left" Height="35" Margin="88,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
-        <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Height="31" Margin="520,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
-        <Button x:Name="btnRejected" Content="Reject" HorizontalAlignment="Left" Height="54" Margin="621,252,0,0" VerticalAlignment="Top" Width="143" Click="btnRejected_Click"/>
-        <TextBox x:Name="txtStatus" HorizontalAlignment="Left" Height="31" Margin="520,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
+    <Window.Resources>
+        <!-- Modern TextBox Style -->
+        <Style x:Key="ModernTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+            <Setter Property="Padding" Value="15,12"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#3498DB"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
+        <!-- Action Button Style -->
+        <Style x:Key="ActionButton" TargetType="Button">
+            <Setter Property="Background" Value="#3498DB"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,12"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Width" Value="160"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="0.9"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- DataGrid Style -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#F9FAFB"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#ECF0F1"/>
+            <Setter Property="VerticalGridLinesBrush" Value="#ECF0F1"/>
+            <Setter Property="RowHeaderWidth" Value="0"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#F9FAFB">
+        <StackPanel Margin="40">
+            <!-- Title -->
+            <TextBlock Text="MODERATE ADVERTISEMENTS" 
+                      FontSize="28" 
+                      FontWeight="Bold" 
+                      Foreground="#2C3E50"
+                      HorizontalAlignment="Center"
+                      Margin="0,0,0,30"/>
+
+            <!-- Form Grid -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Column -->
+                <StackPanel Grid.Column="0">
+                    <StackPanel Margin="0,0,0,15">
+                        <Label Content="Ad ID" 
+                               Foreground="#2C3E50" 
+                               FontWeight="SemiBold"/>
+                        <TextBox x:Name="txtAdID" 
+                                Style="{StaticResource ModernTextBox}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,0,15">
+                        <Label Content="Title" 
+                               Foreground="#2C3E50" 
+                               FontWeight="SemiBold"/>
+                        <TextBox x:Name="txtTitle" 
+                                Style="{StaticResource ModernTextBox}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Right Column -->
+                <StackPanel Grid.Column="2">
+                    <StackPanel Margin="0,0,0,15">
+                        <Label Content="Description" 
+                               Foreground="#2C3E50" 
+                               FontWeight="SemiBold"/>
+                        <TextBox x:Name="txtDescription" 
+                                Style="{StaticResource ModernTextBox}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,0,0,15">
+                        <Label Content="Status" 
+                               Foreground="#2C3E50" 
+                               FontWeight="SemiBold"/>
+                        <TextBox x:Name="txtStatus" 
+                                Style="{StaticResource ModernTextBox}"
+                                IsReadOnly="True"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <!-- Main Content Area -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- DataGrid -->
+                <Border Grid.Column="0"
+                        CornerRadius="8"
+                        Background="White"
+                        BorderBrush="#BDC3C7"
+                        BorderThickness="1">
+                    <DataGrid x:Name="dgModerate"
+                             Height="300"
+                             Margin="1"
+                             SelectionChanged="dgModerate_SelectionChanged"/>
+                </Border>
+
+                <!-- Action Buttons -->
+                <StackPanel Grid.Column="2" 
+                          Width="180"
+                          VerticalAlignment="Top">
+                    <Button x:Name="btnVerified"
+                            Content="VERIFY"
+                            Style="{StaticResource ActionButton}"
+                            Background="#27AE60"
+                            Margin="0,0,0,15"
+                            Click="btnVerified_Click"/>
+
+                    <Button x:Name="btnRejected"
+                            Content="REJECT"
+                            Style="{StaticResource ActionButton}"
+                            Background="#E74C3C"
+                            Margin="0,0,0,15"
+                            Click="btnRejected_Click"/>
+
+                    <Button x:Name="btnReturn"
+                            Content="RETURN"
+                            Style="{StaticResource ActionButton}"
+                            Background="#95A5A6"
+                            Click="btnReturn_Click"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>
