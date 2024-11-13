@@ -29,6 +29,17 @@ namespace FengShuiKoi
             iUserService = new UserService();
         }
 
+        private User CreateGuestUser()
+        {
+            return new User
+            {
+                UserId = "GUEST",
+                Email = "guest@fengshuikoi.com",
+                Password = "",
+                RoleName = "GUEST"
+            };
+        }
+
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             User user = iUserService.GetUserByEmail(txtEmail.Text);
@@ -55,6 +66,22 @@ namespace FengShuiKoi
             this.Hide();
             RegisterWindow registerWindow = new RegisterWindow();
             registerWindow.Show();
+        }
+
+        private void btnGuest_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                User guestUser = CreateGuestUser();
+                this.Hide();
+                MainWindow mainWindow = new MainWindow(guestUser);
+                mainWindow.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error accessing as guest: {ex.Message}");
+                this.Show();
+            }
         }
     }
 }

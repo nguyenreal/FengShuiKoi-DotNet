@@ -81,6 +81,36 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <!-- Style for Guest Button -->
+        <Style x:Key="GuestButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#3498DB"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#2980B9"/>
+                    <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
 
     <Grid Background="#F9FAFB">
@@ -150,12 +180,26 @@
                         Content="REGISTER" 
                         Style="{StaticResource ActionButton}"
                         Background="#27AE60"
-                        Margin="0,0,0,15" Click="btnRegister_Click"/>
-
-                <Button x:Name="btnCancel" 
-                        Content="CANCEL" 
-                        Style="{StaticResource CancelButton}" Click="btnCancel_Click"/>
+                        Margin="0,0,0,15" 
+                        Click="btnRegister_Click"/>
             </StackPanel>
+        </StackPanel>
+
+        <!-- Guest Section -->
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Bottom" 
+                    Margin="0,0,0,30">
+            <TextBlock Text="or" 
+                      Foreground="#95A5A6" 
+                      FontSize="14" 
+                      VerticalAlignment="Center" 
+                      Margin="0,0,8,0"/>
+
+            <Button x:Name="btnGuest" 
+                    Content="View as guest" 
+                    Style="{StaticResource GuestButton}"
+                    Click="btnGuest_Click"/>
         </StackPanel>
     </Grid>
 </Window>

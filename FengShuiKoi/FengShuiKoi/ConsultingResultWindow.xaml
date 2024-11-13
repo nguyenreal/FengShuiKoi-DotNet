@@ -80,8 +80,8 @@
         </Style>
     </Window.Resources>
 
-    <Grid Background="#F9FAFB" Margin="0,0,-134,-90">
-        <StackPanel Margin="40">
+    <Grid Background="#F9FAFB" Margin="0,0,10,-6">
+        <StackPanel Margin="40,40,29,10">
             <!-- Title -->
             <TextBlock Text="CONSULTING RESULTS" 
                       FontSize="28" 

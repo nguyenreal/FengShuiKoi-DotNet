@@ -101,6 +101,14 @@ namespace FengShuiKoi
                         dgAdData.ItemsSource = null; // Clear the current ItemsSource
                         dgAdData.ItemsSource = verifiedList; // Set new ItemsSource
                         break;
+                    case "GUEST":
+                        var verifiedList2 = advertisementServices.GetVerifiedAdvertisements();
+                        dgAdData.ItemsSource = null; // Clear the current ItemsSource
+                        dgAdData.ItemsSource = verifiedList2; // Set new ItemsSource
+                        this.btnAdd.IsEnabled = false;
+                        this.btnDelete.IsEnabled = false;
+                        this.btnUpdate.IsEnabled = false;
+                        break;
                 }
                 
             }

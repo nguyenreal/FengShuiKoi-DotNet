@@ -171,12 +171,6 @@ namespace FengShuiKoi
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(txtBlogID.Text))
-                {
-                    MessageBox.Show("Please select a blog to delete!", "Validation Error");
-                    return;
-                }
-
                 var result = MessageBox.Show("Are you sure you want to delete this blog?",
                     "Confirm Delete",
                     MessageBoxButton.YesNo,

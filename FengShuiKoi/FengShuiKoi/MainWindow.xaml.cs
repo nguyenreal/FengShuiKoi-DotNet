@@ -66,7 +66,11 @@ namespace FengShuiKoi
                     case "USER":
                         this.btnManaging.IsEnabled = false;
                         break;
-                    default:
+                case "GUEST":
+                    this.btnManaging.IsEnabled = false;
+                    this.btnConsulting.IsEnabled = false;
+                    break;
+                default:
                         this.Close();
                         break;
             }

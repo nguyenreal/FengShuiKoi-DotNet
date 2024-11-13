@@ -75,6 +75,9 @@ namespace FengShuiKoi
                     // User (Staff) has limited access
                     this.btnManageBlog.IsEnabled = false;
                     break;
+                case "GUEST":
+                    this.btnManageBlog.IsEnabled = false;
+                    break;
                 default:
                     // Invalid or null role
                     this.Close();
