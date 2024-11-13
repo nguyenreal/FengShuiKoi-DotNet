@@ -27,5 +27,10 @@ namespace FSK_Services
         public Tank GetTankById(string id) => _tankRepo.GetTankById(id);
 
         public bool UpdateTank(Tank tank) => _tankRepo.UpdateTank(tank);
+
+        public List<Tank> GetTankByElement(int elementID)
+        {
+            return _tankRepo.GetTankByElement(elementID);
+        }
     }
 }

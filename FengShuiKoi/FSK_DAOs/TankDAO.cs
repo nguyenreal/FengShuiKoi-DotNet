@@ -91,5 +91,12 @@ namespace FSK_DAOs
             }
             return query.ToList();
         }
+
+        public List<Tank> GetTanksByElement(int elementID)
+        {
+            using var context = new FengShuiKoiDbContext();
+            var query = context.Tanks.Where(e => e.ElementId == elementID);
+            return query.ToList();
+        }
     }
 }

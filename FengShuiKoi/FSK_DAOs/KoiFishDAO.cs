@@ -168,5 +168,12 @@ namespace FSK_DAOs
                 .Where(a => EF.Functions.Like(a.Name, "%" + search + "%"))
                 .ToList();
         }
+
+        public List<KoiFish> GetKoiFishByElement(int elementId)
+        {
+            using var context = new FengShuiKoiDbContext();
+            var query = context.KoiFishes.Where(e => e.Equals(elementId));
+            return query.ToList();
+        }
     }
 }
