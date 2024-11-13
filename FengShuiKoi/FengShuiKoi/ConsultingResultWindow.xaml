@@ -16,6 +16,8 @@
         <Label Content="Tank" HorizontalAlignment="Left" Height="41" Margin="601,28,0,0" VerticalAlignment="Top" Width="52"/>
         <Label Content="Advertisement" HorizontalAlignment="Left" Height="41" Margin="359,292,0,0" VerticalAlignment="Top" Width="87"/>
         <Button x:Name="btnReturn" Content="Return To Consulting Page" HorizontalAlignment="Left" Height="39" Margin="601,485,0,0" VerticalAlignment="Top" Width="170" RenderTransformOrigin="0.479,0.314" Click="btnReturn_Click"/>
+        <Label Content="Your Element is:" HorizontalAlignment="Left" Height="39" Margin="359,88,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="txtElement" HorizontalAlignment="Left" Height="30" Margin="344,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115"/>
 
     </Grid>
 </Window>
