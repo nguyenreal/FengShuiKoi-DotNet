@@ -64,9 +64,9 @@
             <Label Content="Elements (Multiple selection allowed)" 
                    FontWeight="SemiBold"/>
             <ListBox x:Name="lbElements" 
-                    Height="100" 
+                    Height="25" 
                     SelectionMode="Multiple"
-                    DisplayMemberPath="ElementName">
+                    DisplayMemberPath="ElementName" Width="708">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>

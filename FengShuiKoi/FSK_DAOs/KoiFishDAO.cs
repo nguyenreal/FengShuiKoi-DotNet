@@ -141,7 +141,6 @@ namespace FSK_DAOs
                     {
                         return false;
                     }
-
                     // Clear related elements
                     koiFish.Elements.Clear();
 

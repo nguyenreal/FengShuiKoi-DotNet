@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FSK_DAOs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+126be2a940d1bed76d66472ace24243aed44329c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f5210149c5b6a983d3084c2e56d52a0165bacb2c")]
 [assembly: System.Reflection.AssemblyProductAttribute("FSK_DAOs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FSK_DAOs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
