@@ -30,7 +30,7 @@ namespace FSK_DAOs
 
         public List<Tank> GetTank()
         {
-            return _dbContext.Tanks.Include(t => t.Element).ToList();
+            return _dbContext.Tanks.Include("Element").ToList();
         }
 
         public Tank GetTankById(string id)
@@ -57,8 +57,10 @@ namespace FSK_DAOs
             Tank tank1 = GetTankById(tank.TankId);
             if (tank1 != null)
             {
-                _dbContext.Tanks.Attach(tank);
-                _dbContext.Entry<Tank>(tank).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                tank1.TankId = tank.TankId;
+                tank1.Shape = tank.Shape;
+                tank1.ElementId = tank.ElementId;
+
                 _dbContext.SaveChanges();
                 result = true;
             }

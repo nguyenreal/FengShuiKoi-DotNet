@@ -52,9 +52,14 @@ namespace FengShuiKoi
             try
             {
                 var elementList = _elementService.GetElements();
+
                 cboSearchElement.ItemsSource = elementList;
                 this.cboSearchElement.DisplayMemberPath = "ElementName";
                 this.cboSearchElement.SelectedValuePath = "ElementId";
+
+                cboElement.ItemsSource = elementList;
+                this.cboElement.DisplayMemberPath = "ElementName";
+                this.cboElement.SelectedValuePath = "ElementId";
             }
             catch (Exception ex)
             {
@@ -103,6 +108,7 @@ namespace FengShuiKoi
                 {
                     txtTankID.Text = selectedItem.TankId;
                     txtShape.Text = selectedItem.Shape;
+                    cboElement.SelectedValue = selectedItem.ElementId;
                 }
             }
             catch (Exception ex)
@@ -116,6 +122,7 @@ namespace FengShuiKoi
             Tank tank = new Tank();
             tank.TankId = txtTankID.Text;
             tank.Shape = txtShape.Text;
+            tank.ElementId = int.Parse(cboElement.SelectedValue.ToString());
 
             if (_tankService.AddTank(tank))
             {
@@ -135,11 +142,12 @@ namespace FengShuiKoi
                 Tank tank = new Tank();
                 tank.TankId = txtTankID.Text;
                 tank.Shape = txtShape.Text;
+                tank.ElementId = int.Parse(cboElement.SelectedValue.ToString());
 
                 if (_tankService.UpdateTank(tank))
                 {
                     MessageBox.Show("Update successful");
-                    LoadTankList(); // Just call LoadAdvertisementList directly
+                    LoadTankList();
                 }
                 else
                 {
@@ -178,7 +186,6 @@ namespace FengShuiKoi
             dgTankData.ItemsSource = _tankService.GetTanksByFilter(search, elementID)
                 .ToList();
 
-            this.LoadDataInit();
         }
     }
 }

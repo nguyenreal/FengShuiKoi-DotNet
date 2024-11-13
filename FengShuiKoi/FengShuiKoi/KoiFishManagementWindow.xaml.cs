@@ -18,6 +18,7 @@ namespace FengShuiKoi
             InitializeComponent();
             _koiFishService = new KoiFishService();
             _elementService = new ElementService();
+            LoadDataInit();
         }
 
         private void LoadDataInit()
@@ -94,6 +95,7 @@ namespace FengShuiKoi
                     txtKoiName.Text = selectedItem.Name;
                     txtSize.Text = selectedItem.Size;
                     txtWeight.Text = selectedItem.Weight;
+                    txtColor.Text = selectedItem.Color;
                 }
             }
             catch (Exception ex)
@@ -104,22 +106,83 @@ namespace FengShuiKoi
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
+            string search = txtSearch.Text;
+
+            int elementID = cboSearchElement.SelectedValue != null
+                ? int.Parse(cboSearchElement.SelectedValue.ToString())
+                : -1;
+
+            dgKoiData.ItemsSource = _koiFishService.GetKoiFishByFilter(search, elementID)
+                .ToList();
 
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
+            KoiFish koiFish = new KoiFish();
+            koiFish.KoiId = txtKoiID.Text;
+            koiFish.Name = txtKoiName.Text;
+            koiFish.Size = txtSize.Text;
+            koiFish.Weight = txtWeight.Text;
+            koiFish.Color = txtColor.Text;
+            koiFish.Description = txtDescription.Text;
 
+            if (_koiFishService.AddKoiFish(koiFish))
+            {
+                MessageBox.Show("Add successfully");
+                this.LoadDataInit();
+            }
+            else
+            {
+                MessageBox.Show("ID Koi fish duplicate");
+            }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                KoiFish koiFish = new KoiFish();
+                koiFish.KoiId = txtKoiID.Text;
+                koiFish.Name = txtKoiName.Text;
+                koiFish.Size = txtSize.Text;
+                koiFish.Weight = txtWeight.Text;
+                koiFish.Color = txtColor.Text;
+                koiFish.Description = txtDescription.Text;
 
+                if (_koiFishService.UpdateKoiFish(koiFish))
+                {
+                    MessageBox.Show("Update successful");
+                    LoadKoiFishList();
+                }
+                else
+                {
+                    MessageBox.Show("Update failed. Please try again!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating koi fish: {ex.Message}");
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            string koiId = txtKoiID.Text;
+            if (koiId.Length > 0 && _koiFishService.DeleteKoiFish(koiId))
+            {
+                this.LoadDataInit();
+                MessageBox.Show("Delete successfully");
+            }
+            else
+            {
+                MessageBox.Show("Error. Try it again");
+            }
+        }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.LoadDataInit();
         }
     }
 }

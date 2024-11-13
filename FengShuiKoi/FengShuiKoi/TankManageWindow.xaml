@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FengShuiKoi"
         mc:Ignorable="d"
-        Title="TankManageWindow" Height="570" Width="800" Loaded="Window_Loaded">
+        Title="TankManageWindow" Height="570" Width="800" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button x:Name="btnReturn" Content="Return to Management window" HorizontalAlignment="Left" Height="38" Margin="18,14,0,0" VerticalAlignment="Top" Width="195" Click="btnReturn_Click"/>
-        <TextBox x:Name="txtTankID" HorizontalAlignment="Left" Height="35" Margin="112,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
-        <Label Content="Tank ID" HorizontalAlignment="Left" Height="33" Margin="61,130,0,0" VerticalAlignment="Top" Width="72"/>
-        <DataGrid x:Name="dgTankData" Height="198" Margin="18,250,18,0" VerticalAlignment="Top" SelectionChanged="dgAdData_SelectionChanged">
+        <TextBox x:Name="txtTankID" HorizontalAlignment="Left" Height="34" Margin="86,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
+        <Label Content="Tank ID" HorizontalAlignment="Left" Height="32" Margin="35,112,0,0" VerticalAlignment="Top" Width="72"/>
+        <DataGrid x:Name="dgTankData" Height="198" Margin="18,250,18,0" VerticalAlignment="Top" SelectionChanged="dgAdData_SelectionChanged" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="362*" Binding="{Binding TankId}"/>
                 <DataGridTextColumn Header="Shape" Width="362*" Binding="{Binding Shape}"/>
-                <DataGridTextColumn Header="Element" Width="362*" Binding="{Binding Element}"/>
+                <DataGridTextColumn Header="Element" Width="362*" Binding="{Binding Element.ElementName}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Search" HorizontalAlignment="Left" Height="32" Margin="30,190,0,0" VerticalAlignment="Top" Width="63"/>
@@ -22,13 +22,15 @@
         <Button x:Name="btnSearch" Content="Search" HorizontalAlignment="Left" Height="32" Margin="679,190,0,0" VerticalAlignment="Top" Width="103" Click="btnSearch_Click"/>
         <ComboBox x:Name="cboSearchElement" HorizontalAlignment="Left" Height="35" Margin="519,189,0,0" VerticalAlignment="Top" Width="139"/>
         <Label Content="Tank Management" Margin="250,38,234,694" FontSize="30" HorizontalContentAlignment="Center"/>
-        <TextBox x:Name="txtShape" HorizontalAlignment="Left" Height="35" Margin="536,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
-        <Label Content="Shape" HorizontalAlignment="Left" Height="33" Margin="487,130,0,0" VerticalAlignment="Top" Width="44"/>
+        <TextBox x:Name="txtShape" HorizontalAlignment="Left" Height="34" Margin="530,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
+        <Label Content="Shape" HorizontalAlignment="Left" Height="32" Margin="460,73,0,0" VerticalAlignment="Top" Width="44"/>
         <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Height="41" Margin="18,477,0,0" VerticalAlignment="Top" Width="164" Click="btnAdd_Click"/>
         <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Height="41" Margin="213,477,0,0" VerticalAlignment="Top" Width="163" Click="btnUpdate_Click"/>
         <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Height="41" Margin="423,477,0,0" VerticalAlignment="Top" Width="162" Click="btnDelete_Click"/>
         <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Height="41" Margin="620,477,0,0" VerticalAlignment="Top" Width="162" Click="btnClose_Click"/>
-        <Label Content="Tank Management" Margin="250,38,234,0" FontSize="30" HorizontalContentAlignment="Center" Height="52" VerticalAlignment="Top"/>
+        <Label Content="Tank Management" Margin="242,15,242,0" FontSize="30" HorizontalContentAlignment="Center" Height="52" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboElement" HorizontalAlignment="Left" Height="35" Margin="528,133,0,0" VerticalAlignment="Top" Width="204"/>
+        <Label Content="Element" HorizontalAlignment="Left" Height="32" Margin="460,134,0,0" VerticalAlignment="Top" Width="63"/>
 
     </Grid>
 </Window>

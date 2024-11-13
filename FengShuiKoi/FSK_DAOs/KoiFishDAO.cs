@@ -57,8 +57,13 @@ namespace FSK_DAOs
             KoiFish koiFish1 = GetKoiFishById(koiFish.KoiId);
             if (koiFish1 != null)
             {
-                _dbContext.KoiFishes.Attach(koiFish);
-                _dbContext.Entry<KoiFish>(koiFish).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                koiFish1.KoiId = koiFish.KoiId;
+                koiFish1.Name = koiFish.Name;
+                koiFish1.Size = koiFish.Size;
+                koiFish1.Weight = koiFish.Weight;
+                koiFish1.Color = koiFish.Color;
+                koiFish1.Description = koiFish.Description;
+
                 _dbContext.SaveChanges();
                 result = true;
             }

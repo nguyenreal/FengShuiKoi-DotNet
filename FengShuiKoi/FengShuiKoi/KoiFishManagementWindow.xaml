@@ -15,7 +15,7 @@
         <Label Content="Name" HorizontalAlignment="Left" Height="33" Margin="61,191,0,0" VerticalAlignment="Top" Width="72"/>
         <TextBox x:Name="txtSize" HorizontalAlignment="Left" Height="35" Margin="112,261,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202"/>
         <Label Content="Size" HorizontalAlignment="Left" Height="33" Margin="61,261,0,0" VerticalAlignment="Top" Width="72"/>
-        <DataGrid x:Name="dgKoiData" HorizontalAlignment="Center" Height="192" Margin="0,392,0,0" VerticalAlignment="Top" Width="764" SelectionChanged="dgAdData_SelectionChanged">
+        <DataGrid x:Name="dgKoiData" HorizontalAlignment="Center" Height="192" Margin="0,392,0,0" VerticalAlignment="Top" Width="764" SelectionChanged="dgAdData_SelectionChanged" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="60*" Binding="{Binding KoiId}"/>
                 <DataGridTextColumn Header="Name" Width="150*" Binding="{Binding Name}"/>
@@ -41,6 +41,7 @@
         <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Height="41" Margin="213,619,0,0" VerticalAlignment="Top" Width="163" Click="btnUpdate_Click"/>
         <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Height="41" Margin="423,619,0,0" VerticalAlignment="Top" Width="162" Click="btnDelete_Click"/>
         <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Height="41" Margin="620,619,0,0" VerticalAlignment="Top" Width="162" Click="btnClose_Click"/>
+        <Label Content="Koi fish Management" Margin="250,38,234,0" FontSize="30" HorizontalContentAlignment="Center" Height="52" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
