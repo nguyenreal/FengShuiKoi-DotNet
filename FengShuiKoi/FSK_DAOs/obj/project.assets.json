@@ -3171,11 +3171,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\MR.Dat\\Knowledge\\FPT\\ki_5\\PR_N\\Project\\FengShuiKoi\\FSK_DAOs\\FSK_DAOs.csproj",
+      "projectUniqueName": "D:\\DotNet\\FengShuiKoi-DotNet\\FengShuiKoi\\FSK_DAOs\\FSK_DAOs.csproj",
       "projectName": "FSK_DAOs",
-      "projectPath": "D:\\MR.Dat\\Knowledge\\FPT\\ki_5\\PR_N\\Project\\FengShuiKoi\\FSK_DAOs\\FSK_DAOs.csproj",
+      "projectPath": "D:\\DotNet\\FengShuiKoi-DotNet\\FengShuiKoi\\FSK_DAOs\\FSK_DAOs.csproj",
       "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "D:\\MR.Dat\\Knowledge\\FPT\\ki_5\\PR_N\\Project\\FengShuiKoi\\FSK_DAOs\\obj\\",
+      "outputPath": "D:\\DotNet\\FengShuiKoi-DotNet\\FengShuiKoi\\FSK_DAOs\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3193,8 +3193,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\MR.Dat\\Knowledge\\FPT\\ki_5\\PR_N\\Project\\FengShuiKoi\\FSK_BusinessObjects\\FSK_BusinessObjects.csproj": {
-              "projectPath": "D:\\MR.Dat\\Knowledge\\FPT\\ki_5\\PR_N\\Project\\FengShuiKoi\\FSK_BusinessObjects\\FSK_BusinessObjects.csproj"
+            "D:\\DotNet\\FengShuiKoi-DotNet\\FengShuiKoi\\FSK_BusinessObjects\\FSK_BusinessObjects.csproj": {
+              "projectPath": "D:\\DotNet\\FengShuiKoi-DotNet\\FengShuiKoi\\FSK_BusinessObjects\\FSK_BusinessObjects.csproj"
             }
           }
         }
