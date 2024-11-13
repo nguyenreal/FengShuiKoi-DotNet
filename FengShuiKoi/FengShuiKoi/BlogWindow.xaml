@@ -35,6 +35,13 @@
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#2980B9"/>
                 </Trigger>
+                <!-- Add this new trigger for disabled state -->
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#BDC3C7"/>
+                    <Setter Property="Foreground" Value="#7F8C8D"/>
+                    <Setter Property="Cursor" Value="No"/>
+                    <Setter Property="Opacity" Value="0.7"/>
+                </Trigger>
             </Style.Triggers>
         </Style>
 

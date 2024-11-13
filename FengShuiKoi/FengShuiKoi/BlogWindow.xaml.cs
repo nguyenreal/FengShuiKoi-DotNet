@@ -23,13 +23,16 @@ namespace FengShuiKoi
     {
         private readonly IBlogService iBlogService;
         private readonly string? userId;
+        private readonly string? roleName;
         private readonly User? user;
+
 
         public BlogWindow(User user)
         {
             InitializeComponent();
             iBlogService = new BlogService();
             this.user = user;
+            this.roleName = user.RoleName;
             this.userId = user.UserId;
             InitializeWebView();
         }
@@ -63,6 +66,24 @@ namespace FengShuiKoi
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoadBlogList();
+            switch (roleName?.ToUpper())  // Use null-conditional operator and convert to uppercase for safe comparison
+            {
+                case "ADMIN":
+                    // Admin has full access
+                    break;
+                case "USER":
+                    // User (Staff) has limited access
+                    this.btnManageBlog.IsEnabled = false;
+                    break;
+                case "MEMBER":
+                    // Member access
+                    this.btnManageBlog.IsEnabled = false;
+                    break;
+                default:
+                    // Invalid or null role
+                    this.Close();
+                    break;
+            }
         }
 
         //private void BlogTitle_Click(object sender, RoutedEventArgs e)
