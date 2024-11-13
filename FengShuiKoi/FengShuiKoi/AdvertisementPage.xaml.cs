@@ -151,6 +151,7 @@ namespace FengShuiKoi
                 advertisement.Price = Double.Parse(txtPrice.Text);
                 advertisement.CategoryId = cboCategory.SelectedValue?.ToString();
                 advertisement.ElementId = int.Parse(cboElement.SelectedValue?.ToString());
+                advertisement.UserId = advertisementServices.GetAdvertisement(txtAdID.Text).UserId;
 
                 if (advertisementServices.UpdateAdvertisement(advertisement) 
                     && advertisement.UserId.Equals(user.UserId))
@@ -211,9 +212,13 @@ namespace FengShuiKoi
                     MessageBox.Show("Delete failed! Please try again");
                 }
             }
-            else
+            else if (adID.Length <= 0)
             {
                 MessageBox.Show("Choose the advertisement you want to delete");
+            }
+            else
+            {
+                MessageBox.Show("You don't have permission");
             }
         }
 
