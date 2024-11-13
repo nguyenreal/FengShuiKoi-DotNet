@@ -10,7 +10,7 @@ namespace FSK_Repositories
 {
     public class KoiFishRepo : IKoiFishRepo
     {
-        public bool AddKoiFish(KoiFish koiFish) => KoiFishDAO.Instance.AddKoiFish(koiFish);
+        public bool AddKoiFish(KoiFish koiFish, List<int> elementIds) => KoiFishDAO.Instance.AddKoiFish(koiFish, elementIds);
 
         public bool DeleteKoiFish(string koiId) => KoiFishDAO.Instance.DeleteKoiFish(koiId);
 
@@ -20,6 +20,6 @@ namespace FSK_Repositories
 
         public KoiFish GetKoiFishById(string id) => KoiFishDAO.Instance.GetKoiFishById(id);
 
-        public bool UpdateKoiFish(KoiFish koiFish) => KoiFishDAO.Instance.UpdateKoiFish(koiFish);
+        public bool UpdateKoiFish(KoiFish koiFish, List<int> elementIds) => KoiFishDAO.Instance.UpdateKoiFish(koiFish,elementIds);
     }
 }

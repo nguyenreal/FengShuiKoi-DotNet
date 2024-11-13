@@ -12,6 +12,7 @@ namespace FengShuiKoi
     {
         private readonly IKoiFishService _koiFishService;
         private readonly IElementService _elementService;
+        private List<Element> _allElements;
 
         public KoiFishWindow()
         {
@@ -23,16 +24,21 @@ namespace FengShuiKoi
 
         private void LoadDataInit()
         {
+            LoadElements();
             LoadKoiFishList();
         }
 
+        private void LoadElements()
+        {
+            _allElements = _elementService.GetElements().ToList();
+            lbElements.ItemsSource = _allElements;
+        }
 
         public void LoadKoiFishList()
         {
             try
             {
-                var koiFishList = _koiFishService.GetKoiFishElementView();
-                dgKoiData.ItemsSource = null;
+                var koiFishList = _koiFishService.GetKoiFish();
                 dgKoiData.ItemsSource = koiFishList;
             }
             catch (Exception ex)
@@ -43,6 +49,26 @@ namespace FengShuiKoi
             {
                 resetInput();
             }
+        }
+
+        private List<int> GetSelectedElementIds()
+        {
+            return lbElements.SelectedItems.Cast<Element>()
+                           .Select(e => e.ElementId)
+                           .ToList();
+        }
+
+        private KoiFish GetKoiFishFromInput()
+        {
+            return new KoiFish
+            {
+                KoiId = txtKoiID.Text,
+                Name = txtKoiName.Text,
+                Size = txtSize.Text,
+                Weight = txtWeight.Text,
+                Color = txtColor.Text,
+                Description = txtDescription.Text
+            };
         }
 
         private void resetInput()
@@ -65,53 +91,22 @@ namespace FengShuiKoi
             this.Close();
         }
 
-        private void dgAdData_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                DataGrid dataGrid = sender as DataGrid;
-                if (dataGrid == null || dataGrid.SelectedIndex < 0) return;
-
-                var selectedItem = dataGrid.SelectedItem as KoiFishViewModel;
-                if (selectedItem != null)
-                {
-                    txtKoiID.Text = selectedItem.KoiId;
-                    txtDescription.Text = selectedItem.Description;
-                    txtKoiName.Text = selectedItem.Name;
-                    txtSize.Text = selectedItem.Size;
-                    txtWeight.Text = selectedItem.Weight;
-                    txtColor.Text = selectedItem.Color;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error in selection changed: {ex.Message}");
-            }
-        }
-
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             string search = txtSearch.Text;
-
-            dgKoiData.ItemsSource = _koiFishService.GetKoiFishByFilter(search)
-                .ToList();
+            dgKoiData.ItemsSource = _koiFishService.GetKoiFishByFilter(search).ToList();
 
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            KoiFish koiFish = new KoiFish();
-            koiFish.KoiId = txtKoiID.Text;
-            koiFish.Name = txtKoiName.Text;
-            koiFish.Size = txtSize.Text;
-            koiFish.Weight = txtWeight.Text;
-            koiFish.Color = txtColor.Text;
-            koiFish.Description = txtDescription.Text;
+            var koiFish = GetKoiFishFromInput();
+            var selectedElementIds = GetSelectedElementIds();
 
-            if (_koiFishService.AddKoiFish(koiFish))
+            if (_koiFishService.AddKoiFish(koiFish, selectedElementIds))
             {
                 MessageBox.Show("Add successfully");
-                this.LoadDataInit();
+                LoadKoiFishList();
             }
             else
             {
@@ -121,29 +116,17 @@ namespace FengShuiKoi
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                KoiFish koiFish = new KoiFish();
-                koiFish.KoiId = txtKoiID.Text;
-                koiFish.Name = txtKoiName.Text;
-                koiFish.Size = txtSize.Text;
-                koiFish.Weight = txtWeight.Text;
-                koiFish.Color = txtColor.Text;
-                koiFish.Description = txtDescription.Text;
+            var koiFish = GetKoiFishFromInput();
+            var selectedElementIds = GetSelectedElementIds();
 
-                if (_koiFishService.UpdateKoiFish(koiFish))
-                {
-                    MessageBox.Show("Update successful");
-                    LoadKoiFishList();
-                }
-                else
-                {
-                    MessageBox.Show("Update failed. Please try again!");
-                }
-            }
-            catch (Exception ex)
+            if (_koiFishService.UpdateKoiFish(koiFish, selectedElementIds))
             {
-                MessageBox.Show($"Error updating koi fish: {ex.Message}");
+                MessageBox.Show("Update successful");
+                LoadKoiFishList();
+            }
+            else
+            {
+                MessageBox.Show("Update failed. Please try again!");
             }
         }
 
@@ -152,7 +135,7 @@ namespace FengShuiKoi
             string koiId = txtKoiID.Text;
             if (koiId.Length > 0 && _koiFishService.DeleteKoiFish(koiId))
             {
-                this.LoadDataInit();
+                LoadKoiFishList();
                 MessageBox.Show("Delete successfully");
             }
             else
@@ -161,9 +144,34 @@ namespace FengShuiKoi
             }
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void dgKoiData_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            this.LoadDataInit();
+            DataGrid dataGrid = sender as DataGrid;
+            if (dataGrid == null || dataGrid.SelectedIndex < 0) return;
+
+            var selectedItem = dataGrid.SelectedItem as KoiFish;
+            if (selectedItem != null)
+            {
+                txtKoiID.Text = selectedItem.KoiId;
+                txtDescription.Text = selectedItem.Description;
+                txtKoiName.Text = selectedItem.Name;
+                txtSize.Text = selectedItem.Size;
+                txtWeight.Text = selectedItem.Weight;
+                txtColor.Text = selectedItem.Color;
+
+                // Select the elements in the ListBox
+                lbElements.SelectedItems.Clear();
+                foreach (var element in selectedItem.Elements)
+                {
+                    var elementItem = _allElements.FirstOrDefault(e => e.ElementId == element.ElementId);
+                    if (elementItem != null)
+                    {
+                        lbElements.SelectedItems.Add(elementItem);
+                    }
+                }
+            }
         }
+
+
     }
 }

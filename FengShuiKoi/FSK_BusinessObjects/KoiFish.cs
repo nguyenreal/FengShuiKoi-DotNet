@@ -24,4 +24,12 @@ public partial class KoiFish
     public virtual KoiType? KoiType { get; set; }
 
     public virtual ICollection<Element> Elements { get; set; } = new List<Element>();
+
+    public string ElementsString
+    {
+        get
+        {
+            return Elements != null ? string.Join(", ", Elements.Select(e => e.ElementName)) : string.Empty;
+        }
+    }
 }
