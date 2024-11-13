@@ -32,6 +32,7 @@ namespace FengShuiKoi
             this.user = user;
         }
 
+
         public void LoadAdvertisementData()
         {
             try
