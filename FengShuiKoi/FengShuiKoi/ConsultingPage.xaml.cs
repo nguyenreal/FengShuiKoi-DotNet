@@ -32,10 +32,20 @@ namespace FengShuiKoi
 
         private void btnConsult_Click(object sender, RoutedEventArgs e)
         {
-            DateTime birthDate = dpBirthdate.SelectedDate.Value;
-            Element element = elementService.GetElement(birthDate);      
-            MessageBox.Show("Your element is: ${element.ElementName}");
-            
+            if(dpBirthdate.SelectedDate.HasValue)
+            {
+                Element element = elementService.GetElement(dpBirthdate.SelectedDate.Value);
+                if (element != null)
+                {
+                    this.Hide();
+                    ConsultingResultWindow consultingResultWindow = new ConsultingResultWindow(element, user);
+                    consultingResultWindow.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please choose your birthdate to consult");
+            }
         }
         private void btnReturn_Click(object sender, RoutedEventArgs e)
         {

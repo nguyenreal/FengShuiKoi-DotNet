@@ -1,0 +1,227 @@
+﻿<Window x:Class="FengShuiKoi.KoiFishWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FengShuiKoi"
+        mc:Ignorable="d"
+        Title="KoiFishWindow" Width="1100" Height="800"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!-- Modern TextBox Style -->
+        <Style x:Key="ModernTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#3498DB"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Modern Button Style -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="#3498DB"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,12"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2980B9"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- ListBox Style -->
+        <Style x:Key="ModernListBox" TargetType="ListBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+
+        <!-- DataGrid Style -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#F9FAFB"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#ECF0F1"/>
+            <Setter Property="VerticalGridLinesBrush" Value="#ECF0F1"/>
+            <Setter Property="RowHeaderWidth" Value="0"/>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F8F9FA"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="BorderBrush" Value="#ECF0F1"/>
+            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+        </Style>
+        
+        
+    </Window.Resources>
+
+    <Grid Background="#F9FAFB">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header Section -->
+        <StackPanel Grid.Row="0" Margin="20,20,20,10">
+            <Button x:Name="btnReturn" Content="← Return to Management" 
+                    Style="{StaticResource ModernButton}"
+                    Background="#95A5A6"
+                    HorizontalAlignment="Left" 
+                    Width="200"
+                    Click="btnReturn_Click"/>
+            <TextBlock Text="Koi Fish Management" 
+                      FontSize="28" 
+                      FontWeight="Bold"
+                      Foreground="#2C3E50"
+                      HorizontalAlignment="Center"
+                      Margin="0,20,0,0"/>
+        </StackPanel>
+
+        <!-- Input Sections Grid -->
+        <Grid Grid.Row="1" Margin="20,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Input Section -->
+            <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                <DockPanel Margin="0,5">
+                    <Label Content="Koi ID" Width="80" Foreground="#2C3E50"/>
+                    <TextBox x:Name="txtKoiID" Style="{StaticResource ModernTextBox}"/>
+                </DockPanel>
+                <DockPanel Margin="0,5">
+                    <Label Content="Name" Width="80" Foreground="#2C3E50"/>
+                    <TextBox x:Name="txtKoiName" Style="{StaticResource ModernTextBox}"/>
+                </DockPanel>
+                <DockPanel Margin="0,5">
+                    <Label Content="Size" Width="80" Foreground="#2C3E50"/>
+                    <TextBox x:Name="txtSize" Style="{StaticResource ModernTextBox}"/>
+                </DockPanel>
+            </StackPanel>
+
+            <!-- Right Input Section -->
+            <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                <DockPanel Margin="0,5">
+                    <Label Content="Weight" Width="80" Foreground="#2C3E50"/>
+                    <TextBox x:Name="txtWeight" Style="{StaticResource ModernTextBox}"/>
+                </DockPanel>
+                <DockPanel Margin="0,5">
+                    <Label Content="Color" Width="80" Foreground="#2C3E50"/>
+                    <TextBox x:Name="txtColor" Style="{StaticResource ModernTextBox}"/>
+                </DockPanel>
+                <DockPanel Margin="0,5">
+                    <Label Content="Description" Width="80" Foreground="#2C3E50"/>
+                    <TextBox x:Name="txtDescription" Style="{StaticResource ModernTextBox}"/>
+                </DockPanel>
+            </StackPanel>
+        </Grid>
+
+        <!-- Elements Section -->
+        <StackPanel Grid.Row="2" Margin="270,10,275,10">
+            <Label Content="Elements (Multiple selection allowed)" 
+                   FontWeight="SemiBold"
+                   Foreground="#2C3E50"/>
+            <ListBox x:Name="lbElements" 
+                    Height="40" 
+                    Style="{StaticResource ModernListBox}"
+                    SelectionMode="Multiple"
+                    DisplayMemberPath="ElementName" Width="1030">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </StackPanel>
+
+        <!-- Search Section -->
+        <DockPanel Grid.Row="3" Margin="20,10">
+            <Label Content="Search" Foreground="#2C3E50" VerticalAlignment="Center"/>
+            <TextBox x:Name="txtSearch" Style="{StaticResource ModernTextBox}" 
+                     Width="350" Margin="5,0"/>
+            <Button x:Name="btnSearch" Content="Search" 
+                    Style="{StaticResource ModernButton}"
+                    Width="100"
+                    Click="btnSearch_Click"/>
+        </DockPanel>
+
+        <!-- DataGrid -->
+        <DataGrid x:Name="dgKoiData" 
+                  Grid.Row="4" 
+                  Margin="20,10"
+                  AutoGenerateColumns="False"
+                  SelectionChanged="dgKoiData_SelectionChanged"
+                  IsReadOnly="True"
+                  SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="60" Binding="{Binding KoiId}"/>
+                <DataGridTextColumn Header="Name" Width="150" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Size" Width="60" Binding="{Binding Size}"/>
+                <DataGridTextColumn Header="Weight" Width="60" Binding="{Binding Weight}"/>
+                <DataGridTextColumn Header="Color" Width="70" Binding="{Binding Color}"/>
+                <DataGridTextColumn Header="Description" Width="150" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Elements" Width="*" Binding="{Binding ElementsString}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Button Section -->
+        <StackPanel Grid.Row="5" Orientation="Horizontal" 
+                    HorizontalAlignment="Center" Margin="0,15,0,20">
+            <Button x:Name="btnAdd" Content="Add" 
+                    Style="{StaticResource ModernButton}"
+                    Width="150" Margin="5,0" 
+                    Background="#27AE60"
+                    Click="btnAdd_Click"/>
+            <Button x:Name="btnUpdate" Content="Update" 
+                    Style="{StaticResource ModernButton}"
+                    Width="150" Margin="5,0" 
+                    Click="btnUpdate_Click"/>
+            <Button x:Name="btnDelete" Content="Delete" 
+                    Style="{StaticResource ModernButton}"
+                    Width="150" Margin="5,0"
+                    Background="#E74C3C"
+                    Click="btnDelete_Click"/>
+            <Button x:Name="btnClose" Content="Close" 
+                    Style="{StaticResource ModernButton}"
+                    Width="150" Margin="5,0"
+                    Background="#95A5A6"
+                    Click="btnClose_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
