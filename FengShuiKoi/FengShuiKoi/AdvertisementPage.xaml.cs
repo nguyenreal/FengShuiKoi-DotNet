@@ -33,7 +33,6 @@ namespace FengShuiKoi
                     break;
                 default:
                     this.btnModerate.Visibility = Visibility.Collapsed;
-                    this.btnModerate.IsEnabled = false;
                     break;
             }
             LoadCategoryList();
