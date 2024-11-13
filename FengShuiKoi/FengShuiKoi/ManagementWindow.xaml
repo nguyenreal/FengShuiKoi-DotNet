@@ -158,7 +158,7 @@
                             Grid.Column="2"
                             Content="BLOG"
                             Style="{StaticResource ManagementButton}"
-                            Background="#8E44AD"/>
+                            Background="#8E44AD" Click="btnBlog_Click"/>
 
                     <!-- Tank Button -->
                     <Button x:Name="btnTank"
@@ -175,7 +175,7 @@
                             Grid.Column="2"
                             Content="MODERATE ADS"
                             Style="{StaticResource ManagementButton}"
-                            Background="#F39C12"/>
+                            Background="#F39C12" Click="btnModerate_Click"/>
                 </Grid>
             </StackPanel>
         </StackPanel>

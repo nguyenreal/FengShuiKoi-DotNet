@@ -5,20 +5,198 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FengShuiKoi"
         mc:Ignorable="d"
-        Title="RegisterWindow" Height="450" Width="800">
-    <Grid>
-        <Label Content="REGISTER" HorizontalAlignment="Center" Height="39" Margin="0,23,0,0" VerticalAlignment="Top" Width="80"/>
-        <Label Content="User ID:" HorizontalAlignment="Left" Height="33" Margin="34,91,0,0" VerticalAlignment="Top" Width="69"/>
-        <TextBox x:Name="txtUserID" HorizontalAlignment="Left" Height="33" Margin="135,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Label Content="Username" HorizontalAlignment="Left" Height="33" Margin="34,161,0,0" VerticalAlignment="Top" Width="69"/>
-        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="33" Margin="135,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Label Content="Password" HorizontalAlignment="Left" Height="33" Margin="34,239,0,0" VerticalAlignment="Top" Width="69"/>
-        <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="33" Margin="135,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <Label Content="Birthday" HorizontalAlignment="Left" Height="33" Margin="441,91,0,0" VerticalAlignment="Top" Width="69"/>
-        <Label Content="Email" HorizontalAlignment="Left" Height="33" Margin="441,161,0,0" VerticalAlignment="Top" Width="69"/>
-        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="33" Margin="542,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-        <DatePicker x:Name="dpBirthday" HorizontalAlignment="Left" Height="33" Margin="542,91,0,0" VerticalAlignment="Top" Width="209"/>
-        <Button x:Name="btnRegister" Content="Register" HorizontalAlignment="Left" Height="58" Margin="601,353,0,0" VerticalAlignment="Top" Width="165" Click="btnRegister_Click"/>
+        Title="RegisterWindow" Height="680" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!-- Modern TextBox Style -->
+        <Style x:Key="ModernTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+            <Setter Property="Padding" Value="15,12"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#3498DB"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
+        <!-- Modern PasswordBox Style -->
+        <Style x:Key="ModernPasswordBox" TargetType="{x:Type PasswordBox}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+            <Setter Property="Padding" Value="15,12"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#3498DB"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Modern DatePicker Style -->
+        <Style x:Key="ModernDatePicker" TargetType="{x:Type DatePicker}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#BDC3C7"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#3498DB"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Modern Button Style -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="#3498DB"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,12"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2980B9"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#F9FAFB">
+        <StackPanel VerticalAlignment="Center" Margin="0,-40,0,0">
+            <!-- Title -->
+            <TextBlock Text="FENG SHUI KOI" 
+                     FontSize="32" 
+                     FontWeight="Bold" 
+                     Foreground="#2C3E50"
+                     HorizontalAlignment="Center"/>
+
+            <TextBlock Text="REGISTER" 
+                     FontSize="24" 
+                     FontWeight="SemiBold" 
+                     Foreground="#34495E"
+                     HorizontalAlignment="Center"
+                     Margin="0,5,0,40"/>
+
+            <!-- Registration Form -->
+            <Grid Width="600">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Column -->
+                <StackPanel Grid.Column="0" Margin="20,0">
+                    <!-- Username Field -->
+                    <StackPanel Margin="0,0,0,20">
+                        <Label Content="Username" 
+                               Foreground="#2C3E50" 
+                               FontSize="14" 
+                               FontWeight="SemiBold" 
+                               Margin="5,0,0,5"/>
+                        <Border CornerRadius="8" 
+                                Background="White" 
+                                BorderBrush="#BDC3C7" 
+                                BorderThickness="1">
+                            <TextBox x:Name="txtUsername" 
+                                    Style="{StaticResource ModernTextBox}"
+                                    BorderThickness="0"/>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Password Field -->
+                    <StackPanel Margin="0,0,0,20">
+                        <Label Content="Password" 
+                               Foreground="#2C3E50" 
+                               FontSize="14" 
+                               FontWeight="SemiBold" 
+                               Margin="5,0,0,5"/>
+                        <Border CornerRadius="8" 
+                                Background="White" 
+                                BorderBrush="#BDC3C7" 
+                                BorderThickness="1">
+                            <PasswordBox x:Name="txtPassword" 
+                                       Style="{StaticResource ModernPasswordBox}"
+                                       BorderThickness="0"/>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Right Column -->
+                <StackPanel Grid.Column="1" Margin="20,0">
+                    <!-- Birthday Field -->
+                    <StackPanel Margin="0,0,0,20">
+                        <Label Content="Birthday" 
+                               Foreground="#2C3E50" 
+                               FontSize="14" 
+                               FontWeight="SemiBold" 
+                               Margin="5,0,0,5"/>
+                        <Border CornerRadius="8" 
+                                Background="White" 
+                                BorderBrush="#BDC3C7" 
+                                BorderThickness="1">
+                            <DatePicker x:Name="dpBirthday" 
+                                      Style="{StaticResource ModernDatePicker}"
+                                      BorderThickness="0"/>
+                        </Border>
+                    </StackPanel>
+
+                    <!-- Email Field -->
+                    <StackPanel Margin="0,0,0,20">
+                        <Label Content="Email" 
+                               Foreground="#2C3E50" 
+                               FontSize="14" 
+                               FontWeight="SemiBold" 
+                               Margin="5,0,0,5"/>
+                        <Border CornerRadius="8" 
+                                Background="White" 
+                                BorderBrush="#BDC3C7" 
+                                BorderThickness="1">
+                            <TextBox x:Name="txtEmail" 
+                                    Style="{StaticResource ModernTextBox}"
+                                    BorderThickness="0"/>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <!-- Register Button -->
+            <Button x:Name="btnRegister" 
+                    Content="REGISTER" 
+                    Style="{StaticResource ModernButton}"
+                    Background="#27AE60"
+                    Margin="0,20,0,0"
+                    Click="btnRegister_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

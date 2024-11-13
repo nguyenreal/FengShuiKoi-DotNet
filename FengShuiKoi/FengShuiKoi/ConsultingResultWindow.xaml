@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FengShuiKoi"
         mc:Ignorable="d"
-        Loaded="Window_Loaded"
-        Title="ConsultingResultWindow" Height="800" Width="1100">
+        Loaded="Window_Loaded" WindowStartupLocation="CenterScreen"
+        Title="ConsultingResultWindow" Height="900" Width="1100">
     <Window.Resources>
         <!-- DataGrid Style -->
         <Style TargetType="DataGrid">
@@ -80,7 +80,7 @@
         </Style>
     </Window.Resources>
 
-    <Grid Background="#F9FAFB">
+    <Grid Background="#F9FAFB" Margin="0,0,-134,-90">
         <StackPanel Margin="40">
             <!-- Title -->
             <TextBlock Text="CONSULTING RESULTS" 

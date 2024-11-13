@@ -59,22 +59,14 @@ namespace FengShuiKoi
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            switch (roleName?.ToUpper())  // Use null-conditional operator and convert to uppercase for safe comparison
+            switch (roleName?.ToUpper())  
                 {
                     case "ADMIN":
-                        // Admin has full access
                         break;
                     case "USER":
-                        // User (Staff) has limited access
-                        this.btnManaging.IsEnabled = false;
-                        this.btnCompatibility.IsEnabled = false;
-                        break;
-                    case "MEMBER":
-                        // Member access
                         this.btnManaging.IsEnabled = false;
                         break;
                     default:
-                        // Invalid or null role
                         this.Close();
                         break;
             }

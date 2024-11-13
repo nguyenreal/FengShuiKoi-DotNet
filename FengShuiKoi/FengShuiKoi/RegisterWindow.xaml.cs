@@ -18,52 +18,130 @@ using System.Windows.Shapes;
 
 namespace FengShuiKoi
 {
-    /// <summary>
-    /// Interaction logic for RegisterWindow.xaml
-    /// </summary>
     public partial class RegisterWindow : Window
     {
         private readonly IUserService userService;
+
         public RegisterWindow()
         {
             InitializeComponent();
             userService = new UserService();
         }
 
-        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        private string GenerateUserId()
         {
-            User user = new User();
-            user.UserId = txtUserID.Text;
-            user.UserName = txtUsername.Text;
-            user.RoleName = "USER";
-            user.Email = txtEmail.Text;
-            user.Password = txtPassword.Text;
-            user.DateOfBirth = DateOnly.FromDateTime(dpBirthday.SelectedDate.Value);
-
-            if (user.Password.Length < 6)
-            {
-                MessageBox.Show("Password must be over 6 characters");
-            }
-            else if (!IsValidEmail(user.Email))
-            {
-                MessageBox.Show("Email not valid");
-            }
-            else if (userService.AddUser(user))
-            {
-                MessageBox.Show("Register successfully");
-                this.Hide();
-                MainWindow mainWindow = new MainWindow(user);
-                mainWindow.Show();
-            } 
-            else
-            {
-                MessageBox.Show("User has been existed");
-            }
+            // Generate a 6-digit random number
+            Random random = new Random();
+            int number = random.Next(100000, 999999);
+            return $"SE{number}";
         }
+
+        private bool ValidateInputs(out string errorMessage)
+        {
+            errorMessage = string.Empty;
+
+            // Check for null or empty values
+            if (string.IsNullOrWhiteSpace(txtUsername.Text))
+            {
+                errorMessage = "Username cannot be empty.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtPassword.Password))
+            {
+                errorMessage = "Password cannot be empty.";
+                return false;
+            }
+
+            // And the password length check:
+            if (txtPassword.Password.Length < 6)
+            {
+                errorMessage = "Password must be at least 6 characters long.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                errorMessage = "Email cannot be empty.";
+                return false;
+            }
+
+            if (dpBirthday.SelectedDate == null)
+            {
+                errorMessage = "Please select a birthday.";
+                return false;
+            }
+            // Validate email format
+            if (!IsValidEmail(txtEmail.Text))
+            {
+                errorMessage = "Please enter a valid email address.";
+                return false;
+            }
+
+            // Validate age (must be at least 13 years old)
+            if (dpBirthday.SelectedDate.HasValue)
+            {
+                var age = DateTime.Today.Year - dpBirthday.SelectedDate.Value.Year;
+                if (dpBirthday.SelectedDate.Value > DateTime.Today.AddYears(-age))
+                    age--;
+            }
+
+            return true;
+        }
+
         private bool IsValidEmail(string email)
         {
             string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
             return Regex.IsMatch(email, emailPattern);
+        }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string errorMessage;
+                if (!ValidateInputs(out errorMessage))
+                {
+                    MessageBox.Show(errorMessage, "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                string userId;
+                bool isUnique;
+                userId = GenerateUserId();
+
+                User user = new User
+                {
+                    UserId = userId,
+                    UserName = txtUsername.Text.Trim(),
+                    RoleName = "USER",
+                    Email = txtEmail.Text.Trim(),
+                    Password = txtPassword.Password,  // Change this line - use Password instead of Text
+                    DateOfBirth = DateOnly.FromDateTime(dpBirthday.SelectedDate.Value)
+                };
+
+                if (userService.AddUser(user))
+                {
+                    MessageBox.Show($"Registration successful! Your User ID is: {userId}",
+                                  "Success",
+                                  MessageBoxButton.OK,
+                                  MessageBoxImage.Information);
+                    this.Hide();
+                    MainWindow mainWindow = new MainWindow(user);
+                    mainWindow.Show();
+                }
+                else
+                {
+                    MessageBox.Show("User already exists.", "Registration Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred during registration: {ex.Message}",
+                              "Error",
+                              MessageBoxButton.OK,
+                              MessageBoxImage.Error);
+            }
         }
     }
 }

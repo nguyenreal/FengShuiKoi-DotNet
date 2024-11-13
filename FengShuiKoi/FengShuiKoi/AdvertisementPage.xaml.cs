@@ -96,18 +96,10 @@ namespace FengShuiKoi
                         dgAdData.ItemsSource = null; // Clear the current ItemsSource
                         dgAdData.ItemsSource = adList; // Set new ItemsSource
                         break;
-                    case "MEMBER":
+                    case "USER":
                         var verifiedList = advertisementServices.GetVerifiedAdvertisements();
                         dgAdData.ItemsSource = null; // Clear the current ItemsSource
                         dgAdData.ItemsSource = verifiedList; // Set new ItemsSource
-                        break;
-                    case "USER":
-                        verifiedList = advertisementServices.GetVerifiedAdvertisements();
-                        dgAdData.ItemsSource = null; // Clear the current ItemsSource
-                        dgAdData.ItemsSource = verifiedList; // Set new ItemsSource
-                        this.btnAdd.IsEnabled = false;
-                        this.btnDelete.IsEnabled = false;
-                        this.btnUpdate.IsEnabled = false;
                         break;
                 }
                 
@@ -125,15 +117,6 @@ namespace FengShuiKoi
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            switch (user.RoleName.ToUpper())
-            {
-                case "ADMIN": break;
-                case "MEMBER": break;
-                case "USER": this.btnAdd.IsEnabled = false; 
-                             this.btnDelete.IsEnabled = false;
-                             this.btnUpdate.IsEnabled = false;
-                             break;
-            }
             this.txtUserID.IsReadOnly = true;
             this.LoadDataInit();
         }
