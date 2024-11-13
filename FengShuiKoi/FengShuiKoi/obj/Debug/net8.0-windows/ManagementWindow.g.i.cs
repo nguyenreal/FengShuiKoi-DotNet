@@ -93,7 +93,7 @@ namespace FengShuiKoi {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/FengShuiKoi;V1.0.0.0;component/managementwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/FengShuiKoi;component/managementwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\ManagementWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace FengShuiKoi
 {
-    /// <summary>
-    /// Interaction logic for BlogManageWindow.xaml
-    /// </summary>
     public partial class BlogManageWindow : Window
     {
         private readonly string? userId;
@@ -32,6 +29,39 @@ namespace FengShuiKoi
             blogService = new BlogService();
         }
 
+        private string GenerateNewBlogId()
+        {
+            Random random = new Random();
+            int number = random.Next(1, 10000);
+            return $"BL{number:D4}";
+        }
+
+        private bool ValidateInput()
+        {
+            if (string.IsNullOrWhiteSpace(txtTitle.Text))
+            {
+                MessageBox.Show("Title cannot be empty!", "Validation Error");
+                txtTitle.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtDescription.Text))
+            {
+                MessageBox.Show("Description cannot be empty!", "Validation Error");
+                txtDescription.Focus();
+                return false;
+            }
+
+            if (!dpCreatedDate.SelectedDate.HasValue)
+            {
+                MessageBox.Show("Please select a valid date!", "Validation Error");
+                dpCreatedDate.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
         public void LoadBlogList()
         {
             try
@@ -41,9 +71,7 @@ namespace FengShuiKoi
             }
             catch (Exception ex)
             {
-                {
-                    MessageBox.Show(ex.Message, "Error on load list of blogs");
-                }
+                MessageBox.Show(ex.Message, "Error on load list of blogs");
             }
             finally
             {
@@ -55,23 +83,39 @@ namespace FengShuiKoi
         {
             try
             {
+                if (!ValidateInput())
+                {
+                    return;
+                }
+
+                // Check if blog with same title exists using service
+                var existingBlog = blogService.GetBlogByTitle(txtTitle.Text.Trim());
+                if (existingBlog != null)
+                {
+                    MessageBox.Show("A blog with this title already exists!", "Validation Error");
+                    txtTitle.Focus();
+                    return;
+                }
+
                 Blog blog = new Blog();
-                blog.BlogId = txtBlogID.Text;
-                blog.Title = txtTitle.Text;
-                blog.Description = txtDescription.Text;
+                blog.BlogId = GenerateNewBlogId();
+                blog.Title = txtTitle.Text.Trim();
+                blog.Description = txtDescription.Text.Trim();
                 blog.UserId = userId;
                 blog.CreatedDate = dpCreatedDate.SelectedDate.HasValue
                                         ? DateOnly.FromDateTime(dpCreatedDate.SelectedDate.Value)
                                         : DateOnly.FromDateTime(DateTime.Now);
+
                 blogService.CreateBlog(blog);
+                MessageBox.Show("Create blog success!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return;
             }
             finally
             {
-                MessageBox.Show("Create blog success!");
                 LoadBlogList();
             }
         }
@@ -80,31 +124,45 @@ namespace FengShuiKoi
         {
             try
             {
-                if (txtBlogID.Text.Length > 0)
+                if (string.IsNullOrWhiteSpace(txtBlogID.Text))
                 {
-                    Blog blog = new Blog();
-                    blog.BlogId = txtBlogID.Text;
-                    blog.Title = txtTitle.Text;
-                    blog.Description = txtDescription.Text;
-                    blog.UserId = userId;
-                    blog.CreatedDate = dpCreatedDate.SelectedDate.HasValue
+                    MessageBox.Show("You must select a blog to update!", "Validation Error");
+                    return;
+                }
+
+                if (!ValidateInput())
+                {
+                    return;
+                }
+
+                // Check if blog with same title exists using service
+                var existingBlog = blogService.GetBlogByTitle(txtTitle.Text.Trim());
+                if (existingBlog != null && existingBlog.BlogId != txtBlogID.Text)
+                {
+                    MessageBox.Show("A blog with this title already exists!", "Validation Error");
+                    txtTitle.Focus();
+                    return;
+                }
+
+                Blog blog = new Blog();
+                blog.BlogId = txtBlogID.Text;
+                blog.Title = txtTitle.Text.Trim();
+                blog.Description = txtDescription.Text.Trim();
+                blog.UserId = userId;
+                blog.CreatedDate = dpCreatedDate.SelectedDate.HasValue
                                         ? DateOnly.FromDateTime(dpCreatedDate.SelectedDate.Value)
                                         : DateOnly.FromDateTime(DateTime.Now);
-                    blogService.UpdateBlog(blog);
-                }
-                else
-                {
-                    
-                    MessageBox.Show("You must select a blog!");
-                }
+
+                blogService.UpdateBlog(blog);
+                MessageBox.Show("Update blog success!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return;
             }
             finally
             {
-                MessageBox.Show("Update blog success!");
                 LoadBlogList();
             }
         }
@@ -113,27 +171,42 @@ namespace FengShuiKoi
         {
             try
             {
-                    Blog blog = new Blog();
-                    blog.BlogId = txtBlogID.Text;
-                    blog.Title = txtTitle.Text;
-                    blog.Description = txtDescription.Text;
-                    blog.UserId = userId;
-                    blog.CreatedDate = dpCreatedDate.SelectedDate.HasValue
-                                        ? DateOnly.FromDateTime(dpCreatedDate.SelectedDate.Value)
-                                        : DateOnly.FromDateTime(DateTime.Now);
-                    blogService.DeleteBlog(blog);
-                    MessageBox.Show("Delete blog success!");
+                if (string.IsNullOrWhiteSpace(txtBlogID.Text))
+                {
+                    MessageBox.Show("Please select a blog to delete!", "Validation Error");
+                    return;
+                }
 
+                var result = MessageBox.Show("Are you sure you want to delete this blog?",
+                    "Confirm Delete",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.No)
+                {
+                    return;
+                }
+
+                Blog blog = new Blog();
+                blog.BlogId = txtBlogID.Text;
+                blog.Title = txtTitle.Text;
+                blog.Description = txtDescription.Text;
+                blog.UserId = userId;
+                blog.CreatedDate = dpCreatedDate.SelectedDate.HasValue
+                                    ? DateOnly.FromDateTime(dpCreatedDate.SelectedDate.Value)
+                                    : DateOnly.FromDateTime(DateTime.Now);
+                blogService.DeleteBlog(blog);
+                MessageBox.Show("Delete blog success!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return;
             }
             finally
             {
                 LoadBlogList();
             }
-
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -154,7 +227,6 @@ namespace FengShuiKoi
             }
             catch (Exception ex)
             {
-                // Silently handle the error to prevent disrupting the UI
                 Console.WriteLine($"Error in selection changed: {ex.Message}");
             }
         }
@@ -177,7 +249,6 @@ namespace FengShuiKoi
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoadBlogList();
-
         }
     }
 }
