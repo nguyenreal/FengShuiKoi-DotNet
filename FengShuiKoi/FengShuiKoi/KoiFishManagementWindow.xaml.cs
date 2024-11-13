@@ -23,30 +23,15 @@ namespace FengShuiKoi
 
         private void LoadDataInit()
         {
-            LoadElementList();
             LoadKoiFishList();
         }
 
-        public void LoadElementList()
-        {
-            try
-            {
-                var elementList = _elementService.GetElements();
-                cboSearchElement.ItemsSource = elementList;
-                this.cboSearchElement.DisplayMemberPath = "ElementName";
-                this.cboSearchElement.SelectedValuePath = "ElementId";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error on load list of elements");
-            }
-        }
 
         public void LoadKoiFishList()
         {
             try
             {
-                var koiFishList = _koiFishService.GetKoiFish();
+                var koiFishList = _koiFishService.GetKoiFishElementView();
                 dgKoiData.ItemsSource = null;
                 dgKoiData.ItemsSource = koiFishList;
             }
@@ -87,7 +72,7 @@ namespace FengShuiKoi
                 DataGrid dataGrid = sender as DataGrid;
                 if (dataGrid == null || dataGrid.SelectedIndex < 0) return;
 
-                var selectedItem = dataGrid.SelectedItem as KoiFish;
+                var selectedItem = dataGrid.SelectedItem as KoiFishViewModel;
                 if (selectedItem != null)
                 {
                     txtKoiID.Text = selectedItem.KoiId;
@@ -108,11 +93,7 @@ namespace FengShuiKoi
         {
             string search = txtSearch.Text;
 
-            int elementID = cboSearchElement.SelectedValue != null
-                ? int.Parse(cboSearchElement.SelectedValue.ToString())
-                : -1;
-
-            dgKoiData.ItemsSource = _koiFishService.GetKoiFishByFilter(search, elementID)
+            dgKoiData.ItemsSource = _koiFishService.GetKoiFishByFilter(search)
                 .ToList();
 
         }

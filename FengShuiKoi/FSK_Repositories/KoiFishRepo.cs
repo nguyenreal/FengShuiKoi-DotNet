@@ -16,7 +16,7 @@ namespace FSK_Repositories
 
         public List<KoiFish> GetKoiFish() => KoiFishDAO.Instance.GetKoiFish();
 
-        public List<KoiFish> GetKoiFishByFilter(string search, int elementID) => KoiFishDAO.Instance.GetKoiFishByFilter(search, elementID);
+        public List<KoiFish> GetKoiFishByFilter(string search) => KoiFishDAO.Instance.GetKoiFishByFilter(search);
 
         public KoiFish GetKoiFishById(string id) => KoiFishDAO.Instance.GetKoiFishById(id);
 

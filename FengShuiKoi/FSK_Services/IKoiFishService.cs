@@ -19,6 +19,8 @@ namespace FSK_Services
 
         public bool DeleteKoiFish(string koiId);
 
-        public List<KoiFish> GetKoiFishByFilter(string search, int elementID);
+        public List<KoiFishViewModel> GetKoiFishByFilter(string search);
+
+        public List<KoiFishViewModel> GetKoiFishElementView();
     }
 }

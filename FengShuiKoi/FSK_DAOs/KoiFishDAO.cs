@@ -30,7 +30,7 @@ namespace FSK_DAOs
 
         public List<KoiFish> GetKoiFish()
         {
-            return _dbContext.KoiFishes.ToList();
+            return _dbContext.KoiFishes.Include(k => k.Elements).ToList();
         }
 
         public KoiFish GetKoiFishById(string id)
@@ -83,15 +83,12 @@ namespace FSK_DAOs
             return result;
         }
 
-        public List<KoiFish> GetKoiFishByFilter(string search, int elementID)
+        public List<KoiFish> GetKoiFishByFilter(string search)
         {
             var query = _dbContext.KoiFishes
                 .Where(a => EF.Functions.Like(a.Name, "%" + search + "%"));
 
-            //if (elementID != -1)
-            //{
-            //    query = query.Where(a => a.KoiId == elementID);
-            //}
+         
             return query.ToList();
         }
     }

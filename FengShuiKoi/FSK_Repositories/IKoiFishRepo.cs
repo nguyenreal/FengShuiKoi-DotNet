@@ -20,6 +20,6 @@ namespace FSK_Repositories
 
         public bool DeleteKoiFish(string koiId);
 
-        public List<KoiFish> GetKoiFishByFilter(string search, int elementID);
+        public List<KoiFish> GetKoiFishByFilter(string search);
     }
 }

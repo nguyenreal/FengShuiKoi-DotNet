@@ -22,9 +22,37 @@ namespace FSK_Services
 
         public List<KoiFish> GetKoiFish() => _koiFishRepo.GetKoiFish();
 
-        public List<KoiFish> GetKoiFishByFilter(string search, int elementID) => _koiFishRepo.GetKoiFishByFilter(search, elementID);
+        public List<KoiFishViewModel> GetKoiFishByFilter(string search)
+        {
+            var koiFishes = _koiFishRepo.GetKoiFishByFilter(search);
+            return koiFishes.Select(koi => new KoiFishViewModel
+            {
+                KoiId = koi.KoiId,
+                Name = koi.Name,
+                Color = koi.Color,
+                Description = koi.Description,
+                Size = koi.Size,
+                Weight = koi.Weight,
+                ElementsString = string.Join(", ", koi.Elements.Select(e => e.ElementName))
+            }).ToList();
+        }
 
         public KoiFish GetKoiFishById(string id) => _koiFishRepo.GetKoiFishById(id);
+
+        public List<KoiFishViewModel> GetKoiFishElementView()
+        {
+            var koiFishes = _koiFishRepo.GetKoiFish();
+            return koiFishes.Select(koi => new KoiFishViewModel
+            {
+                KoiId = koi.KoiId,
+                Name = koi.Name,
+                Color = koi.Color,
+                Description = koi.Description,
+                Size = koi.Size,
+                Weight = koi.Weight,
+                ElementsString = string.Join(", ", koi.Elements.Select(e => e.ElementName))
+            }).ToList();
+        }
 
         public bool UpdateKoiFish(KoiFish koiFish) => _koiFishRepo.UpdateKoiFish(koiFish);
     }
