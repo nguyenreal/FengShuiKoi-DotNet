@@ -19,18 +19,20 @@ namespace FengShuiKoi
     {
         private readonly User? user;
         private readonly string? roleName;
+        private readonly string? userId;
         public MainWindow(User user)
         {
             InitializeComponent();
             this.user = user;
             this.roleName = user.RoleName;
+            this.userId = user.UserId;
         }
 
 
         private void btnManaging_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            BlogWindow blogWindow = new BlogWindow();
+            BlogWindow blogWindow = new BlogWindow(user);
             blogWindow.Show();
         }
 
@@ -44,7 +46,7 @@ namespace FengShuiKoi
         private void btnBlog_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            BlogWindow blogWindow = new BlogWindow();
+            BlogWindow blogWindow = new BlogWindow(user);
             blogWindow.Show();
         }
 
@@ -65,7 +67,7 @@ namespace FengShuiKoi
                     case "USER":
                         // User (Staff) has limited access
                         this.btnManaging.IsEnabled = false;
-                        this.btnConsulting.IsEnabled = false;
+                        this.btnCompatibility.IsEnabled = false;
                         break;
                     case "MEMBER":
                         // Member access
