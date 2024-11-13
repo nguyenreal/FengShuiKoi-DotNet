@@ -32,8 +32,8 @@ namespace FengShuiKoi
         private void btnManaging_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            BlogWindow blogWindow = new BlogWindow(user);
-            blogWindow.Show();
+            ManagementWindow managementWindow = new ManagementWindow(user);
+            managementWindow.Show();
         }
 
         private void btnConsulting_Click(object sender, RoutedEventArgs e)
