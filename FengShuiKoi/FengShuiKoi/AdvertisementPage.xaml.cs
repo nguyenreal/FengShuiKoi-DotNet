@@ -205,12 +205,10 @@ namespace FengShuiKoi
             int elementID = cboSearchElement.SelectedValue != null
                 ? int.Parse(cboSearchElement.SelectedValue.ToString())
                 : -1;
-
             dgAdData.ItemsSource = advertisementServices
                 .GetAdvertisementsByFilter(search, elementID)
                 .ToList();
-
-            this.LoadDataInit();
+            resetInput();
         }
 
         private void btnReturn_Click(object sender, RoutedEventArgs e)

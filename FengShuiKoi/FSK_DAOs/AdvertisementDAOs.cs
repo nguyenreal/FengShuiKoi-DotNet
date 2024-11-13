@@ -81,14 +81,23 @@ namespace FSK_DAOs
 
         public List<Advertisement> GetAdvertisementsByFilter(string search, int elementID)
         {
-            var query = dbContext.Advertisements
-                .Where(a => EF.Functions.Like(a.Title ,"%" + search + "%"));
-
-            if (elementID != -1)
+            try
             {
-                query = query.Where(a => a.ElementId == elementID);
+                using var context = new FengShuiKoiDbContext();
+                var query = context.Advertisements
+                    .Where(a => EF.Functions.Like(a.Title, "%" + search + "%"));
+
+                if (elementID != -1)
+                {
+                    query = query.Where(a => a.ElementId == elementID);
+                }
+                return query.ToList();
             }
-            return query.ToList();
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<Advertisement>();
+            }
         }
     }
 }
