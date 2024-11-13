@@ -29,5 +29,6 @@ namespace FSK_Services
 
         public bool DeleteKoiFish(string koiId) => _koiFishRepo.DeleteKoiFish(koiId);
 
+        public List<KoiFish> GetKoiFishByElement(int elementId) => _koiFishRepo.GetKoiFishByElement(elementId);
     }
 }

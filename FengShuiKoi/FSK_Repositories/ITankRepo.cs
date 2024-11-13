@@ -21,5 +21,7 @@ namespace FSK_Repositories
         public bool DeleteTank(string tankId);
 
         public List<Tank> GetTankByFilter(string search, int elementID);
+
+        public List<Tank> GetTankByElement(int elementID);
     }
 }

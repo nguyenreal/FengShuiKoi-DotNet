@@ -22,16 +22,19 @@ namespace FengShuiKoi
     public partial class ConsultingResultWindow : Window
     {
         private readonly IAdvertisementServices advertisementServices;
+        private readonly ITankService tankService;
+        private readonly IKoiFishService koiFishService;
         private readonly Element? element;
         private readonly User? user;
         public ConsultingResultWindow(Element element, User user)
         {
             InitializeComponent();
             advertisementServices = new AdvertisementServices();
+            tankService = new TankService();
+            koiFishService = new KoiFishService();
             this.element = element;
             this.user = user;
         }
-
 
         public void LoadAdvertisementData()
         {
@@ -47,9 +50,39 @@ namespace FengShuiKoi
             }
         }
 
+        public void LoadTankData()
+        {
+            try
+            {
+                var tankList = tankService.GetTankByElement(element.ElementId);
+                dgTank.ItemsSource = null;
+                dgTank.ItemsSource = tankList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error on load list of tanks");
+            }
+        }
+
+        public void LoadFishData()
+        {
+            try
+            {
+                var fishList = koiFishService.GetKoiFishByElement(element.ElementId);
+                dgKoiFish.ItemsSource = null;
+                dgKoiFish.ItemsSource = fishList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error on load list of tanks");
+            }
+        }
+
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoadAdvertisementData();
+            LoadTankData();
+            LoadFishData();
         }
 
         private void btnReturn_Click(object sender, RoutedEventArgs e)

@@ -20,5 +20,7 @@ namespace FSK_Services
         public bool DeleteTank(string tankId);
 
         public List<Tank> GetTanksByFilter(string search, int elementID);
+
+        public List<Tank> GetTankByElement(int elementID);
     }
 }

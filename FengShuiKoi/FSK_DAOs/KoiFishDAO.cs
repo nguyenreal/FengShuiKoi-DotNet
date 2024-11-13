@@ -155,5 +155,13 @@ namespace FSK_DAOs
                 .Where(a => EF.Functions.Like(a.Name, "%" + search + "%"))
                 .ToList();
         }
+
+        public List<KoiFish> GetKoiFishByElement(int elementId)
+        {
+            return _dbContext.KoiFishes
+                    .Include(k => k.Elements)
+                    .Where(k => k.Elements.Any(e => e.ElementId == elementId))
+                    .ToList();
+        }
     }
 }

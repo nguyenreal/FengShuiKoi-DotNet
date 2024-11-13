@@ -4504,19 +4504,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ADMIN\\.nuget\\packages\\": {}
+    "C:\\Users\\612t1\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DotNet\\FengShuiKoi-DotNet\\FengShuiKoi\\FSK_BusinessObjects\\FSK_BusinessObjects.csproj",
+      "projectUniqueName": "C:\\HocHanh\\PRN212\\Code\\FengShuiKoi-DotNet\\FengShuiKoi\\FSK_BusinessObjects\\FSK_BusinessObjects.csproj",
       "projectName": "FSK_BusinessObjects",
-      "projectPath": "D:\\DotNet\\FengShuiKoi-DotNet\\FengShuiKoi\\FSK_BusinessObjects\\FSK_BusinessObjects.csproj",
-      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-      "outputPath": "D:\\DotNet\\FengShuiKoi-DotNet\\FengShuiKoi\\FSK_BusinessObjects\\obj\\",
+      "projectPath": "C:\\HocHanh\\PRN212\\Code\\FengShuiKoi-DotNet\\FengShuiKoi\\FSK_BusinessObjects\\FSK_BusinessObjects.csproj",
+      "packagesPath": "C:\\Users\\612t1\\.nuget\\packages\\",
+      "outputPath": "C:\\HocHanh\\PRN212\\Code\\FengShuiKoi-DotNet\\FengShuiKoi\\FSK_BusinessObjects\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\612t1\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
