@@ -9,6 +9,7 @@
       "FengShuiKoi/1.0.0": {
         "dependencies": {
           "FSK_Services": "1.0.0",
+          "Microsoft.Web.WebView2": "1.0.2849.39",
           "Microsoft.Web.WebView2.Core": "1.0.2849.39",
           "Microsoft.Web.WebView2.WinForms": "1.0.2849.39",
           "Microsoft.Web.WebView2.Wpf": "1.0.2849.39"

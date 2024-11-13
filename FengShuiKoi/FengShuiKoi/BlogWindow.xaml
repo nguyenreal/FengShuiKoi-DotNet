@@ -3,10 +3,199 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         xmlns:local="clr-namespace:FengShuiKoi"
         mc:Ignorable="d"
-        Title="BlogWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="BlogWindow" Height="800" Width="1400" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!-- Style for Buttons -->
+        <Style x:Key="ActionButton" TargetType="Button">
+            <Setter Property="Background" Value="#3498DB"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,8"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="10,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2980B9"/>
+                </Trigger>
+                <!-- Add this new trigger for disabled state -->
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#BDC3C7"/>
+                    <Setter Property="Foreground" Value="#7F8C8D"/>
+                    <Setter Property="Cursor" Value="No"/>
+                    <Setter Property="Opacity" Value="0.7"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Style for DataGrid -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#ECECEC"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="RowHeaderWidth" Value="0"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="CanUserReorderColumns" Value="False"/>
+            <Setter Property="CanUserResizeColumns" Value="True"/>
+            <Setter Property="CanUserSortColumns" Value="True"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <!-- Style for DataGrid Row -->
+        <Style TargetType="DataGridRow">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Height" Value="40"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F5F9FF"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#EBF5FF"/>
+                    <Setter Property="Foreground" Value="#2C3E50"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Style for DataGrid Column Headers -->
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F8F9FA"/>
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="10,12"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="BorderBrush" Value="#ECECEC"/>
+        </Style>
+
+        <!-- Style for DataGrid Cells -->
+        <Style TargetType="DataGridCell">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridCell">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#F9FAFB">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Side: Blog List -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Border Background="White" 
+                    BorderBrush="#ECECEC" 
+                    BorderThickness="0,0,1,1">
+                <DockPanel Margin="20,0" VerticalAlignment="Center">
+                    <TextBlock Text="BLOG POSTS" 
+                             FontSize="24"
+                             FontWeight="Bold"
+                             Foreground="#2C3E50"
+                             DockPanel.Dock="Left"
+                             VerticalAlignment="Center"/>
+
+                    <StackPanel Orientation="Horizontal" 
+                              DockPanel.Dock="Right" 
+                              HorizontalAlignment="Right">
+                        <Button x:Name="btnManageBlog" 
+                                Content="MANAGE" 
+                                Style="{StaticResource ActionButton}"
+                                Click="btnManageBlog_Click"/>
+                        <Button x:Name="btnBack"
+                                Content="BACK"
+                                Style="{StaticResource ActionButton}"
+                                Background="#95A5A6"
+                                Click="btnBack_Click"/>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <!-- Blog DataGrid -->
+            <Border Grid.Row="1" 
+                    Background="White" 
+                    BorderBrush="#ECECEC" 
+                    BorderThickness="0,0,1,0"
+                    Margin="0,0,0,0">
+                <DataGrid x:Name="dgBlogs" 
+                         Margin="20"
+                         SelectionMode="Single"
+                         SelectionChanged="dgBlogs_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="TITLE" 
+                                          Binding="{Binding Title}" 
+                                          Width="*"/>
+                        <DataGridTextColumn Header="CREATED DATE" 
+                                          Binding="{Binding CreatedDate, StringFormat='{}{0:dd/MM/yyyy}'}" 
+                                          Width="120"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+        </Grid>
+
+        <!-- Right Side: WebView -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- WebView Header -->
+            <Border Background="White" 
+                    BorderBrush="#ECECEC" 
+                    BorderThickness="0,0,0,1">
+                <TextBlock x:Name="txtCurrentBlog"
+                          Text="Select a blog to read" 
+                          FontSize="20"
+                          FontWeight="SemiBold"
+                          Foreground="#2C3E50"
+                          Margin="20,0"
+                          VerticalAlignment="Center"/>
+            </Border>
+
+            <!-- WebView -->
+            <wv2:WebView2 x:Name="webView" 
+                         Grid.Row="1"
+                         Margin="0"/>
+        </Grid>
     </Grid>
 </Window>

@@ -3262,7 +3262,8 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "FSK_Services >= 1.0.0"
+      "FSK_Services >= 1.0.0",
+      "Microsoft.Web.WebView2 >= 1.0.2849.39"
     ]
   },
   "packageFolders": {
@@ -3313,6 +3314,12 @@
     "frameworks": {
       "net8.0-windows7.0": {
         "targetAlias": "net8.0-windows",
+        "dependencies": {
+          "Microsoft.Web.WebView2": {
+            "target": "Package",
+            "version": "[1.0.2849.39, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
@@ -3335,5 +3342,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\HocHanh\\PRN212\\Code\\FengShuiKoi-DotNet\\FengShuiKoi\\FengShuiKoi\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

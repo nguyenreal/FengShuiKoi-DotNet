@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\HocHanh\PRN212\Code\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\
+D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\
 FengShuiKoi
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
-C:\HocHanh\PRN212\Code\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\App.xaml
-71476502980
-3-1768958639
-10503016259
-248-204846750
-AdvertisementPage.xaml;BlogWindow.xaml;ConsultingPage.xaml;ConsultingResultWindow.xaml;LoginWindow.xaml;MainWindow.xaml;ModerateWindow.xaml;
+D:\DotNet\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\App.xaml
+92124496664
+31901341507
+12-2952617
+248-513839261
+AdvertisementPage.xaml;BlogManageWindow.xaml;BlogWindow.xaml;ConsultingPage.xaml;KoiFishManagementWindow.xaml;LoginWindow.xaml;MainWindow.xaml;ManagementWindow.xaml;TankManageWindow.xaml;
 
 False
 

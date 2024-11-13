@@ -7,30 +7,30 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="BlogManageWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="BlogWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="ConsultingPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="ConsultingResultWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="LoginWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="ModerateWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="BlogManageWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="BlogWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ConsultingPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="ConsultingResultWindow.xaml">
+    <Page Update="KoiFishManagementWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="LoginWindow.xaml">
@@ -39,7 +39,10 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="ModerateWindow.xaml">
+    <Page Update="ManagementWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TankManageWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
