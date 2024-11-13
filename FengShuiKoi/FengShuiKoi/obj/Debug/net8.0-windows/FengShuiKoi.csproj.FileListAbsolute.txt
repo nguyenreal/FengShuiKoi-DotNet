@@ -18,3 +18,11 @@ C:\Users\ADMIN\source\repos\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\ref
 C:\Users\ADMIN\source\repos\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\FengShuiKoi.pdb
 C:\Users\ADMIN\source\repos\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\FengShuiKoi.genruntimeconfig.cache
 C:\Users\ADMIN\source\repos\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\ref\FengShuiKoi.dll
+C:\Users\trung\PRN212\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\Compatibility.g.cs
+C:\Users\trung\PRN212\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\trung\PRN212\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\trung\PRN212\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\FengShuiKoi_MarkupCompile.cache
+C:\Users\trung\PRN212\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\FengShuiKoi_MarkupCompile.lref
+C:\Users\trung\PRN212\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\FengShuiKoi.dll
+C:\Users\trung\PRN212\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\refint\FengShuiKoi.dll
+C:\Users\trung\PRN212\FengShuiKoi-DotNet\FengShuiKoi\FengShuiKoi\obj\Debug\net8.0-windows\FengShuiKoi.pdb
