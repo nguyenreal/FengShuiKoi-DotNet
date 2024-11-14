@@ -2,8 +2,10 @@
 using FSK_Services;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -151,7 +153,7 @@ namespace FengShuiKoi
                 }
                 else
                 {
-                    MessageBox.Show("Update failed. Please try again!");
+                    MessageBox.Show("Update failed. Please try again and no change tank id");
                 }
             }
             catch (Exception ex)
@@ -186,6 +188,43 @@ namespace FengShuiKoi
             dgTankData.ItemsSource = _tankService.GetTanksByFilter(search, elementID)
                 .ToList();
 
+        }
+
+        private bool Validate()
+        {
+            string idRegex = @"^TA\d{3}";
+            string strRegex = @"^[a-zA-Z0-9\s]*$";
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+
+            if (string.IsNullOrWhiteSpace(txtTankID.Text))
+            {
+                MessageBox.Show("Tank ID is require", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (!Regex.IsMatch(txtTankID.Text, idRegex))
+            {
+                MessageBox.Show("Tank ID must be in format TAxxx", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            string koiId = txtTankID.Text.Trim();
+            txtTankID.Text = koiId;
+
+
+            if (string.IsNullOrWhiteSpace(txtShape.Text))
+            {
+                MessageBox.Show("Shape is require", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (!Regex.IsMatch(txtShape.Text, strRegex))
+            {
+                MessageBox.Show("Shape: No special character", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            string koiName = txtShape.Text.Trim();
+            koiName = textInfo.ToTitleCase(koiName.ToLower());
+            txtShape.Text = koiName;
+
+            return true;
         }
     }
 }

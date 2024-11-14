@@ -1,5 +1,7 @@
 ﻿using FSK_BusinessObjects;
 using FSK_Services;
+using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -102,6 +104,10 @@ namespace FengShuiKoi
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             var koiFish = GetKoiFishFromInput();
+            if (!Validate())
+            {
+                return;
+            }
             var selectedElementIds = GetSelectedElementIds();
 
             if (_koiFishService.AddKoiFish(koiFish, selectedElementIds))
@@ -118,6 +124,10 @@ namespace FengShuiKoi
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             var koiFish = GetKoiFishFromInput();
+            if (!Validate())
+            {
+                return;
+            }
             var selectedElementIds = GetSelectedElementIds();
 
             if (_koiFishService.UpdateKoiFish(koiFish, selectedElementIds))
@@ -127,7 +137,7 @@ namespace FengShuiKoi
             }
             else
             {
-                MessageBox.Show("Update failed. Please try again!");
+                MessageBox.Show("Update failed. Please try again and no change koi ID");
             }
         }
 
@@ -160,7 +170,6 @@ namespace FengShuiKoi
                 txtWeight.Text = selectedItem.Weight;
                 txtColor.Text = selectedItem.Color;
 
-                // Select the elements in the ListBox
                 lbElements.SelectedItems.Clear();
                 foreach (var element in selectedItem.Elements)
                 {
@@ -173,6 +182,69 @@ namespace FengShuiKoi
             }
         }
 
+        public bool Validate()
+        {
+            string idRegex = @"^KF\d{3}";
+            string strRegex = @"^[a-zA-Z0-9\s]*$";
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
 
+            if (string.IsNullOrWhiteSpace(txtKoiID.Text))
+            {
+                MessageBox.Show("Koi ID is require", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (!Regex.IsMatch(txtKoiID.Text, idRegex))
+            {
+                MessageBox.Show("Koi ID must be in format KFxxx", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            string koiId = txtKoiID.Text.Trim();
+            txtKoiID.Text = koiId;
+
+            if (string.IsNullOrWhiteSpace(txtKoiName.Text))
+            {
+                MessageBox.Show("Koi name is require", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (!Regex.IsMatch(txtKoiName.Text, strRegex))
+            {
+                MessageBox.Show("Koi name: No special character", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            string koiName = txtKoiName.Text.Trim();
+            koiName = textInfo.ToTitleCase(koiName.ToLower());
+            txtKoiName.Text = koiName;
+
+            if (string.IsNullOrWhiteSpace(txtSize.Text))
+            {
+                MessageBox.Show("Size is require", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            string koiSize = txtSize.Text.Trim();
+            txtSize.Text = koiSize;
+
+            if (string.IsNullOrWhiteSpace(txtWeight.Text))
+            {
+                MessageBox.Show("Weight is require", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            string koiWeight = txtWeight.Text.Trim();
+            txtWeight.Text = koiWeight;
+
+            if (string.IsNullOrWhiteSpace(txtColor.Text))
+            {
+                MessageBox.Show("Color is require", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            string koiColor = txtColor.Text.Trim();
+            txtColor.Text = koiColor;
+
+            if (string.IsNullOrWhiteSpace(txtDescription.Text))
+            {
+                MessageBox.Show("Description is require", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
+        }
     }
 }
