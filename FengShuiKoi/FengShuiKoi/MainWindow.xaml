@@ -154,7 +154,7 @@
 
                     <!-- Original four buttons remain unchanged -->
                     <Button x:Name="btnManaging" 
-                            Content="QUẢN LÍ" 
+                            Content="MANAGEMENT" 
                             Style="{StaticResource MainButton}"
                             Grid.Column="0"
                             Grid.Row="0"
@@ -162,7 +162,7 @@
                             Click="btnManaging_Click"/>
 
                     <Button x:Name="btnConsulting" 
-                            Content="TƯ VẤN CÁ KOI" 
+                            Content="KOI CONSULTING" 
                             Style="{StaticResource MainButton}"
                             Grid.Column="1"
                             Grid.Row="0"
@@ -178,7 +178,7 @@
                             Click="btnBlog_Click"/>
 
                     <Button x:Name="btnAdvertise" 
-                            Content="QUẢNG CÁO" 
+                            Content="ADVERTISEMENT" 
                             Style="{StaticResource MainButton}"
                             Grid.Column="1"
                             Grid.Row="1"

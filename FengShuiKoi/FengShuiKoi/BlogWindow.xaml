@@ -6,7 +6,7 @@
         xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         xmlns:local="clr-namespace:FengShuiKoi"
         mc:Ignorable="d"
-        Title="BlogWindow" Height="800" Width="1400" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        Title="BlogWindow" Height="700" Width="1200" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <!-- Style for Buttons -->
         <Style x:Key="ActionButton" TargetType="Button">

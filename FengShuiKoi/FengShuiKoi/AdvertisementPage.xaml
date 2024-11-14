@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FengShuiKoi"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="AdvertisementPage" Height="1100" Width="1200" WindowStartupLocation="CenterScreen">
+        Title="AdvertisementPage" Height="750" Width="1000" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <!-- Modern TextBox Style -->
         <Style x:Key="ModernTextBox" TargetType="{x:Type TextBox}">
@@ -14,18 +14,20 @@
             <Setter Property="Foreground" Value="#2C3E50"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="#BDC3C7"/>
-            <Setter Property="Padding" Value="15,12"/>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Style.Triggers>
                 <Trigger Property="IsFocused" Value="True">
                     <Setter Property="BorderBrush" Value="#3498DB"/>
                     <Setter Property="BorderThickness" Value="2"/>
                 </Trigger>
             </Style.Triggers>
-            </Style>
+        </Style>
 
-            <!-- Modern ComboBox Style -->
+        <!-- Modern ComboBox Style -->
         <Style x:Key="ModernComboBox" TargetType="ComboBox">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="#2C3E50"/>
@@ -82,202 +84,191 @@
         </Style>
     </Window.Resources>
 
-    <Grid Background="#F9FAFB" Margin="0,0,10,9">
-        <StackPanel Margin="40">
-            <!-- Header -->
-            <Grid Margin="0,0,0,20">
-                <Button x:Name="btnReturn" 
-                        Content="Return to Homepage"
-                        Style="{StaticResource ActionButton}"
-                        Background="Transparent"
-                        Foreground="#2C3E50"
-                        BorderThickness="2"
-                        BorderBrush="#3498DB"
-                        Width="180"
-                        HorizontalAlignment="Left"
-                        Click="btnReturn_Click"/>
+    <!-- Main Layout -->
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Background="#F9FAFB">
+            <StackPanel Margin="20">
+                <!-- Header -->
+                <Grid Margin="0,0,0,20">
+                    <Button x:Name="btnReturn" 
+                            Content="BACK"
+                            Style="{StaticResource ActionButton}"
+                            Width="100"
+                            HorizontalAlignment="Left"
+                            Click="btnReturn_Click"/>
 
-                <TextBlock Text="ADVERTISEMENT" 
-                         FontSize="28" 
-                         FontWeight="Bold" 
-                         Foreground="#2C3E50"
-                         HorizontalAlignment="Center"/>
+                    <TextBlock Text="ADVERTISEMENT" 
+                             FontSize="24" 
+                             FontWeight="Bold" 
+                             Foreground="#2C3E50"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"/>
 
-                <Button x:Name="btnModerate" 
-                        Content="Moderate Advertisement"
-                        Style="{StaticResource ActionButton}"
-                        Width="200"
-                        HorizontalAlignment="Right"
-                        Click="btnModerate_Click"/>
-            </Grid>
-
-            <!-- Form Grid -->
-            <Grid Margin="0,20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="30"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <!-- Left Column -->
-                <StackPanel Grid.Column="0">
-                    <StackPanel Margin="0,0,0,15">
-                        <Label Content="Ad ID" 
-                               Foreground="#2C3E50" 
-                               FontWeight="SemiBold"/>
-                        <TextBox x:Name="txtAdID" 
-                                Style="{StaticResource ModernTextBox}"/>
-                    </StackPanel>
-
-                    <StackPanel Margin="0,0,0,15">
-                        <Label Content="Title" 
-                               Foreground="#2C3E50" 
-                               FontWeight="SemiBold"/>
-                        <TextBox x:Name="txtTitle" 
-                                Style="{StaticResource ModernTextBox}"/>
-                    </StackPanel>
-
-                    <StackPanel Margin="0,0,0,15">
-                        <Label Content="Description" 
-                               Foreground="#2C3E50" 
-                               FontWeight="SemiBold"/>
-                        <TextBox x:Name="txtDescription" 
-                                Style="{StaticResource ModernTextBox}"
-                                Height="80"
-                                TextWrapping="Wrap"
-                                VerticalContentAlignment="Top"/>
-                    </StackPanel>
-
-                    <StackPanel Margin="0,0,0,15">
-                        <Label Content="Price" 
-                               Foreground="#2C3E50" 
-                               FontWeight="SemiBold"/>
-                        <TextBox x:Name="txtPrice" 
-                                Style="{StaticResource ModernTextBox}"/>
-                    </StackPanel>
-                </StackPanel>
-
-                <!-- Right Column -->
-                <StackPanel Grid.Column="2">
-                    <StackPanel Margin="0,0,0,15">
-                        <Label Content="Element" 
-                               Foreground="#2C3E50" 
-                               FontWeight="SemiBold"/>
-                        <ComboBox x:Name="cboElement" 
-                                 Style="{StaticResource ModernComboBox}"/>
-                    </StackPanel>
-
-                    <StackPanel Margin="0,0,0,15">
-                        <Label Content="Category" 
-                               Foreground="#2C3E50" 
-                               FontWeight="SemiBold"/>
-                        <ComboBox x:Name="cboCategory" 
-                                 Style="{StaticResource ModernComboBox}"/>
-                    </StackPanel>
-
-                    <StackPanel Margin="0,0,0,15">
-                        <Label Content="User ID" 
-                               Foreground="#2C3E50" 
-                               FontWeight="SemiBold"/>
-                        <TextBox x:Name="txtUserID" 
-                                Style="{StaticResource ModernTextBox}"/>
-                    </StackPanel>
-                </StackPanel>
-            </Grid>
-
-            <!-- Search Section -->
-            <Border Background="White" 
-                    BorderBrush="#BDC3C7" 
-                    BorderThickness="1" 
-                    CornerRadius="8" 
-                    Padding="20"
-                    Margin="0,20">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Label Content="Search" 
-                           Grid.Column="0"
-                           Foreground="#2C3E50" 
-                           FontWeight="SemiBold" 
-                           VerticalAlignment="Center"/>
-
-                    <TextBox x:Name="txtSearch" 
-                            Grid.Column="1"
-                            Style="{StaticResource ModernTextBox}"
-                            Margin="15,0"/>
-
-                    <ComboBox x:Name="cboSearchElement" 
-                             Grid.Column="2"
-                             Style="{StaticResource ModernComboBox}"
-                             Width="150"
-                             Margin="0,0,15,0"/>
-
-                    <Button x:Name="btnSearch" 
-                            Grid.Column="3"
-                            Content="Search"
+                    <Button x:Name="btnModerate" 
+                            Content="MODERATE"
                             Style="{StaticResource ActionButton}"
                             Width="120"
-                            Click="btnSearch_Click"/>
+                            HorizontalAlignment="Right"
+                            Click="btnModerate_Click"/>
                 </Grid>
-            </Border>
 
-            <!-- DataGrid -->
-            <Border CornerRadius="8" 
-                    Background="White" 
-                    BorderBrush="#BDC3C7" 
-                    BorderThickness="1"
-                    Margin="0,10">
+                <!-- Form Grid -->
+                <Grid Margin="0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Left Column -->
+                    <StackPanel Grid.Column="0">
+                        <StackPanel Margin="0,0,0,10">
+                            <Label Content="Ad ID" 
+                                   Foreground="#2C3E50" 
+                                   FontWeight="SemiBold"/>
+                            <TextBox x:Name="txtAdID" 
+                                    Style="{StaticResource ModernTextBox}"
+                                    Height="35"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,0,0,10">
+                            <Label Content="Title" 
+                                   Foreground="#2C3E50" 
+                                   FontWeight="SemiBold"/>
+                            <TextBox x:Name="txtTitle" 
+                                    Style="{StaticResource ModernTextBox}"
+                                    Height="35"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,0,0,10">
+                            <Label Content="Description" 
+                                   Foreground="#2C3E50" 
+                                   FontWeight="SemiBold"/>
+                            <TextBox x:Name="txtDescription" 
+                                    Style="{StaticResource ModernTextBox}"
+                                    Height="70"
+                                    TextWrapping="Wrap"
+                                    VerticalContentAlignment="Top"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,0,0,10">
+                            <Label Content="Price" 
+                                   Foreground="#2C3E50" 
+                                   FontWeight="SemiBold"/>
+                            <TextBox x:Name="txtPrice" 
+                                    Style="{StaticResource ModernTextBox}"
+                                    Height="35"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Right Column -->
+                    <StackPanel Grid.Column="2">
+                        <StackPanel Margin="0,0,0,10">
+                            <Label Content="Element" 
+                                   Foreground="#2C3E50" 
+                                   FontWeight="SemiBold"/>
+                            <ComboBox x:Name="cboElement" 
+                                     Style="{StaticResource ModernComboBox}"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,0,0,10">
+                            <Label Content="Category" 
+                                   Foreground="#2C3E50" 
+                                   FontWeight="SemiBold"/>
+                            <ComboBox x:Name="cboCategory" 
+                                     Style="{StaticResource ModernComboBox}"/>
+                        </StackPanel>
+
+                        <StackPanel Margin="0,0,0,10">
+                            <Label Content="User ID" 
+                                   Foreground="#2C3E50" 
+                                   FontWeight="SemiBold"/>
+                            <TextBox x:Name="txtUserID" 
+                                    Style="{StaticResource ModernTextBox}"
+                                    Height="35"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Search Section -->
+                <Border Background="White" 
+                        BorderBrush="#BDC3C7" 
+                        BorderThickness="1" 
+                        CornerRadius="8" 
+                        Padding="15"
+                        Margin="0,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Content="Search" 
+                               Grid.Column="0"
+                               Foreground="#2C3E50" 
+                               FontWeight="SemiBold" 
+                               VerticalAlignment="Center"/>
+
+                        <TextBox x:Name="txtSearch" 
+                                Grid.Column="1"
+                                Style="{StaticResource ModernTextBox}"
+                                Height="35"
+                                Margin="10,0"/>
+
+                        <ComboBox x:Name="cboSearchElement" 
+                                 Grid.Column="2"
+                                 Style="{StaticResource ModernComboBox}"
+                                 Width="150"
+                                 Margin="0,0,10,0"/>
+
+                        <Button x:Name="btnSearch" 
+                                Grid.Column="3"
+                                Content="Search"
+                                Style="{StaticResource ActionButton}"
+                                Width="100"
+                                Click="btnSearch_Click"/>
+                    </Grid>
+                </Border>
+
+                <!-- DataGrid -->
                 <DataGrid x:Name="dgAdData" 
-                         Height="250"
-                         Margin="1"
+                         Height="200"
+                         Margin="0,10"
                          SelectionChanged="dgAdData_SelectionChanged"/>
-            </Border>
 
-            <!-- Action Buttons -->
-            <Grid Margin="0,20,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="15"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="15"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="15"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <!-- Action Buttons -->
+                <UniformGrid Rows="1" Margin="0,10,0,0">
+                    <Button x:Name="btnAdd" 
+                            Content="ADD"
+                            Style="{StaticResource ActionButton}"
+                            Background="#27AE60"
+                            Margin="5"
+                            Click="btnAdd_Click"/>
 
-                <Button x:Name="btnAdd" 
-                        Grid.Column="0"
-                        Content="ADD"
-                        Style="{StaticResource ActionButton}"
-                        Background="#27AE60"
-                        Click="btnAdd_Click"/>
+                    <Button x:Name="btnUpdate" 
+                            Content="UPDATE"
+                            Style="{StaticResource ActionButton}"
+                            Background="#F1C40F"
+                            Margin="5"
+                            Click="btnUpdate_Click"/>
 
-                <Button x:Name="btnUpdate" 
-                        Grid.Column="2"
-                        Content="UPDATE"
-                        Style="{StaticResource ActionButton}"
-                        Background="#F1C40F"
-                        Click="btnUpdate_Click"/>
+                    <Button x:Name="btnDelete" 
+                            Content="DELETE"
+                            Style="{StaticResource ActionButton}"
+                            Background="#E74C3C"
+                            Margin="5"
+                            Click="btnDelete_Click"/>
 
-                <Button x:Name="btnDelete" 
-                        Grid.Column="4"
-                        Content="DELETE"
-                        Style="{StaticResource ActionButton}"
-                        Background="#E74C3C"
-                        Click="btnDelete_Click"/>
-
-                <Button x:Name="btnClose" 
-                        Grid.Column="6"
-                        Content="CLOSE"
-                        Style="{StaticResource ActionButton}"
-                        Background="#95A5A6"
-                        Click="btnClose_Click"/>
-            </Grid>
-        </StackPanel>
-    </Grid>
+                    <Button x:Name="btnClose" 
+                            Content="CLOSE"
+                            Style="{StaticResource ActionButton}"
+                            Background="#95A5A6"
+                            Margin="5"
+                            Click="btnClose_Click"/>
+                </UniformGrid>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Window>

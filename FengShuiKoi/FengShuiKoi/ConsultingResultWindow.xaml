@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FengShuiKoi"
         mc:Ignorable="d"
         Loaded="Window_Loaded" WindowStartupLocation="CenterScreen"
-        Title="ConsultingResultWindow" Height="900" Width="1100">
+        Title="ConsultingResultWindow" Height="750" Width="1100">
     <Window.Resources>
         <!-- DataGrid Style -->
         <Style TargetType="DataGrid">
@@ -80,108 +80,110 @@
         </Style>
     </Window.Resources>
 
-    <Grid Background="#F9FAFB" Margin="0,0,10,-6">
-        <StackPanel Margin="40,40,29,10">
-            <!-- Title -->
-            <TextBlock Text="CONSULTING RESULTS" 
-                      FontSize="28" 
-                      FontWeight="Bold" 
-                      Foreground="#2C3E50"
-                      HorizontalAlignment="Center"
-                      Margin="0,0,0,20"/>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Background="#F9FAFB" Margin="0,0,10,-6">
+            <StackPanel Margin="40,40,29,10">
+                <!-- Title -->
+                <TextBlock Text="CONSULTING RESULTS" 
+                          FontSize="28" 
+                          FontWeight="Bold" 
+                          Foreground="#2C3E50"
+                          HorizontalAlignment="Center"
+                          Margin="0,0,0,20"/>
 
-            <!-- Element Display -->
-            <Border Style="{StaticResource ElementDisplay}"
-                    Width="400"
-                    Margin="0,0,0,40">
-                <StackPanel>
-                    <TextBlock Text="YOUR ELEMENT" 
-                             FontSize="18"
-                             FontWeight="SemiBold"
-                             Foreground="#34495E"
-                             HorizontalAlignment="Center"
-                             Margin="0,0,0,15"/>
-                    <TextBox x:Name="txtElement"
-                            FontSize="32"
-                            FontWeight="Bold"
-                            Foreground="#3498DB"
-                            Background="Transparent"
-                            BorderThickness="0"
-                            IsReadOnly="True"
-                            TextAlignment="Center"
-                            HorizontalAlignment="Center"/>
-                </StackPanel>
-            </Border>
+                <!-- Element Display -->
+                <Border Style="{StaticResource ElementDisplay}"
+                        Width="400"
+                        Margin="0,0,0,40">
+                    <StackPanel>
+                        <TextBlock Text="YOUR ELEMENT" 
+                                 FontSize="18"
+                                 FontWeight="SemiBold"
+                                 Foreground="#34495E"
+                                 HorizontalAlignment="Center"
+                                 Margin="0,0,0,15"/>
+                        <TextBox x:Name="txtElement"
+                                FontSize="32"
+                                FontWeight="Bold"
+                                Foreground="#3498DB"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                IsReadOnly="True"
+                                TextAlignment="Center"
+                                HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
 
-            <!-- Data Grids Section -->
-            <Grid Margin="0,0,0,30">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="30"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <!-- Data Grids Section -->
+                <Grid Margin="0,0,0,30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <!-- Koi Fish Section -->
-                <StackPanel Grid.Column="0">
-                    <TextBlock Text="KOI FISH" 
-                             FontSize="20" 
-                             FontWeight="SemiBold" 
-                             Foreground="#34495E"
-                             HorizontalAlignment="Center"
-                             Margin="0,0,0,10"/>
-                    <Border CornerRadius="8" 
-                            Background="White" 
-                            BorderBrush="#BDC3C7" 
-                            BorderThickness="1">
-                        <DataGrid x:Name="dgKoiFish" 
-                                 Height="250"
-                                 Margin="1"/>
-                    </Border>
-                </StackPanel>
+                    <!-- Koi Fish Section -->
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="KOI FISH" 
+                                 FontSize="20" 
+                                 FontWeight="SemiBold" 
+                                 Foreground="#34495E"
+                                 HorizontalAlignment="Center"
+                                 Margin="0,0,0,10"/>
+                        <Border CornerRadius="8" 
+                                Background="White" 
+                                BorderBrush="#BDC3C7" 
+                                BorderThickness="1">
+                            <DataGrid x:Name="dgKoiFish" 
+                                     Height="200"
+                                     Margin="1"/>
+                        </Border>
+                    </StackPanel>
 
-                <!-- Tank Section -->
-                <StackPanel Grid.Column="2">
-                    <TextBlock Text="TANK" 
-                             FontSize="20" 
-                             FontWeight="SemiBold" 
-                             Foreground="#34495E"
-                             HorizontalAlignment="Center"
-                             Margin="0,0,0,10"/>
-                    <Border CornerRadius="8" 
-                            Background="White" 
-                            BorderBrush="#BDC3C7" 
-                            BorderThickness="1">
-                        <DataGrid x:Name="dgTank" 
-                                 Height="250"
-                                 Margin="1"/>
-                    </Border>
-                </StackPanel>
-            </Grid>
+                    <!-- Tank Section -->
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="TANK" 
+                                 FontSize="20" 
+                                 FontWeight="SemiBold" 
+                                 Foreground="#34495E"
+                                 HorizontalAlignment="Center"
+                                 Margin="0,0,0,10"/>
+                        <Border CornerRadius="8" 
+                                Background="White" 
+                                BorderBrush="#BDC3C7" 
+                                BorderThickness="1">
+                            <DataGrid x:Name="dgTank" 
+                                     Height="200"
+                                     Margin="1"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
 
-            <!-- Advertisement Section -->
-            <TextBlock Text="ADVERTISEMENT" 
-                      FontSize="20" 
-                      FontWeight="SemiBold" 
-                      Foreground="#34495E"
-                      HorizontalAlignment="Center"
-                      Margin="0,0,0,10"/>
-            <Border CornerRadius="8" 
-                    Background="White" 
-                    BorderBrush="#BDC3C7" 
-                    BorderThickness="1"
-                    Margin="0,0,0,30">
-                <DataGrid x:Name="dgAd" 
-                         Height="150"
-                         Margin="1"/>
-            </Border>
+                <!-- Advertisement Section -->
+                <TextBlock Text="ADVERTISEMENT" 
+                          FontSize="20" 
+                          FontWeight="SemiBold" 
+                          Foreground="#34495E"
+                          HorizontalAlignment="Center"
+                          Margin="0,0,0,10"/>
+                <Border CornerRadius="8" 
+                        Background="White" 
+                        BorderBrush="#BDC3C7" 
+                        BorderThickness="1"
+                        Margin="0,0,0,30">
+                    <DataGrid x:Name="dgAd" 
+                             Height="150"
+                             Margin="1"/>
+                </Border>
 
-            <!-- Return Button -->
-            <Button x:Name="btnReturn" 
-                    Content="RETURN TO CONSULTING" 
-                    Style="{StaticResource ReturnButton}"
-                    Width="250"
-                    HorizontalAlignment="Right"
-                    Click="btnReturn_Click"/>
-        </StackPanel>
-    </Grid>
+                <!-- Return Button -->
+                <Button x:Name="btnReturn" 
+                        Content="RETURN TO CONSULTING" 
+                        Style="{StaticResource ReturnButton}"
+                        Width="250"
+                        HorizontalAlignment="Right"
+                        Click="btnReturn_Click"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Window>

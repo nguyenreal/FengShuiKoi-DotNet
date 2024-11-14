@@ -162,7 +162,7 @@
                 <TextBox x:Name="txtBlogID" 
                         Style="{StaticResource ModernTextBox}"
                         Grid.Row="0" Grid.Column="1"
-                         IsReadOnly="True"/>
+                        IsReadOnly="True"/>
 
                 <Label Content="Title" 
                        Style="{StaticResource FieldLabel}"
